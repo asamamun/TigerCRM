@@ -25,7 +25,11 @@
 <body class="bg-gradient-primary">
 
     <div class="container">
+<!-- Session Status -->
+<x-auth-session-status class="mb-4" :status="session('status')" />
 
+<!-- Validation Errors -->
+<x-auth-validation-errors class="mb-4" :errors="$errors" />
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -59,9 +63,8 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
+                                            
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
