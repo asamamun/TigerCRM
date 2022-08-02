@@ -5494,16 +5494,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.11.2",
+            "version": "v1.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "0568bd257f0985645d5f4bb10f9f37ad9e46d414"
+                "reference": "40e0536e92385fa9f5c165b23ef544aad11e5fc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/0568bd257f0985645d5f4bb10f9f37ad9e46d414",
-                "reference": "0568bd257f0985645d5f4bb10f9f37ad9e46d414",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/40e0536e92385fa9f5c165b23ef544aad11e5fc5",
+                "reference": "40e0536e92385fa9f5c165b23ef544aad11e5fc5",
                 "shasum": ""
             },
             "require": {
@@ -5551,7 +5551,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2022-07-20T16:08:11+00:00"
+            "time": "2022-08-01T13:34:50+00:00"
         },
         {
             "name": "laravel/pint",
@@ -7976,5 +7976,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
