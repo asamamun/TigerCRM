@@ -86,10 +86,11 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">New Invoice</a>
+                        <a class="collapse-item" href="#">Sale</a>
+                        <a class="collapse-item" href="#">Purchase</a>
                         <a class="collapse-item" href="#">Invoice List</a>
+                        <a class="collapse-item" href="#">Purchase List</a>
                         <a class="collapse-item" href="#">Sale Return</a>
-                        <a class="collapse-item" href="#">Sale Return Report</a>
                     </div>
                 </div>
             </li>
@@ -105,7 +106,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="#">Product List</a>
-                        <a class="collapse-item" href="#">Purchase</a>
+                        <a class="collapse-item" href="#">Product Category</a>
                         <a class="collapse-item" href="#">Stock</a>
                     </div>
                 </div>
@@ -367,7 +368,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name . " " . Auth::user()->lname }}
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     src="{{url('assets/img/undraw_profile.svg')}}">
