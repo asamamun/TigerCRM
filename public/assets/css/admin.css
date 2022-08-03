@@ -3552,8 +3552,7 @@ input[type="button"].btn-block {
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5rem;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  /* color-adjust: exact; */
 }
 
 .custom-control-inline {
@@ -4496,7 +4495,10 @@ input[type="button"].btn-block {
   transition: transform .3s;
 }
 .card:hover{
-  transform: scale(1.05);
+  transform: scale(1.04);
+}
+.card-hover:hover{
+  transform: scale(1.01);
 }
 
 .card > hr {
@@ -10190,6 +10192,11 @@ a:focus {
 
 .topbar .navbar-search {
   width: 25rem;
+  transition: transform .3s;
+}
+
+.topbar .navbar-search:hover {
+  transform: scale(1.01);
 }
 
 .topbar .navbar-search input {
@@ -10865,21 +10872,36 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: url("../img/login.jpg");
+  height: 800;
+  width: 600;
   background-position: center;
   background-size: cover;
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+  background: url("../img/signup.jpg");
+  height: 800;
+  width: 600;
   background-position: center;
   background-size: cover;
 }
 
 .bg-password-image {
-  background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
+  background: url("../img/forgetpass.jpg");
+  height: 800;
+  width: 600;
   background-position: center;
   background-size: cover;
+}
+
+.profileimage{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin-top: 0;
+  display: block;
+  margin: 0 auto;
 }
 
 form.user .custom-checkbox.small label {
@@ -10891,11 +10913,22 @@ form.user .form-control-user {
   border-radius: 10rem;
   padding: 1.5rem 1rem;
 }
+form.user .form-control-profile {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  /* padding: 1.5rem 1rem; */
+}
 
 form.user .btn-user {
   font-size: 0.8rem;
   border-radius: 10rem;
   padding: 0.75rem 1rem;
+}
+
+form.user .btn-profile {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  /* padding: 0.75rem 1rem; */
 }
 
 .btn-google {

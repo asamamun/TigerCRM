@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,9 @@ Route::middleware('auth')->group(function(){
     //     return view('dashboard');
     // })->name('dashboard');
     Route::get('dashboard', [DashboardController::class, 'index']);
+    
+    Route::get('/profile', [ProfileController::class,'index'])->name("profile");
+Route::post('/profile', [ProfileController::class,'update'])->name("updateprofile");
 });
 
 
