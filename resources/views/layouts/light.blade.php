@@ -371,7 +371,12 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     {{ Auth::user()->name . " " . Auth::user()->lname }}
                                 </span>
+                                @if ($user->profile)
                                 <img src="{{url(Storage::url($user->profile->image))}}" class="img-profile rounded-circle" alt="Profile Image">
+                                @else
+                                    
+                                @endif
+                                
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
