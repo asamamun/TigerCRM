@@ -40,6 +40,18 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
+                    @if (Auth::check())
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        <div class="dropdown-menu dropdown-menu-right no-arrow">
+                            <a href="{{ url('profile') }}" class="dropdown-item" type="button">Profile</a>
+                            <a href="#" class="dropdown-item" type="button">Settings</a>
+                            <a href="#" class="dropdown-item" type="button">Dashboard</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{url('logout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                            </form>
+                        </div>
+                    @else
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -47,22 +59,8 @@
                             <a href="{{route('register')}}" class="dropdown-item" type="button">Register</a>
                         </div>
                     </div>
-                    {{-- <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">EUR</button>
-                            <button class="dropdown-item" type="button">GBP</button>
-                            <button class="dropdown-item" type="button">CAD</button>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">FR</button>
-                            <button class="dropdown-item" type="button">AR</button>
-                            <button class="dropdown-item" type="button">RU</button>
-                        </div>
-                    </div> --}}
+                    @endif
+                    
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">

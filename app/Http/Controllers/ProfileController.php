@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 
 class ProfileController extends Controller
@@ -77,16 +78,16 @@ class ProfileController extends Controller
         //upload
         $path = $request->file('image')->store('public/profiles');
         $storagepath = Storage::path($path);
-        // $img = Image::make($storagepath);
+        $img = Image::make($storagepath);
 
         // resize image instance
-        // $img->resize(320, 320);
+        $img->resize(320, 320);
 
         // insert a watermark
         // $img->insert('public/watermark.png');
 
         // save image in desired format
-        // $img->save($storagepath);
+        $img->save($storagepath);
 
         $u = User::find(Auth::id());
         $p = $u->profile? $u->profile :  new Profile();
