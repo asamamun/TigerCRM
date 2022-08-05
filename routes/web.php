@@ -5,8 +5,10 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +40,11 @@ Route::middleware('auth')->group(function(){
     // category
     Route::resource("/category",CategoryController::class);
 
+    // subcategory
+    Route::resource("/subcategory",SubcategoryController::class);
+
+    // product
+    Route::resource("/product",ProductController::class);
 
     // customer
     Route::get('customer', [CustomerController::class, 'index']);

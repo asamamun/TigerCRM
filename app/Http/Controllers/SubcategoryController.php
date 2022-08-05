@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Subcategory;
 use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class SubcategoryController extends Controller
 {
@@ -15,7 +19,14 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+        // $allsubcategory = Subcategory::all()->with('category');
+        // return view('subcategory.index',compact('allsubcategory'))->with('user',Auth::user());
+
+        $allsubcategory = Subcategory::with(['categories'])->get();
+        return view("subcategory.index")
+        ->with('allsubcategory',$allsubcategory)
+        ->with('user',Auth::user());
+        // dd($allsubcategory->categories);
     }
 
     /**
@@ -25,7 +36,9 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('name','id');
+        // dd($categories);
+        return view("subcategory.create")->with('categories',$categories)->with('user',Auth::user());
     }
 
     /**
@@ -36,7 +49,37 @@ class SubcategoryController extends Controller
      */
     public function store(StoreSubcategoryRequest $request)
     {
-        //
+        //upload
+        $path = $request->file('icon')->store('public/subcategories');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        // dd($request->category_id);
+
+        $data = [
+            'name'=>$request->name,
+            // 'category_id'=>$request->category_id,
+            'icon'=>$path,
+            'description'=>$request->description,
+        ];
+        // dd($data);
+        $sc = Subcategory::create($data);
+
+        if($request->category_id){
+            $sc->category_id()->sync($request->category_id);
+        }
+        if($sc){
+            return back()->with('message','Subcategory ' .$sc->id. ' Create Successfully!!!');
+        }
     }
 
     /**
@@ -47,7 +90,7 @@ class SubcategoryController extends Controller
      */
     public function show(Subcategory $subcategory)
     {
-        //
+        return view('subcategory.show',compact('subcategory'))->with('user',Auth::user());
     }
 
     /**
@@ -58,7 +101,7 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        //
+        return view('subcategory.edit',compact('subcategory'))->with('user',Auth::user());
     }
 
     /**
@@ -70,7 +113,31 @@ class SubcategoryController extends Controller
      */
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
-        //
+        //upload
+        $path = $request->file('icon')->store('public/subcategories');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $subcategory->name = $request->name;
+        $subcategory->category_id = $request->category_id;
+        $subcategory->icon = $path;
+        $subcategory->description = $request->description;
+
+        if($subcategory->save()){
+            return back()->with('message',"Update Successfully!!!");
+        }
+        else{
+            return back()->with('message',"Update Failed!!!");
+        }
     }
 
     /**
@@ -81,6 +148,8 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        //
+        if(Subcategory::destroy($subcategory->id)){
+            return back()->with('message',$subcategory->id. ' Deleted!!!!');
+        }
     }
 }
