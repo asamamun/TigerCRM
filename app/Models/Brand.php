@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Brand extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -13,10 +13,6 @@ class Category extends Model
         'description',
         'icon',
     ];
-    public function Subcategory()
-    {
-    return $this->hasMany('App\Models\Subcategory');
-    }
     public function Product()
     {
     return $this->hasMany('App\Models\Product');

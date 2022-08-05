@@ -15,7 +15,26 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('name');
+            $table->string('barcode');
+            $table->bigInteger('brand_id')->unsigned()->nullable();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->bigInteger('supplier_id')->unsigned()->nullable();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->bigInteger('subcategory_id')->unsigned()->nullable();
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->string('image');
+            $table->string('feature');
+            $table->text('description');
+            $table->text('information');
+            $table->decimal('regular_price');
+            $table->decimal('price');
+            $table->decimal('wholesale_price');
+            $table->decimal('purchase_price');
+            $table->decimal('discount');
+            $table->decimal('quantity');
             $table->timestamps();
         });
     }

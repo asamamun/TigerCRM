@@ -16,6 +16,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="{{url('assets/vendor/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+
     <!-- Custom styles for this template-->
     <link href="{{url('assets/css/admin.css')}}" rel="stylesheet">
 
@@ -51,8 +54,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Client</a>
-                        <a class="collapse-item" href="#">Supplier</a>
+                        <a class="collapse-item" href="{{url('customer')}}">Customer</a>
+                        <a class="collapse-item" href="{{url('supplier')}}">Supplier</a>
                     </div>
                 </div>
             </li>
@@ -366,7 +369,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <span class="mr-2 d-none d-lg-inline text-primary small">
                                     {{ Auth::user()->name . " " . Auth::user()->lname }}
                                 </span>
                                 @if ($user->profile)
@@ -380,20 +383,20 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{url('profile')}}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-primary"></i>
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-primary"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-primary"></i>
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-primary"></i>
                                     Logout
                                 </a>
                             </div>
@@ -466,8 +469,18 @@
     <!-- Core plugin JavaScript-->
     <script src="{{url('assets/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
+    <!-- Page level plugins -->
+    <script src="{{url('assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('assets/vendor/datatables/dataTables.bootstrap.min.js')}}"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="{{url('assets/js/admin.min.js')}}"></script>
+
+    <script>
+        $(document).ready( function () {
+        $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
 
