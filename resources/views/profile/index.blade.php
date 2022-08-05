@@ -6,8 +6,11 @@
 
 @section('content')
 <div class="card card-hover shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header py-3 d-flex justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Your Profile</h6>
+        <a href="{{url('dashboard')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Dashboard">
+            <i class="fas fa-undo"></i>
+        </a>
     </div>
     <div class="card-body">
         @include('partial.flash')

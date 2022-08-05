@@ -26,8 +26,8 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5',
-            'description' => 'required|min:5',
             'icon' => 'required',
+            'description' => 'required|min:5',
         ];
     }
 }

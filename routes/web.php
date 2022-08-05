@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
@@ -33,8 +34,10 @@ Route::middleware('auth')->group(function(){
     
     // supplier
     Route::resource("/supplier",SupplierController::class);
-    // Route::get('supplier', [SupplierController::class, 'index']);
-    // Route::get('supplier/create', [SupplierController::class, 'create']);
+
+    // category
+    Route::resource("/category",CategoryController::class);
+
 
     // customer
     Route::get('customer', [CustomerController::class, 'index']);

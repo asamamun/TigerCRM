@@ -108,7 +108,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="#">Product List</a>
-                        <a class="collapse-item" href="#">Product Category</a>
+                        <a class="collapse-item" href="{{url('category')}}">Product Category</a>
+                        <a class="collapse-item" href="#">Product Subcategory</a>
                         <a class="collapse-item" href="#">Stock</a>
                     </div>
                 </div>

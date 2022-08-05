@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -15,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $allcategory = Category::all();
+        return view('category.index',compact('allcategory'))->with('user',Auth::user());
     }
 
     /**
@@ -25,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("category.create")->with('user',Auth::user());
     }
 
     /**
@@ -36,7 +40,30 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        //upload
+        $path = $request->file('icon')->store('public/categories');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $data = [
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'icon'=>$path,
+        ];
+        // dd($data);
+        $c = Category::create($data);
+        if($c){
+            return back()->with('message','Category ' .$c->id. ' Create Successfully!!!');
+        }
     }
 
     /**
@@ -47,7 +74,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('category.show',compact('category'))->with('user',Auth::user());
     }
 
     /**
@@ -58,7 +85,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit',compact('category'))->with('user',Auth::user());
     }
 
     /**
@@ -70,7 +97,30 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        //upload
+        $path = $request->file('icon')->store('public/categories');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $category->name = $request->name;
+        $category->icon = $path;
+        $category->description = $request->description;
+
+        if($category->save()){
+            return back()->with('message',"Update Successfully!!!");
+        }
+        else{
+            return back()->with('message',"Update Failed!!!");
+        }
     }
 
     /**
@@ -81,6 +131,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if(Category::destroy($category->id)){
+            return back()->with('message',$category->id. ' Deleted!!!!');
+        }
     }
 }
