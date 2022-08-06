@@ -22,7 +22,7 @@ class SubcategoryController extends Controller
         // $allsubcategory = Subcategory::all()->with('category');
         // return view('subcategory.index',compact('allsubcategory'))->with('user',Auth::user());
 
-        $allsubcategory = Subcategory::with(['categories'])->get();
+        $allsubcategory = Subcategory::with('category')->get();
         return view("subcategory.index")
         ->with('allsubcategory',$allsubcategory)
         ->with('user',Auth::user());
@@ -36,7 +36,9 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
+       
         $categories = Category::pluck('name','id');
+        // array_unshift($categories , ['-1'=>"Select Category"]);
         // dd($categories);
         return view("subcategory.create")->with('categories',$categories)->with('user',Auth::user());
     }
@@ -65,20 +67,24 @@ class SubcategoryController extends Controller
 
         // dd($request->category_id);
 
-        $data = [
+        /* $data = [
             'name'=>$request->name,
-            // 'category_id'=>$request->category_id,
+            'category_id'=>$request->category_id,
             'icon'=>$path,
             'description'=>$request->description,
         ];
-        // dd($data);
-        $sc = Subcategory::create($data);
-
-        if($request->category_id){
-            $sc->category_id()->sync($request->category_id);
-        }
-        if($sc){
+        dd($data);
+        $sc = Subcategory::create($data); */
+        $sc = new Subcategory();
+        $sc->name = $request->name;
+        $sc->icon = $path;
+        $sc->description = $request->description;
+        $c = Category::find($request->category_id);
+        if($c->subcategories()->save($sc)){
             return back()->with('message','Subcategory ' .$sc->id. ' Create Successfully!!!');
+        }
+        else{
+            return back()->with('message','Error!!');
         }
     }
 

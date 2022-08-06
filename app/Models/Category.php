@@ -13,11 +13,11 @@ class Category extends Model
         'icon',
         'description',
     ];
-    public function Subcategory()
+    public function Subcategories()
     {
     return $this->hasMany('App\Models\Subcategory');
     }
-    public function Product()
+    public function Products()
     {
     return $this->hasMany('App\Models\Product');
     }

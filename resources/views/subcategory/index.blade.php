@@ -65,25 +65,24 @@
                     @foreach ($allsubcategory as $subcategory)
                     <tr>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcategory->id]]) !!}
-                            <input type="submit" value="D" class="btn btn-primary btn-circle btn-sm" title="Delete">
+                            {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
+                            {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcategory->id],'id'=>'deleteform']) !!}
+                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Delete selected item?')) return; document.getElementById('deleteform').submit();">
+                                <i class="fas fa-trash"></i>
+                            </a>
+
                             {!! Form::close() !!}
                             <a href="{{url('subcategory/'.$subcategory->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
-                                <i class="fas fa-trash"></i>
-                            </a> --}}
+                            
                             <a href="{{url('subcategory/'.$subcategory->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
                         <td>{{ $subcategory->id }}</td>
-                        <td>{{ $subcategory->name }}</td>
-
-                        @foreach ($allsubcategory->categories as $category)
-                        <td>{{ $category->name }}</td>
-                        @endforeach
+                        <td>{{ $subcategory->name }}</td>                        
+                        <td>{{ $subcategory->category->name }}</td>          
                         
                         <td>
                             @if ($subcategory->icon)

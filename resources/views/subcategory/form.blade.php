@@ -5,6 +5,7 @@
     <div class="col-sm-4 mb-3 mb-sm-0">
         {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
     </div>
+    
     <div class="col-sm-4 mb-3 mb-sm-0">
         {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
     </div>
