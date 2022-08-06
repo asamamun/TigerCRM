@@ -89,8 +89,10 @@
                     @foreach ($allproduct as $product)
                     <tr>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->id]]) !!}
-                            <input type="submit" value="D" class="btn btn-primary btn-circle btn-sm" title="Delete">
+                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->id],'id'=>'deleteform']) !!}
+                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
+                                <i class="fas fa-trash"></i>
+                            </a>
                             {!! Form::close() !!}
                             <a href="{{url('product/'.$product->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
@@ -105,10 +107,10 @@
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->barcode }}</td>
-                        <td>{{ $product->brand_id }}</td>
-                        <td>{{ $product->supplier_id }}</td>
-                        <td>{{ $product->category_id }}</td>
-                        <td>{{ $product->subcategory_id }}</td>
+                        <td>{{ $product->brand->name }}</td>
+                        <td>{{ $product->supplier->name }}</td>
+                        <td>{{ $product->category->name }}</td>
+                        <td>{{ $product->subcategory->name }}</td>
                         <td>
                             @if ($product->image)
                                 <img src="{{url(Storage::url($product->image))}}" class="iconimage" alt="Image">       
@@ -122,7 +124,6 @@
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->wholesale_price }}</td>
                         <td>{{ $product->purchase_price }}</td>
-                        <td>{{ $product->regular_price }}</td>
                         <td>{{ $product->discount }}</td>
                         <td>{{ $product->quantity }}</td>
                     </tr>

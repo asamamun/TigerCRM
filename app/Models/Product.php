@@ -22,14 +22,6 @@ class Product extends Model
         'discount',
         'quantity'
     ];
-    public function Category()
-    {
-    return $this->belongsTo('App\Models\Category');
-    }
-    public function Subcategory()
-    {
-    return $this->belongsTo('App\Models\Subcategory');
-    }
     public function Brand()
     {
     return $this->belongsTo('App\Models\Brand');
@@ -37,5 +29,13 @@ class Product extends Model
     public function Supplier()
     {
     return $this->belongsToMany('App\Models\Supplier');
+    }
+    public function Category()
+    {
+    return $this->belongsTo('App\Models\Category');
+    }
+    public function Subcategory()
+    {
+    return $this->belongsTo('App\Models\Subcategory');
     }
 }

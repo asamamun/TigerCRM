@@ -6,18 +6,18 @@
 </div>
 <div class="form-group row">
     <div class="col-sm-4 mb-3 mb-sm-0">
-        {!! Form::select('brand_id', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Brand', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('brand_id', $brands, null, ['placeholder' => 'Select Brand', 'class'=>'form-control form-control-profile']) !!}
     </div>
     <div class="col-sm-4 mb-3 mb-sm-0">
-        {!! Form::select('supplier_id', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Supplier', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('supplier_id', $suppliers, null, ['placeholder' => 'Select Supplier', 'class'=>'form-control form-control-profile']) !!}
     </div>
     <div class="col-sm-4">
-        {!! Form::select('category_id', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
-        {!! Form::select('subcategory_id', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Subcategory', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('subcategory_id', $subcategories, null, ['placeholder' => 'Select Subcategory', 'class'=>'form-control form-control-profile']) !!}
     </div>
     <div class="col-sm-6">
         {!! Form::file('image', ['required', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}
@@ -44,10 +44,13 @@
     </div>
 </div>
 <div class="form-group row">
-    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="col-sm-4 mb-3 mb-sm-0">
         {!! Form::text('purchase_price', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'purchase_price', 'placeholder'=>'Purchase Price']) !!}
     </div>
-    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="col-sm-4 mb-3 mb-sm-0">
         {!! Form::text('discount', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'discount', 'placeholder'=>'Discount (%)']) !!}
+    </div>
+    <div class="col-sm-4">
+        {!! Form::text('quantity', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'quantity', 'placeholder'=>'Quantity']) !!}
     </div>
 </div>

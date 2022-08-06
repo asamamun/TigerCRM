@@ -24,13 +24,13 @@
             </tr>
             <tr class="table-bordered">
                 <th>Category</th>
-                <td>{{ $subcategory->name }}</td>
+                <td>{{ $subcategory->category->name }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Icon</th>
                 <td>
                     @if ($subcategory->icon)
-                    <img src="{{url(Storage::url($category->icon))}}" class="iconimage" alt="Icon">       
+                    <img src="{{url(Storage::url($subcategory->icon))}}" class="iconimage" alt="Icon">       
                 @else            
                 @endif
                 </td>

@@ -67,10 +67,9 @@
                         <td class="d-flex justify-content-center">
                             {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
                             {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcategory->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Delete selected item?')) return; document.getElementById('deleteform').submit();">
+                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a>
-
                             {!! Form::close() !!}
                             <a href="{{url('subcategory/'.$subcategory->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>

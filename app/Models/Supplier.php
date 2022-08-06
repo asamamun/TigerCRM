@@ -14,8 +14,8 @@ class Supplier extends Model
         'email',
         'address',
     ];
-    public function Product()
+    public function Products()
     {
-    return $this->belongsToMany('App\Models\Product');
+    return $this->hasMany('App\Models\Product');
     }
 }

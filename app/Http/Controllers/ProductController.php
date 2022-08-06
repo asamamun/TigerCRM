@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -18,8 +22,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $allproduct = Product::all();
-        return view('product.index',compact('allproduct'))->with('user',Auth::user());
+        $allproduct = Product::with(['brand','supplier','category','subcategory'])->get();
+        return view("product.index")
+        ->with('allproduct',$allproduct)
+        ->with('user',Auth::user());
+        // dd($allsubcategory->categories);
     }
 
     /**
@@ -29,7 +36,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view("product.create")->with('user',Auth::user());
+        $categories = Category::pluck('name','id');
+        $subcategories = Subcategory::pluck('name','id');
+        $brands = Brand::pluck('name','id');
+        $suppliers = Supplier::pluck('name','id');
+        return view("product.create")
+        ->with('categories',$categories)
+        ->with('subcategories',$subcategories)
+        ->with('brands',$brands)
+        ->with('suppliers',$suppliers)
+        ->with('user',Auth::user());
     }
 
     /**
@@ -41,7 +57,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //upload
-        $path = $request->file('icon')->store('public/products');
+        $path = $request->file('image')->store('public/products');
         $storagepath = Storage::path($path);
         $img = Image::make($storagepath);
 
@@ -54,25 +70,32 @@ class ProductController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
-        $data = [
-            'name'=>$request->name,
-            'barcode'=>rand(100000000000,999999999999),
-            'image'=>$path,
-            'feature'=>$request->feature,
-            'description'=>$request->description,
-            'information'=>$request->information,
-            'regular_price'=>$request->regular_price,
-            'price'=>$request->price,
-            'wholesale_price'=>$request->wholesale_price,
-            'purchase_price'=>$request->purchase_price,
-            'discount'=>$request->discount,
+        $p = new Product();
+        $p->name = $request->name;
+        $p->barcode = rand(100000000000,999999999999);
+        $p->image = $path;
+        $p->feature = $request->feature;
+        $p->description = $request->description;
+        $p->information = $request->information;
+        $p->regular_price = $request->regular_price;
+        $p->price = $request->price;
+        $p->wholesale_price = $request->wholesale_price;
+        $p->purchase_price = $request->purchase_price;
+        $p->discount = $request->discount;
+        $p->quantity = $request->quantity;
 
-        ];
-        // dd($data);
-        $p = Product::create($data);
-        if($p){
+        $b = Brand::find($request->brand_id);
+        $s = Supplier::find($request->supplier_id);
+        $c = Category::find($request->category_id);
+        $sc = Subcategory::find($request->subcategory_id);
+        // dd($sc);
+        if(($b->products()->save($p)) && ($s->products()->save($p)) && ($c->products()->save($p)) && ($sc->products()->save($p))){
             return back()->with('message','Product ' .$p->id. ' Create Successfully!!!');
         }
+        else{
+            return back()->with('message','Error!!');
+        }
+
     }
 
     /**

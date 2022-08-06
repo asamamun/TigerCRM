@@ -19,8 +19,6 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        // $allsubcategory = Subcategory::all()->with('category');
-        // return view('subcategory.index',compact('allsubcategory'))->with('user',Auth::user());
 
         $allsubcategory = Subcategory::with('category')->get();
         return view("subcategory.index")
@@ -107,7 +105,8 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        return view('subcategory.edit',compact('subcategory'))->with('user',Auth::user());
+        $categories = Category::pluck('name','id');
+        return view('subcategory.edit',compact('subcategory'))->with('categories',$categories)->with('user',Auth::user());
     }
 
     /**
