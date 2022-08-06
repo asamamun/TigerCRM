@@ -25,11 +25,6 @@
 <body class="bg-gradient-primary">
 
     <div class="container">
-<!-- Session Status -->
-<x-auth-session-status class="mb-4" :status="session('status')" />
-
-<!-- Validation Errors -->
-<x-auth-validation-errors class="mb-4" :errors="$errors" />
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -45,6 +40,13 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+
+                                    <!-- Session Status -->
+                                    <x-auth-session-status class="mb-4 alert alert-danger" :status="session('status')" />
+
+                                    <!-- Validation Errors -->
+                                    <x-auth-validation-errors class="mb-4 alert alert-danger" :errors="$errors" />
+
                                     <form class="user" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">

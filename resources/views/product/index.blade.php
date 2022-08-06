@@ -43,7 +43,6 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Action</th>
                         <th>#</th>
                         <th>Name</th>
                         <th>Barcode</th>
@@ -61,11 +60,11 @@
                         <th>Purchase Price</th>
                         <th>Discount</th>
                         <th>Quantity</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Action</th>
                         <th>#</th>
                         <th>Name</th>
                         <th>Barcode</th>
@@ -83,27 +82,12 @@
                         <th>Purchase Price</th>
                         <th>Discount</th>
                         <th>Quantity</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($allproduct as $product)
                     <tr>
-                        <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            {!! Form::close() !!}
-                            <a href="{{url('product/'.$product->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
-                                <i class="fas fa-trash"></i>
-                            </a> --}}
-                            <a href="{{url('product/'.$product->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->barcode }}</td>
@@ -126,6 +110,22 @@
                         <td>{{ $product->purchase_price }}</td>
                         <td>{{ $product->discount }}</td>
                         <td>{{ $product->quantity }}</td>
+                        <td class="d-flex justify-content-center">
+                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->id],'id'=>'deleteform']) !!}
+                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            {!! Form::close() !!}
+                            <a href="{{url('product/'.$product->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </a> --}}
+                            <a href="{{url('product/'.$product->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

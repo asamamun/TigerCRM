@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateSubcategoryRequest extends FormRequest
+class StoreAccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class UpdateSubcategoryRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'icon' => 'required',
-            'description' => 'required|min:5',
+            'balance' => 'required',
         ];
     }
 }

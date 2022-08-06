@@ -1,14 +1,14 @@
 @extends('layouts.light')
 
 @section('pagetitle')
-    Supplier
+    Expense
 @endsection
 
 @section('content')
 <div class="card card-hover shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Supplier List</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Expense List</h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,7 +17,7 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                 aria-labelledby="dropdownMenuLink">
                 {{-- <div class="dropdown-header">Dropdown Header:</div> --}}
-                <a class="dropdown-item" href="{{url('supplier/create')}}">
+                <a class="dropdown-item" href="{{url('expense/create')}}">
                     <i class="fas fa-plus fa-sm fa-fw mr-2 text-primary"></i>
                     Add
                 </a>
@@ -45,9 +45,9 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Address</th>
+                        <th>Amount</th>
+                        <th>Payment Type</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -55,33 +55,30 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Address</th>
+                        <th>Amount</th>
+                        <th>Payment Type</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($allsupplier as $supplier)
+                    @foreach ($allexpense as $expense)
                     <tr>
-                        <td>{{ $supplier->id }}</td>
-                        <td>{{ $supplier->name }}</td>
-                        <td>{{ $supplier->mobile }}</td>
-                        <td>{{ $supplier->email }}</td>
-                        <td>{{ $supplier->address }}</td>
+                        <td>{{ $expense->id }}</td>
+                        <td>{{ $expense->name }}</td>
+                        <td>{{ $expense->amount }}</td>
+                        <td>{{ $expense->account->name }}</td>
+                        <td>{{ $expense->description }}</td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['supplier.destroy', $supplier->id],'id'=>'deleteform']) !!}
+                            {!! Form::open(['method' => 'delete','route' => ['expense.destroy', $expense->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a>
                             {!! Form::close() !!}
-                            <a href="{{url('supplier/'.$supplier->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
+                            <a href="{{url('expense/'.$expense->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
-                                <i class="fas fa-trash"></i>
-                            </a> --}}
-                            <a href="{{url('supplier/'.$supplier->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
+                            <a href="{{url('expense/'.$expense->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

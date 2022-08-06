@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
@@ -15,7 +18,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $allbrand = Brand::all();
+        return view('brand.index',compact('allbrand'))->with('user',Auth::user());
     }
 
     /**
@@ -25,7 +29,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view("brand.create")->with('user',Auth::user());
     }
 
     /**
@@ -36,7 +40,30 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+        //upload
+        $path = $request->file('icon')->store('public/brands');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $data = [
+            'name'=>$request->name,
+            'icon'=>$path,
+            'description'=>$request->description,
+        ];
+        // dd($data);
+        $b = Brand::create($data);
+        if($b){
+            return back()->with('message','Brand ' .$b->id. ' Create Successfully!!!');
+        }
     }
 
     /**
@@ -47,7 +74,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('brand.show',compact('brand'))->with('user',Auth::user());
     }
 
     /**
@@ -58,7 +85,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('brand.edit',compact('brand'))->with('user',Auth::user());
     }
 
     /**
@@ -70,7 +97,30 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        //upload
+        $path = $request->file('icon')->store('public/brands');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $brand->name = $request->name;
+        $brand->icon = $path;
+        $brand->description = $request->description;
+
+        if($brand->save()){
+            return back()->with('message',"Update Successfully!!!");
+        }
+        else{
+            return back()->with('message',"Update Failed!!!");
+        }
     }
 
     /**
@@ -81,6 +131,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        if(Brand::destroy($brand->id)){
+            return back()->with('message',$brand->id. ' Deleted!!!!');
+        }
     }
 }

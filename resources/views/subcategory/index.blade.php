@@ -43,27 +43,38 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Action</th>
                         <th>#</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Icon</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Action</th>
                         <th>#</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Icon</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($allsubcategory as $subcategory)
                     <tr>
+                        <td>{{ $subcategory->id }}</td>
+                        <td>{{ $subcategory->name }}</td>                        
+                        <td>{{ $subcategory->category->name }}</td>          
+                        
+                        <td>
+                            @if ($subcategory->icon)
+                                <img src="{{url(Storage::url($subcategory->icon))}}" class="iconimage" alt="Icon">       
+                            @else            
+                            @endif
+                        </td>
+                        <td>{{ $subcategory->description }}</td>
                         <td class="d-flex justify-content-center">
                             {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
                             {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcategory->id],'id'=>'deleteform']) !!}
@@ -79,17 +90,6 @@
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
-                        <td>{{ $subcategory->id }}</td>
-                        <td>{{ $subcategory->name }}</td>                        
-                        <td>{{ $subcategory->category->name }}</td>          
-                        
-                        <td>
-                            @if ($subcategory->icon)
-                                <img src="{{url(Storage::url($subcategory->icon))}}" class="iconimage" alt="Icon">       
-                            @else            
-                            @endif
-                        </td>
-                        <td>{{ $subcategory->description }}</td>
                     </tr>
                     @endforeach
                 </tbody>

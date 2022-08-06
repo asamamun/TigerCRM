@@ -70,8 +70,9 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Receiver Account</a>
-                        <a class="collapse-item" href="#">Expense</a>
+                        <a class="collapse-item" href="{{url('account')}}">Receiver Account</a>
+                        <a class="collapse-item" href="{{url('expense')}}">Expense</a>
+                        <a class="collapse-item" href="{{url('capital')}}">Capital</a>
                         <a class="collapse-item" href="#">Transfer</a>
                         <a class="collapse-item" href="#">Profit</a>
                     </div>
@@ -110,6 +111,7 @@
                         <a class="collapse-item" href="{{url('product')}}">Product List</a>
                         <a class="collapse-item" href="{{url('category')}}">Product Category</a>
                         <a class="collapse-item" href="{{url('subcategory')}}">Product Subcategory</a>
+                        <a class="collapse-item" href="{{url('brand')}}">Product Brand</a>
                         <a class="collapse-item" href="#">Stock</a>
                     </div>
                 </div>

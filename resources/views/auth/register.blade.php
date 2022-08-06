@@ -37,10 +37,10 @@
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
                             <!-- Session Status -->
-                                <x-auth-session-status class="mb-4" :status="session('status')" />
+                                <x-auth-session-status class="mb-4 alert alert-danger" :status="session('status')" />
 
                                 <!-- Validation Errors -->
-                                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                                <x-auth-validation-errors class="mb-4 alert alert-danger" :errors="$errors" />
                             <form class="user" method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <div class="form-group row">

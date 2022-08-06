@@ -56,8 +56,8 @@ class CategoryController extends Controller
 
         $data = [
             'name'=>$request->name,
-            'description'=>$request->description,
             'icon'=>$path,
+            'description'=>$request->description,
         ];
         // dd($data);
         $c = Category::create($data);

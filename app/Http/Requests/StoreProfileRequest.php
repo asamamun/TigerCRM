@@ -25,7 +25,11 @@ class StoreProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fullname' => 'required|min:5',
+            'phone' => 'required|min:10',
+            'address' => 'required',
+            'image' => 'required',
+            'bloodgroup' => 'required',
         ];
     }
 }

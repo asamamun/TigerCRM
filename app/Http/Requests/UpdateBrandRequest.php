@@ -25,7 +25,7 @@ class UpdateBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5',
+            'name' => 'required',
             'icon' => 'required',
             'description' => 'required|min:5',
         ];
