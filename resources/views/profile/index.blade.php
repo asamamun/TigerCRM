@@ -22,6 +22,33 @@
         </div>        
         @else            
         @endif
+        {!! Form::model($user->profile, ['method' => 'POST','enctype'=>'multipart/form-data','class'=>'user','route' => ['profile', $user->profile->id]]) !!}
+
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                {!! Form::text('fullname', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
+            </div>
+            <div class="col-sm-6">
+                {!! Form::text('phone', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'phone', 'placeholder'=>'Phone Number']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            {!! Form::text('address', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'address', 'placeholder'=>'Address']) !!}
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                {!! Form::file('image', ['required', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}
+            </div>
+            <div class="col-sm-6">
+                {!! Form::select('bloodgroup', $bloodgroup, null, ['required', 'placeholder' => 'Blood Group', 'class'=>'form-control form-control-profile']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            {!! Form::submit('Update Profile', ['class'=>'btn btn-primary btn-profile btn-block']) !!}
+        </div>
+        {!! Form::close() !!}
+
+{{--         
         <form class="user" action="{{route('updateprofile')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
@@ -57,6 +84,6 @@
                 Update Profile
             </button>
         </form>
-    </div>
+    </div> --}}
 </div>
 @endsection

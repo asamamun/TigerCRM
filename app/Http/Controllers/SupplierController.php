@@ -45,7 +45,6 @@ class SupplierController extends Controller
             'email'=>$request->email,
             'address'=>$request->address,
         ];
-        // dd($data);
         $s = Supplier::create($data);
         if($s){
             return back()->with('message','Supplier ' .$s->id. ' Create Successfully!!!');

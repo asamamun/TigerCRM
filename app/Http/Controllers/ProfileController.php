@@ -20,8 +20,17 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        
-        return view('profile.index')->with('user',Auth::user());
+        $bloodgroup = [
+            'A+' => 'A+',
+            'A-' => 'A-',
+            'B+' => 'B+',
+            'B-' => 'B-',
+            'O+' => 'O+',
+            'O-' => 'O-',
+            'AB+' => 'AB+',
+            'AB-' => 'AB-',
+        ];
+        return view('profile.index')->with('bloodgroup',$bloodgroup)->with('user',Auth::user());
     }
 
     /**

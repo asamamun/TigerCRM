@@ -63,10 +63,15 @@ Route::middleware('auth')->group(function(){
     Route::resource("/capital",CapitalController::class);
 
     // customer
-    Route::get('customer', [CustomerController::class, 'index']);
+    Route::resource("/customer",CustomerController::class);
+
+    // profile
+    Route::resource("/profile",ProfileController::class);
+
+
     
-    Route::get('/profile', [ProfileController::class,'index'])->name("profile");
-Route::post('/profile', [ProfileController::class,'update'])->name("updateprofile");
+//     Route::get('/profile', [ProfileController::class,'index'])->name("profile");
+// Route::post('/profile', [ProfileController::class,'update'])->name("updateprofile");
 });
 
 

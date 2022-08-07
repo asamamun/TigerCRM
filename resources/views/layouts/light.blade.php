@@ -69,11 +69,10 @@
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="{{url('account')}}">Receiver Account</a>
                         <a class="collapse-item" href="{{url('expense')}}">Expense</a>
                         <a class="collapse-item" href="{{url('capital')}}">Capital</a>
-                        <a class="collapse-item" href="#">Transfer</a>
+                        <a class="collapse-item" href="{{url('transfer')}}">Transfer</a>
                         <a class="collapse-item" href="#">Profit</a>
                     </div>
                 </div>
@@ -144,8 +143,6 @@
                 </a>
                 <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Add Purchase</a>
                         <a class="collapse-item" href="#">Purchase List</a>
                         <a class="collapse-item" href="#">Purchase Supplier</a>
                     </div>

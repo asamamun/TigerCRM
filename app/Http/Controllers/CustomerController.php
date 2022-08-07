@@ -16,7 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer.index')->with('user',Auth::user());
+        $allcustomer= Customer::all();
+        return view('customer.index',compact('allcustomer'))->with('user',Auth::user());
     }
 
     /**
@@ -26,7 +27,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view("customer.create")->with('user',Auth::user());
     }
 
     /**
@@ -37,7 +38,16 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $data = [
+            'name'=>$request->name,
+            'email'=>$request->mobile,
+            'mobile'=>$request->email,
+            'address'=>$request->address,
+        ];
+        $c = Customer::create($data);
+        if($c){
+            return back()->with('message','Customer ' .$c->id. ' Create Successfully!!!');
+        }
     }
 
     /**
@@ -48,7 +58,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customer.show',compact('customer'))->with('user',Auth::user());
     }
 
     /**
@@ -59,7 +69,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customer.edit',compact('customer'))->with('user',Auth::user());
     }
 
     /**
@@ -71,7 +81,16 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->mobile = $request->mobile;
+        $customer->address = $request->address;
+        if($customer->save()){
+            return back()->with('message',"Update Successfully!!!");
+        }
+        else{
+            return back()->with('message',"Update Failed!!!");
+        }
     }
 
     /**
@@ -82,6 +101,8 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        if(Customer::destroy($customer->id)){
+            return back()->with('message',$customer->id. ' Deleted!!!!');
+        }
     }
 }
