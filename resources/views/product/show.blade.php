@@ -46,7 +46,7 @@
                 <th>Image</th>
                 <td>
                     @if ($product->image)
-                    <img src="{{url(Storage::url($category->image))}}" class="iconimage" alt="Image">       
+                    <img src="{{url(Storage::url($product->image))}}" class="iconimage" alt="Image">       
                 @else            
                 @endif
                 </td>

@@ -19,6 +19,6 @@ class Account extends Model
     }
     public function capitals()
     {
-    return $this->hasMany('App\Models\Capital');
+    return $this->hasMany('App\Models\Capital', 'payment_type');
     }
 }

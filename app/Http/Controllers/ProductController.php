@@ -144,6 +144,10 @@ class ProductController extends Controller
         $img->save($storagepath);
 
         $product->name = $request->name;
+        $product->brand_id = $request->brand_id;
+        $product->supplier_id = $request->brand_id;
+        $product->category_id = $request->brand_id;
+        $product->subcategory_id = $request->brand_id;
         $product->image = $path;
         $product->feature = $request->feature;
         $product->description = $request->description;
@@ -152,8 +156,8 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->wholesale_price = $request->wholesale_price;
         $product->purchase_price = $request->purchase_price;
-        $product->purchase_price = $request->purchase_price;
         $product->discount = $request->discount;
+        $product->quantity = $request->quantity;
 
         if($product->save()){
             return back()->with('message',"Update Successfully!!!");
