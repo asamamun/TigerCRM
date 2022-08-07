@@ -46,7 +46,6 @@ class ExpenseController extends Controller
         $e = new Expense();
         $e->name = $request->name;
         $e->amount = $request->amount;
-        $e->payment_type = $request->payment_type;
         $e->description = $request->description;
         $a = Account::find($request->payment_type);
         if($a->expenses()->save($e)){

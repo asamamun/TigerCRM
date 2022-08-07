@@ -45,7 +45,6 @@ class CapitalController extends Controller
         $c = new Capital();
         $c->name = $request->name;
         $c->amount = $request->amount;
-        $c->payment_type = $request->payment_type;
         $c->description = $request->description;
         $a = Account::find($request->payment_type);
         if($a->capitals()->save($c)){
