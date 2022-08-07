@@ -17,4 +17,8 @@ class Account extends Model
     {
     return $this->hasMany('App\Models\Expense');
     }
+    public function capitals()
+    {
+    return $this->hasMany('App\Models\Capital');
+    }
 }

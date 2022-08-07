@@ -1,6 +1,0 @@
-Auth
-
-07-08-2022
-1. error name, lname show on register page.
-2. blood group not selected in profile update page.
-

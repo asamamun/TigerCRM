@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CapitalController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
@@ -55,8 +56,11 @@ Route::middleware('auth')->group(function(){
     // account
     Route::resource("/account",AccountController::class);
 
-    // account
+    // expense
     Route::resource("/expense",ExpenseController::class);
+
+    // capital
+    Route::resource("/capital",CapitalController::class);
 
     // customer
     Route::get('customer', [CustomerController::class, 'index']);
