@@ -16,6 +16,6 @@ class Expense extends Model
     ];
     public function Account()
     {
-    return $this->belongsTo('App\Models\Account');
+    return $this->belongsTo('App\Models\Account','payment_type');
     }
 }

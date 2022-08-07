@@ -28,7 +28,7 @@ class Product extends Model
     }
     public function Supplier()
     {
-    return $this->belongsToMany('App\Models\Supplier');
+    return $this->belongsTo('App\Models\Supplier');
     }
     public function Category()
     {

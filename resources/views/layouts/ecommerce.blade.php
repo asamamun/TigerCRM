@@ -40,7 +40,7 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    @if (Auth::check())
+                    @auth
                         <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right no-arrow">
                             <a href="{{ url('profile') }}" class="dropdown-item" type="button">Profile</a>
@@ -51,15 +51,16 @@
                                 <a href="{{url('logout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
                             </form>
                         </div>
-                    @else
-                    <div class="btn-group">
+                        @endauth
+                    @guest   
+                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route('login') }}" class="dropdown-item" type="button">Login</a>
                             <a href="{{route('register')}}" class="dropdown-item" type="button">Register</a>
                         </div>
                     </div>
-                    @endif
+                    @endguest
                     
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
@@ -143,9 +144,9 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{url('/')}}" class="nav-item nav-link active">Home</a>
-                            <a href="{{url('shop')}}" class="nav-item nav-link">Shop</a>
-                            <a href="{{url('contact')}}" class="nav-item nav-link">Contact</a>
+                            <a href="{{url('/')}}" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
+                            <a href="{{url('shop')}}" class="nav-item nav-link {{ Request::is('shop') ? 'active' : '' }}">Shop</a>
+                            <a href="{{url('contact')}}" class="nav-item nav-link  {{ Request::is('contact') ? 'active' : '' }}">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
