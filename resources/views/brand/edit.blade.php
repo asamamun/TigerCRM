@@ -9,7 +9,7 @@
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Update Brand</h6>
             <a href="{{url('brand')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Brand List">
-                <i class="fas fa-undo"></i>
+                <i class="fas fa-arrow-left"></i>
             </a>
         </div>
         <div class="card-body">

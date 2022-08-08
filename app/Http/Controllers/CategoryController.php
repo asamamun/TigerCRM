@@ -111,6 +111,10 @@ class CategoryController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
+        if($category->icon){
+            Storage::delete($category->icon);
+        }
+
         $category->name = $request->name;
         $category->icon = $path;
         $category->description = $request->description;

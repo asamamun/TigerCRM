@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('sender_account')->unsigned()->nullable();
+            $table->bigInteger('sender_account')->unsigned();
             $table->foreign('sender_account')->references('id')->on('accounts')->onDelete('cascade');
-            $table->bigInteger('receiver_account')->unsigned()->nullable();
+            $table->bigInteger('receiver_account')->unsigned();
             $table->foreign('receiver_account')->references('id')->on('accounts')->onDelete('cascade');
             $table->string('amount');
+            $table->string('description');
             $table->timestamps();
         });
     }

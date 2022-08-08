@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTransferRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateTransferRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,10 @@ class UpdateTransferRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'sender_account' => 'required',
+            'receiver_account' => 'required',
+            'amount' => 'required',
+            'description' => 'required',
         ];
     }
 }

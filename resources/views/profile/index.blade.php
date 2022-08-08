@@ -22,7 +22,7 @@
         </div>
         {!! Form::model($user->profile, ['method' => 'PUT','enctype'=>'multipart/form-data','class'=>'user','route' => ['profile.update', $user->profile->id]]) !!}
         @else
-        {!! Form::open(['route' => ['profile.store'] , 'enctype'=>'multipart/form-data']) !!}
+        {!! Form::open(['route' => ['profile.store'] ,'class'=>'user', 'enctype'=>'multipart/form-data']) !!}
         @endif
         
         

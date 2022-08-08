@@ -111,6 +111,11 @@ class BrandController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
+
+        if($brand->icon){
+            Storage::delete($brand->icon);
+        }
+
         $brand->name = $request->name;
         $brand->icon = $path;
         $brand->description = $request->description;

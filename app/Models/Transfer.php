@@ -12,5 +12,6 @@ class Transfer extends Model
         'sender_account',
         'receiver_account',
         'amount',
+        'description',
     ];
 }

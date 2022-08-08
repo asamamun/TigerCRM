@@ -143,11 +143,15 @@ class ProductController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
+        if($product->image){
+            Storage::delete($product->image);
+        }
+
         $product->name = $request->name;
         $product->brand_id = $request->brand_id;
-        $product->supplier_id = $request->brand_id;
-        $product->category_id = $request->brand_id;
-        $product->subcategory_id = $request->brand_id;
+        $product->supplier_id = $request->supplier_id;
+        $product->category_id = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
         $product->image = $path;
         $product->feature = $request->feature;
         $product->description = $request->description;

@@ -132,6 +132,10 @@ class SubcategoryController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
+        if($subcategory->icon){
+            Storage::delete($subcategory->icon);
+        }
+
         $subcategory->name = $request->name;
         $subcategory->category_id = $request->category_id;
         $subcategory->icon = $path;
