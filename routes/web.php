@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function(){
     Route::resource("/customer",CustomerController::class);
 
     // profile
-    Route::resource("/profile",ProfileController::class);
+    Route::resource("profile",ProfileController::class);
 
 
     

@@ -20,6 +20,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        //dd(Auth::user()->profile);
         $bloodgroup = [
             'A+' => 'A+',
             'A-' => 'A-',
@@ -51,7 +52,30 @@ class ProfileController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
-        //
+        // dd($request->file('image'));
+        $path = $request->file('image')->store('public/profiles');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $u = User::find(Auth::id());
+        $p = new Profile();        
+        $p->fullname = $request->fullname;
+        $p->phone = $request->phone;
+        $p->address = $request->address;
+        $p->bloodgroup = $request->bloodgroup;
+        $p->image = $path;
+        if($u->profile()->save($p)){
+            return back()->with('message',"Your profile has been Created!!!");
+        }
     }
 
     /**
@@ -86,6 +110,7 @@ class ProfileController extends Controller
     public function update(UpdateProfileRequest $request, Profile $profile)
     {
         //upload
+        
         $path = $request->file('image')->store('public/profiles');
         $storagepath = Storage::path($path);
         $img = Image::make($storagepath);
@@ -100,7 +125,10 @@ class ProfileController extends Controller
         $img->save($storagepath);
 
         $u = User::find(Auth::id());
-        $p = $u->profile? $u->profile :  new Profile();
+        $p = $u->profile;
+        if($p->image){
+            Storage::delete($p->image);
+        }
         $p->fullname = $request->fullname;
         $p->phone = $request->phone;
         $p->address = $request->address;

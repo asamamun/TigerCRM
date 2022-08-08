@@ -19,11 +19,13 @@
         @if ($user->profile)
         <div class="mb-3">
             <img src="{{url(Storage::url($user->profile->image))}}" class="profileimage" alt="Profile Image">
-        </div>        
-        @else            
+        </div>
+        {!! Form::model($user->profile, ['method' => 'PUT','enctype'=>'multipart/form-data','class'=>'user','route' => ['profile.update', $user->profile->id]]) !!}
+        @else
+        {!! Form::open(['route' => ['profile.store'] , 'enctype'=>'multipart/form-data']) !!}
         @endif
-        {!! Form::model($user->profile, ['method' => 'POST','enctype'=>'multipart/form-data','class'=>'user','route' => ['profile', $user->profile->id]]) !!}
-
+        
+        
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 {!! Form::text('fullname', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
