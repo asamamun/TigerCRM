@@ -44,18 +44,67 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - CRM -->
+            <!-- Nav Item - Customer -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cash-register"></i>
-                    <span>CRM</span>
+                <a class="nav-link collapsed" href="{{url('customer')}}">
+                    <i class="fas fa-fw fa-users"></i>
+                   <span>Customer</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            </li>
+            <!-- Nav Item - Supplier -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{url('supplier')}}">
+                    <i class="fas fa-fw fa-people-carry"></i>
+                   <span>Supplier</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Product -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product"
+                    aria-expanded="true" aria-controls="product">
+                    <i class="fas fa-fw fa-cart-plus"></i>
+                    <span>Product</span>
+                </a>
+                <div id="product" class="collapse" aria-labelledby="product" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="{{url('customer')}}">Customer</a>
-                        <a class="collapse-item" href="{{url('supplier')}}">Supplier</a>
+                        <a class="collapse-item" href="{{url('product')}}">Product List</a>
+                        <a class="collapse-item" href="{{url('category')}}">Product Category</a>
+                        <a class="collapse-item" href="{{url('subcategory')}}">Product Subcategory</a>
+                        <a class="collapse-item" href="{{url('brand')}}">Product Brand</a>
+                        <a class="collapse-item" href="#">Stock</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Purchase -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#purchase"
+                    aria-expanded="true" aria-controls="purchase">
+                    <i class="fas fa-fw fa-cart-plus"></i>
+                    <span>Purchase</span>
+                </a>
+                <div id="purchase" class="collapse" aria-labelledby="purchase" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Purchase</a>
+                        <a class="collapse-item" href="#">Purchase List</a>
+                        <a class="collapse-item" href="#">Purchase Return</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Sale -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#sale"
+                    aria-expanded="true" aria-controls="sale">
+                    <i class="fas fa-fw fa-cart-plus"></i>
+                    <span>Sale</span>
+                </a>
+                <div id="sale" class="collapse" aria-labelledby="sale" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Sale</a>
+                        <a class="collapse-item" href="#">Order List</a>
+                        <a class="collapse-item" href="#">Order Return</a>
                     </div>
                 </div>
             </li>
@@ -65,53 +114,15 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseThree">
                     <i class="fas fa-fw fa-file-invoice-dollar"></i>
-                    <span>Account</span>
+                    <span>Accounts</span>
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{url('account')}}">Receiver Account</a>
+                        <a class="collapse-item" href="{{url('account')}}">Account</a>
                         <a class="collapse-item" href="{{url('expense')}}">Expense</a>
                         <a class="collapse-item" href="{{url('capital')}}">Capital</a>
                         <a class="collapse-item" href="{{url('transfer')}}">Transfer</a>
                         <a class="collapse-item" href="#">Profit</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Invoice -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Invoice</span>
-                </a>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Sale</a>
-                        <a class="collapse-item" href="#">Purchase</a>
-                        <a class="collapse-item" href="#">Invoice List</a>
-                        <a class="collapse-item" href="#">Purchase List</a>
-                        <a class="collapse-item" href="#">Sale Return</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Product -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
-                    aria-expanded="true" aria-controls="collapseFive">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Product</span>
-                </a>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="{{url('product')}}">Product List</a>
-                        <a class="collapse-item" href="{{url('category')}}">Product Category</a>
-                        <a class="collapse-item" href="{{url('subcategory')}}">Product Subcategory</a>
-                        <a class="collapse-item" href="{{url('brand')}}">Product Brand</a>
-                        <a class="collapse-item" href="#">Stock</a>
                     </div>
                 </div>
             </li>
@@ -135,7 +146,7 @@
             </li>
 
             <!-- Nav Item - Office Purchase -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
                     aria-expanded="true" aria-controls="collapseSeven">
                     <i class="fas fa-fw fa-truck"></i>
@@ -147,7 +158,7 @@
                         <a class="collapse-item" href="#">Purchase Supplier</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider">
