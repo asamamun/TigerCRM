@@ -24,6 +24,38 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{url('assets/css/ecomercestyle.css')}}" rel="stylesheet">
+    <style> 
+        .profileimage{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            margin-top: 0;
+            display: block;
+            margin: 0 auto;
+            }
+            .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #e3e6f0;
+            border-radius: 0.35rem;
+            transition: transform .3s;
+            }
+            /* .card:hover{
+            transform: scale(1.04);
+            } */
+            .border-left-primary {
+            border-left: 0.25rem solid #f6c23e !important;
+            }
+            .shadow {
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+            }
+    </style>
+
 </head>
 
 <body>
