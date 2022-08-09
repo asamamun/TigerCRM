@@ -12,8 +12,9 @@
     <link href="#" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com"> --}}
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  --}}
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> 
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -26,34 +27,49 @@
     <link href="{{url('assets/css/ecomercestyle.css')}}" rel="stylesheet">
     <style> 
         .profileimage{
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            margin-top: 0;
-            display: block;
-            margin: 0 auto;
-            }
-            .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 1px solid #e3e6f0;
-            border-radius: 0.35rem;
-            transition: transform .3s;
-            }
-            /* .card:hover{
-            transform: scale(1.04);
-            } */
-            .border-left-primary {
-            border-left: 0.25rem solid #f6c23e !important;
-            }
-            .shadow {
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
-            }
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        margin-top: 0;
+        display: block;
+        margin: 0 auto;
+        }
+        .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #e3e6f0;
+        border-radius: 0.35rem;
+        transition: transform .3s;
+        }
+        /* .card:hover{
+        transform: scale(1.04);
+        } */
+        .border-left-primary {
+        border-left: 0.25rem solid #f6c23e !important;
+        }
+        .shadow {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+        }
+        .profilename{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .dashboard-sidebar{
+            text-decoration: none;
+            /* background-color: #f6c23e; */
+            color: black;
+            padding: 10px;
+            padding-left: 20px;
+
+        }
+        .dashboard-sidebar:hover{
+            background-color: #f6c23e;
+        }
     </style>
 
 </head>

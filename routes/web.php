@@ -12,6 +12,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SupplierController;
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function(){
 
     //customer dashboard
     Route::get('customerdashboard', [CustomerDashboardController::class, 'index']);
+
+    //purchase history
+    Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);
     
     // supplier
     Route::resource("/supplier",SupplierController::class);

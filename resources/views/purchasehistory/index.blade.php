@@ -31,13 +31,13 @@
                             Syed Zayed Hossain
                         </div>
                     </div>
-                    <a class="" href="{{url('customerdashboard')}}">
+                    <a class="" href="{{'customerdashboard'}}">
                         <div class="dashboard-sidebar">
                             <i class="fas fa-home"></i>
                             <span>Dashboard</span>
                         </div>
                     </a>
-                    <a class="" href="{{url('purchasehistory')}}">
+                    <a class="" href="{{'purchasehistory'}}">
                         <div class="dashboard-sidebar">
                             <i class="fas fa-file-alt"></i>
                             <span>Purchase History</span>
@@ -52,34 +52,33 @@
 
                 </div>
             </div>
-            <div class="col-lg-9 ">
+            <div class="col-lg-9">
                 <div class="card border-left-primary shadow mb-4">
                     <div class="card-body">
-                        Dashboard
+                        Purchase History
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card border-left-primary shadow py-2">
-                            <div class="card-body">
-                                <h3>0 Product(s)</h3>
-                                <p>in your cart</p>
+                <div class="card border-left-primary shadow">
+                    <div class="card-body mb-4">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>#424515262541233</h5>
+                                <p>01-08-2022 02:10PM</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card border-left-primary shadow py-2">
-                            <div class="card-body">
-                                <h3>0 Product(s)</h3>
-                                <p>in your wishlist</p>
+                            <div class="col-4">
+                                33,572.00 Tk
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card border-left-primary shadow py-2">
-                            <div class="card-body">
-                                <h3>Order(s)</h3>
-                                <p>my order</p>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        Confirmed | Paid
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
