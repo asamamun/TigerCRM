@@ -89,25 +89,52 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     @auth
+                        @php
+                        $r = Auth::user()->role;    
+                        @endphp
+                        @if($r == "1")
                         <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right no-arrow">
                             <a href="{{ url('profile') }}" class="dropdown-item" type="button">Profile</a>
-                            <a href="#" class="dropdown-item" type="button">Settings</a>
-                            <a href="{{url('customerdashboard')}}" class="dropdown-item" type="button">Dashboard</a>
+                            <a href="{{url('dashboard')}}" class="dropdown-item" type="button">Dashboard</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a href="{{url('logout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
                             </form>
                         </div>
-                        @endauth
-                    @guest   
-                     <div class="btn-group">
+                        @endif
+                        @if($r == "2")
                         <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ route('login') }}" class="dropdown-item" type="button">Login</a>
-                            <a href="{{route('register')}}" class="dropdown-item" type="button">Register</a>
+                        <div class="dropdown-menu dropdown-menu-right no-arrow">
+                            <a href="{{ url('profile') }}" class="dropdown-item" type="button">Profile</a>
+                            <a href="{{url('dashboard')}}" class="dropdown-item" type="button">Dashboard</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{url('logout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                            </form>
                         </div>
-                    </div>
+                        @endif
+                        @if($r == "3")
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        <div class="dropdown-menu dropdown-menu-right no-arrow">
+                            <a href="{{url('customerdashboard')}}" class="dropdown-item" type="button">Dashboard</a>
+                            <a href="{{ url('purchasehistory') }}" class="dropdown-item" type="button">Purchase History</a>
+                            <a href="#" class="dropdown-item" type="button">Manage Profile</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{url('logout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                            </form>
+                        </div>
+                        @endif
+                    @endauth
+                    @guest   
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="{{ route('login') }}" class="dropdown-item" type="button">Login</a>
+                                <a href="{{route('register')}}" class="dropdown-item" type="button">Register</a>
+                            </div>
+                        </div>
                     @endguest
                     
                 </div>

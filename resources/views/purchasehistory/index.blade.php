@@ -58,22 +58,24 @@
                         Purchase History
                     </div>
                 </div>
-                <div class="card border-left-primary shadow">
-                    <div class="card-body mb-4">
+                <div class="card border-left-primary mb-4 shadow">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <h5>#424515262541233</h5>
+                            <div class="col-md-5">
+                                <a href="#">
+                                    <h5>#424515262541233</h5>
+                                </a>
                                 <p>01-08-2022 02:10PM</p>
                             </div>
-                            <div class="col-4">
-                                33,572.00 Tk
+                            <div class="col-3">
+                                <a href="#">33,572.00 Tk</a>
                             </div>
                             <div class="col-4">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-9">
                                         Confirmed | Paid
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-3">
                                         <a href="#">
                                             <i class="fas fa-arrow-down"></i>
                                         </a>
@@ -83,6 +85,37 @@
                         </div>
                     </div>
                 </div>
+                <div class="card border-left-primary mb-4 shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <a href="#">
+                                    <h5>#424515262541233</h5>
+                                </a>
+                                <p>01-08-2022 02:10PM</p>
+                            </div>
+                            <div class="col-3">
+                                <a href="#">33,572.00 Tk</a>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-success">Delivered</button>
+                                            <button type="button" class="btn btn-primary">Paid</button>
+                                          </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="#">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

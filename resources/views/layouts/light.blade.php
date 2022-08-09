@@ -144,7 +144,13 @@
                     </div>
                 </div>
             </li>
-
+            {{-- Nav Item - Users --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{url('user')}}">
+                    <i class="fas fa-fw fa-users"></i>
+                   <span>Users</span>
+                </a>
+            </li>
             <!-- Nav Item - Office Purchase -->
             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
