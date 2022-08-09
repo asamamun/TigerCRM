@@ -14,4 +14,13 @@ class Transfer extends Model
         'amount',
         'description',
     ];
+    public function sender()
+    {
+    return $this->belongsTo('App\Models\Account','sender_account');
+    }
+    public function receiver()
+    {
+    return $this->belongsTo('App\Models\Account','receiver_account');
+    }
+
 }

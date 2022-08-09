@@ -117,7 +117,16 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit',compact('product'))->with('user',Auth::user());
+        $categories = Category::pluck('name','id');
+        $subcategories = Subcategory::pluck('name','id');
+        $brands = Brand::pluck('name','id');
+        $suppliers = Supplier::pluck('name','id');
+        return view('product.edit',compact('product'))
+        ->with('categories',$categories)
+        ->with('subcategories',$subcategories)
+        ->with('brands',$brands)
+        ->with('suppliers',$suppliers)
+        ->with('user',Auth::user());
     }
 
     /**

@@ -21,4 +21,12 @@ class Account extends Model
     {
     return $this->hasMany('App\Models\Capital', 'payment_type');
     }
+    public function Sender()
+    {
+    return $this->hasMany('App\Models\Transfer','sender_account');
+    }
+    public function Receiver()
+    {
+    return $this->hasMany('App\Models\Transfer','receiver_account');
+    }
 }
