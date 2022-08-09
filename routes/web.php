@@ -6,6 +6,7 @@ use App\Http\Controllers\CapitalController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
@@ -37,6 +38,9 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::middleware('auth')->group(function(){
     //dashboard
     Route::get('dashboard', [DashboardController::class, 'index']);
+
+    //customer dashboard
+    Route::get('customerdashboard', [CustomerDashboardController::class, 'index']);
     
     // supplier
     Route::resource("/supplier",SupplierController::class);

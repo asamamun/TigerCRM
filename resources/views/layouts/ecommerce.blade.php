@@ -45,7 +45,7 @@
                         <div class="dropdown-menu dropdown-menu-right no-arrow">
                             <a href="{{ url('profile') }}" class="dropdown-item" type="button">Profile</a>
                             <a href="#" class="dropdown-item" type="button">Settings</a>
-                            <a href="#" class="dropdown-item" type="button">Dashboard</a>
+                            <a href="{{url('customerdashboard')}}" class="dropdown-item" type="button">Dashboard</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a href="{{url('logout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>

@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-cash-register"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">TigerCRM</div>
+                <div class="sidebar-brand-text mx-3">TigerBMS</div>
             </a>
 
             <!-- Divider -->
