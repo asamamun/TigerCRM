@@ -29,4 +29,12 @@ class Account extends Model
     {
     return $this->hasMany('App\Models\Transfer','receiver_account');
     }
+    public function Orders()
+    {
+    return $this->hasMany('App\Models\Order','payment_type');
+    }
+    public function Invoices()
+    {
+    return $this->hasMany('App\Models\Order','payment_type');
+    }
 }

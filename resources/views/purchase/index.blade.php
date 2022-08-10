@@ -1,7 +1,7 @@
 @extends('layouts.light')
 
 @section('pagetitle')
-    Sale
+    Purchase
 @endsection
 
 @section('content')
@@ -11,12 +11,12 @@
 <div class="card card-hover shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Sale</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Purchase</h6>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-lg-8">
-                {!! Form::open(['class'=>'user','url' => 'sale']) !!}
+                {!! Form::open(['class'=>'user','url' => 'purchase']) !!}
                 <div class="form-group">
                     {!! Form::text('search', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'productsearch', 'placeholder'=>'Enter Product Name/SKU/Scan Bar Code']) !!}
                 </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                    {!! Form::text('customersearch', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'customersearch', 'placeholder'=>'Enter Customer Mobile Number']) !!}
+                    {!! Form::text('suppliersearch', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'suppliersearch', 'placeholder'=>'Enter Supplier Mobile Number']) !!}
                 </div>
                 <div id="dyn_customer"></div>
                 <hr>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="form-group col-12">
-                {!! Form::text('salenote', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'salenote','placeholder'=>'Sale Note']) !!}
+                {!! Form::text('purchasenote', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'purchasenote','placeholder'=>'Purchase Note']) !!}
             </div>
             <div class="form-group col-12">
                 {!! Form::submit('Save', ['class'=>'btn btn-primary btn-profile btn-block','id'=>'saveBtn']) !!}

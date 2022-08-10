@@ -18,4 +18,8 @@ class Supplier extends Model
     {
     return $this->hasMany('App\Models\Product');
     }
+    public function Invoices()
+    {
+    return $this->hasMany('App\Models\Invoice');
+    }
 }

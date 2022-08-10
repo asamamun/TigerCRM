@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PurchaseHistory;
-use App\Http\Requests\StorePurchaseHistoryRequest;
-use App\Http\Requests\UpdatePurchaseHistoryRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 
-class PurchaseHistoryController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class PurchaseHistoryController extends Controller
      */
     public function index()
     {
-        return view('purchasehistory.index')->with('user',Auth::user());
+        //
     }
 
     /**
@@ -32,10 +31,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePurchaseHistoryRequest  $request
+     * @param  \App\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePurchaseHistoryRequest $request)
+    public function store(StoreOrderRequest $request)
     {
         //
     }
@@ -43,10 +42,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseHistory $purchaseHistory)
+    public function show(Order $order)
     {
         //
     }
@@ -54,10 +53,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseHistory $purchaseHistory)
+    public function edit(Order $order)
     {
         //
     }
@@ -65,11 +64,11 @@ class PurchaseHistoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePurchaseHistoryRequest  $request
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Http\Requests\UpdateOrderRequest  $request
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePurchaseHistoryRequest $request, PurchaseHistory $purchaseHistory)
+    public function update(UpdateOrderRequest $request, Order $order)
     {
         //
     }
@@ -77,10 +76,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseHistory $purchaseHistory)
+    public function destroy(Order $order)
     {
         //
     }

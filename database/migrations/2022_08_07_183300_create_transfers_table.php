@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('sender_account')->references('id')->on('accounts')->onDelete('restrict');
             $table->bigInteger('receiver_account')->unsigned();
             $table->foreign('receiver_account')->references('id')->on('accounts')->onDelete('restrict');
-            $table->string('amount');
+            $table->decimal('amount','15','2');
             $table->string('description');
             $table->timestamps();
         });

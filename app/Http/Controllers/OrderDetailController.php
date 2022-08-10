@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PurchaseHistory;
-use App\Http\Requests\StorePurchaseHistoryRequest;
-use App\Http\Requests\UpdatePurchaseHistoryRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\OrderDetail;
+use App\Http\Requests\StoreOrderDetailRequest;
+use App\Http\Requests\UpdateOrderDetailRequest;
 
-class PurchaseHistoryController extends Controller
+class OrderDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class PurchaseHistoryController extends Controller
      */
     public function index()
     {
-        return view('purchasehistory.index')->with('user',Auth::user());
+        //
     }
 
     /**
@@ -32,10 +31,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePurchaseHistoryRequest  $request
+     * @param  \App\Http\Requests\StoreOrderDetailRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePurchaseHistoryRequest $request)
+    public function store(StoreOrderDetailRequest $request)
     {
         //
     }
@@ -43,10 +42,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseHistory $purchaseHistory)
+    public function show(OrderDetail $orderDetail)
     {
         //
     }
@@ -54,10 +53,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseHistory $purchaseHistory)
+    public function edit(OrderDetail $orderDetail)
     {
         //
     }
@@ -65,11 +64,11 @@ class PurchaseHistoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePurchaseHistoryRequest  $request
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Http\Requests\UpdateOrderDetailRequest  $request
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePurchaseHistoryRequest $request, PurchaseHistory $purchaseHistory)
+    public function update(UpdateOrderDetailRequest $request, OrderDetail $orderDetail)
     {
         //
     }
@@ -77,10 +76,10 @@ class PurchaseHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PurchaseHistory  $purchaseHistory
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseHistory $purchaseHistory)
+    public function destroy(OrderDetail $orderDetail)
     {
         //
     }

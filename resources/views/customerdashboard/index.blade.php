@@ -26,7 +26,11 @@
             <div class="col-lg-3 mb-4">
                 <div class="card border-left-primary shadow py-2">
                     <div class="card-body">
-                        <img src="http://localhost/Zayed/laravel/TigerCRM/public/storage/profiles/VDwphia5fDV7js9OIedwgP3KJnSQ4qmPiREPhuMl.jpg" class="profileimage" alt="Profile Image">
+                        @if ($user->profile)
+                        <img src="{{url(Storage::url($user->profile->image))}}" class="profileimage" alt="Profile Image">
+                        @else
+                        <img src="{{asset('assets/img/undraw_profile.svg')}}" class="profileimage" alt="Profile Image">
+                        @endif
                         <div class="profilename text-center py-2">
                             Syed Zayed Hossain
                         </div>

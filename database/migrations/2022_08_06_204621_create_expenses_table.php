@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('amount');
+            $table->decimal('amount','15','2');
             $table->bigInteger('payment_type')->unsigned()->nullable();
-            $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('restrict');
             $table->text('description');
             $table->timestamps();
         });

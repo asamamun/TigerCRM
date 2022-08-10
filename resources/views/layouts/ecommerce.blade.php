@@ -49,7 +49,7 @@
         /* .card:hover{
         transform: scale(1.04);
         } */
-        .border-left-primary {
+        .row .border-left-primary {
         border-left: 0.25rem solid #f6c23e;
         }
         /* .shadow {

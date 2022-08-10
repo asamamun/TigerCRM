@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('capitals', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('amount','15','2');
-            $table->bigInteger('payment_type')->unsigned()->nullable();
-            $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('restrict');
-            $table->text('description');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('capitals');
+        Schema::dropIfExists('purchases');
     }
 };

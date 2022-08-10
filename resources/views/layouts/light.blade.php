@@ -86,7 +86,7 @@
                 </a>
                 <div id="purchase" class="collapse" aria-labelledby="purchase" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Purchase</a>
+                        <a class="collapse-item" href="{{url('purchase')}}">Purchase</a>
                         <a class="collapse-item" href="#">Purchase List</a>
                         <a class="collapse-item" href="#">Purchase Return</a>
                     </div>

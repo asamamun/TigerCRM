@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('capitals', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('amount','15','2');
+            $table->bigInteger('supplier_id')->unsigned();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict');
+            $table->decimal('nettotal','15','2');
+            $table->decimal('discount','15','2');
+            $table->decimal('grandtotal','15','2');
+            $table->text('comment');
             $table->bigInteger('payment_type')->unsigned()->nullable();
             $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('restrict');
-            $table->text('description');
+            $table->text('trxId')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('capitals');
+        Schema::dropIfExists('invoices');
     }
 };

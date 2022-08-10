@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('barcode');
             $table->bigInteger('brand_id')->unsigned()->nullable();
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('restrict');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict');
             $table->bigInteger('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
             $table->bigInteger('subcategory_id')->unsigned()->nullable();
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('restrict');
             $table->string('image');
             $table->string('feature');
             $table->text('description');

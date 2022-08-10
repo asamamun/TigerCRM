@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerDashboard;
-use App\Http\Requests\StoreCustomerDashboardRequest;
-use App\Http\Requests\UpdateCustomerDashboardRequest;
+use App\Models\Purchase;
+use App\Http\Requests\StorePurchaseRequest;
+use App\Http\Requests\UpdatePurchaseRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CustomerDashboardController extends Controller
+class PurchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class CustomerDashboardController extends Controller
      */
     public function index()
     {
-        return view('customerdashboard.index')->with('user',Auth::user());
+        return view('purchase.index')->with('user',Auth::user());
     }
 
     /**
@@ -32,10 +32,10 @@ class CustomerDashboardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCustomerDashboardRequest  $request
+     * @param  \App\Http\Requests\StorePurchaseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCustomerDashboardRequest $request)
+    public function store(StorePurchaseRequest $request)
     {
         //
     }
@@ -43,10 +43,10 @@ class CustomerDashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CustomerDashboard  $customerDashboard
+     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerDashboard $customerDashboard)
+    public function show(Purchase $purchase)
     {
         //
     }
@@ -54,10 +54,10 @@ class CustomerDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CustomerDashboard  $customerDashboard
+     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function edit(CustomerDashboard $customerDashboard)
+    public function edit(Purchase $purchase)
     {
         //
     }
@@ -65,11 +65,11 @@ class CustomerDashboardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCustomerDashboardRequest  $request
-     * @param  \App\Models\CustomerDashboard  $customerDashboard
+     * @param  \App\Http\Requests\UpdatePurchaseRequest  $request
+     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCustomerDashboardRequest $request, CustomerDashboard $customerDashboard)
+    public function update(UpdatePurchaseRequest $request, Purchase $purchase)
     {
         //
     }
@@ -77,10 +77,10 @@ class CustomerDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CustomerDashboard  $customerDashboard
+     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerDashboard $customerDashboard)
+    public function destroy(Purchase $purchase)
     {
         //
     }
