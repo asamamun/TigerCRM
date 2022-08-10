@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SupplierController;
@@ -77,6 +78,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // user
     Route::resource("user", UserController::class);
+
+    // sale
+    Route::resource("sale", SaleController::class);
 
 });
 

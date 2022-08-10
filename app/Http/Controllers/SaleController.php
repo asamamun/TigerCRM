@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -15,7 +16,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        return view('sale.index')->with('user',Auth::user());
     }
 
     /**

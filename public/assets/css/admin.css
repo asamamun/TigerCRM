@@ -10923,6 +10923,11 @@ form.user .form-control-profile {
   border-radius: 10rem;
   /* padding: 1.5rem 1rem; */
 }
+.form-control-profile {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  /* padding: 1.5rem 1rem; */
+}
 
 form.user .btn-user {
   font-size: 0.8rem;
@@ -10931,6 +10936,16 @@ form.user .btn-user {
 }
 
 form.user .btn-profile {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  /* padding: 0.75rem 1rem; */
+}
+.btn-profile {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  /* padding: 0.75rem 1rem; */
+}
+.sale-table {
   font-size: 0.8rem;
   border-radius: 10rem;
   /* padding: 0.75rem 1rem; */

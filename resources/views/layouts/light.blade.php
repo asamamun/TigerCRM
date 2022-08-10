@@ -102,7 +102,7 @@
                 </a>
                 <div id="sale" class="collapse" aria-labelledby="sale" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Sale</a>
+                        <a class="collapse-item" href="{{url('sale')}}">Sale</a>
                         <a class="collapse-item" href="#">Order List</a>
                         <a class="collapse-item" href="#">Order Return</a>
                     </div>
