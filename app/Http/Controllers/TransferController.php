@@ -43,16 +43,40 @@ class TransferController extends Controller
     public function store(StoreTransferRequest $request)
     {
         $t = new Transfer();
-        $t->amount = $request->amount;
-        $t->description = $request->description;
+        
         $sa = Account::find($request->sender_account);
         $ra = Account::find($request->receiver_account);
-        if($sa->transfers()->save($t) && $ra->transfers()->save($t)){
+        if($sa && $ra){
+            $t->amount = $request->amount;
+            $t->description = $request->description;
+            $t->sender_account = $request->sender_account;
+            $t->receiver_account = $request->receiver_account;
+          //check whether sender has greater amount ot not. deduct amount from sender and add amount to receiver account.
+
+
+    $sa->balance = intval($sa->balance) - intval($request->amount);
+    if($sa->balance >= 0) { 
+        $sa->save();
+        $ra->balance = intval($ra->balance) +  intval($request->amount);
+        $ra->save();
+        $t->save();
+        return back()->with('message','Account transfer done. Transaction ID: ' .$t->id);
+
+    } 
+
+else{
+    return back()->with('message','Error!! Contact Admin');  
+}
+        }
+        else{
+            return back()->with('message','Account not found!!');  
+        }
+        /* if($sa->transfers()->save($t) && $ra->transfers()->save($t)){
             return back()->with('message','Transfer ' .$t->id. ' Successfully!!!');
         }
         else{
             return back()->with('message','Error!!');
-        }
+        } */
     }
 
     /**
