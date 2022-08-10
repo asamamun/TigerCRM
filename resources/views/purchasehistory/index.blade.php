@@ -26,7 +26,7 @@
             <div class="col-lg-3 mb-4">
                 <div class="card border-left-primary shadow py-2">
                     <div class="card-body">
-                        <img src="http://localhost/IsDB_Training-PHP/Laravel/TigerCRM/public/storage/profiles/RvOpryk6PYqKwo5HHzeQMZBx2TMNVPJsuxabnVFT.jpg" class="profileimage" alt="Profile Image">
+                        <img src="http://localhost/Zayed/laravel/TigerCRM/public/storage/profiles/VDwphia5fDV7js9OIedwgP3KJnSQ4qmPiREPhuMl.jpg" class="profileimage" alt="Profile Image">
                         <div class="profilename text-center py-2">
                             Syed Zayed Hossain
                         </div>
@@ -60,31 +60,36 @@
                 </div>
                 <div class="card border-left-primary mb-4 shadow">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-5">
+                        <div class="row align-items-center">
+                            <div class="col-5 invoice-number">
                                 <a href="#">
-                                    <h5>#424515262541233</h5>
+                                    #424515262541233
                                 </a>
                                 <p>01-08-2022 02:10PM</p>
                             </div>
                             <div class="col-3">
-                                <a href="#">33,572.00 Tk</a>
+                                <a href="#">33,572.00</a>
                             </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-9">
-                                        Confirmed | Paid
-                                    </div>
-                                    <div class="col-3">
-                                        <a href="#">
-                                            <i class="fas fa-arrow-down"></i>
-                                        </a>
-                                    </div>
+                            <div class="col-2">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <button class="button1">Delivered</button>
+                                    <button class="button2">Paid</button>
+                                    {{-- <button type="button" class="btn btn-success">Delivered</button>
+                                    <button type="button" class="btn btn-primary">Paid</button> --}}
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <a href="#" role="button" class="download-btn">
+                                    <i class="fas fa-arrow-down"></i>
+                                </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                
+                
                 <div class="card border-left-primary mb-4 shadow">
                     <div class="card-body">
                         <div class="row">
@@ -103,7 +108,7 @@
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                             <button type="button" class="btn btn-success">Delivered</button>
                                             <button type="button" class="btn btn-primary">Paid</button>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="col-3">
                                         <a href="#">

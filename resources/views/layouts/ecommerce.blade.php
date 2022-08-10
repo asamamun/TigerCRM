@@ -50,11 +50,11 @@
         transform: scale(1.04);
         } */
         .border-left-primary {
-        border-left: 0.25rem solid #f6c23e !important;
+        border-left: 0.25rem solid #f6c23e;
         }
-        .shadow {
-        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
-        }
+        /* .shadow {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        } */
         .profilename{
             font-size: 20px;
             font-weight: 600;
@@ -70,6 +70,104 @@
         .dashboard-sidebar:hover{
             background-color: #f6c23e;
         }
+        .card .card-body .align-items-center{
+            font-size: 16px;
+        }
+        .card .card-body .align-items-center .col-2 .btn-group .button1{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .card .card-body .align-items-center .col-2 .btn-group .button2{
+            background-color: #f6c23e;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
+            background-color: #f6c23e;
+            border: none;
+            border-radius: 50%;
+            color: black;
+            text-decoration: none;
+            /* display: inline-block; */
+            padding: 9px;
+            text-align: center;
+            font-size: 15px;
+        }
+        .card .card-body .align-items-center .invoice-number{
+            /* background-color: #f6c23e; */
+        }
+        .card .card-body .align-items-center .invoice-number a{
+            /* background-color: #f6c23e; */
+            /* color: aqua; */
+            /* font-size: 14px; */
+        }
+        .card .card-body .align-items-center .invoice-number p{
+            font-size: 14px;
+        }
+        @media only screen and (max-width: 992px) {
+            .card .card-body .align-items-center{
+            font-size: 14px;
+        }
+            .card .card-body .align-items-center .invoice-number p{
+            font-size: 13px;
+        }
+        .card .card-body .align-items-center .col-3 .btn-group .button1{
+            font-size: 14px;
+        }
+        .card .card-body .align-items-center .col-2 .btn-group .button2{
+            font-size: 14px;
+        }
+        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
+            padding: 9px;
+            font-size: 14px;
+        }
+        }
+        @media only screen and (max-width: 768px) {
+            .card .card-body .align-items-center{
+            font-size: 13px;
+        }
+            .card .card-body .align-items-center .invoice-number p{
+            font-size: 12px;
+        }
+        .card .card-body .align-items-center .col-3 .btn-group .button1{
+            font-size: 13px;
+        }
+        .card .card-body .align-items-center .col-2 .btn-group .button2{
+            font-size: 13px;
+        }
+        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
+            padding: 9px;
+            font-size: 13px;
+        }
+        }
+        @media only screen and (max-width: 576px) {
+            .card .card-body .align-items-center{
+            font-size: 12px;
+        }
+            .card .card-body .align-items-center .invoice-number p{
+            font-size: 11px;
+        }
+        .card .card-body .align-items-center .col-3 .btn-group .button1{
+            font-size: 12px;
+        }
+        .card .card-body .align-items-center .col-2 .btn-group .button1{
+            font-size: 12px;
+        }
+        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
+            padding: 9px;
+            font-size: 11px;
+        }
+        }
+
     </style>
 
 </head>

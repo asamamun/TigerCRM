@@ -155,14 +155,15 @@ sup {
 }
 
 a {
-  color: #FFD333;
+  color: #000;
   text-decoration: none;
+  font-weight: 600;
   background-color: transparent;
 }
 
 a:hover {
   color: #e6b400;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not([href]):not([class]) {
@@ -4401,7 +4402,7 @@ input[type="button"].btn-block {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 .card-title {

@@ -26,7 +26,7 @@
             <div class="col-lg-3 mb-4">
                 <div class="card border-left-primary shadow py-2">
                     <div class="card-body">
-                        <img src="http://localhost/IsDB_Training-PHP/Laravel/TigerCRM/public/storage/profiles/RvOpryk6PYqKwo5HHzeQMZBx2TMNVPJsuxabnVFT.jpg" class="profileimage" alt="Profile Image">
+                        <img src="http://localhost/Zayed/laravel/TigerCRM/public/storage/profiles/VDwphia5fDV7js9OIedwgP3KJnSQ4qmPiREPhuMl.jpg" class="profileimage" alt="Profile Image">
                         <div class="profilename text-center py-2">
                             Syed Zayed Hossain
                         </div>
