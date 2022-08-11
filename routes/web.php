@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CapitalController;
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
@@ -85,6 +86,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // purchase
     Route::resource("purchase", PurchaseController::class);
+
+    // carousel
+    Route::resource("carousel", CarouselController::class);
 
 });
 

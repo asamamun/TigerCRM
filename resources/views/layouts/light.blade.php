@@ -151,6 +151,21 @@
                    <span>Users</span>
                 </a>
             </li>
+            <!-- Nav Item - Component -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#component"
+                    aria-expanded="true" aria-controls="component">
+                    <i class="fas fa-fw fa-cart-plus"></i>
+                    <span>Component</span>
+                </a>
+                <div id="component" class="collapse" aria-labelledby="component" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('carousel')}}">Carousel</a>
+                        <a class="collapse-item" href="#">Others 1</a>
+                        <a class="collapse-item" href="#">Others 2</a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Office Purchase -->
             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
