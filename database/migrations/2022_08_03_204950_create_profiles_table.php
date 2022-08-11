@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->string('fullname');
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->string('address');
             $table->string('image');
             $table->string('bloodgroup');
