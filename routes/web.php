@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderTrackController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
@@ -90,6 +91,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // carousel
     Route::resource("carousel", CarouselController::class);
 
+
+
 });
 
 //user group
@@ -105,6 +108,9 @@ Route::middleware(['customer', 'auth'])->group(function () {
 
     //purchase history
     Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);
+
+    // order track
+    Route::resource("ordertrack", OrderTrackController::class);
 });
 
 

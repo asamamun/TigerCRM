@@ -1,7 +1,7 @@
 @extends('layouts.ecommerce')
 
 @section('pagetitle')
-Purchase History
+Order Track
 @endsection
 
 @section('content')
@@ -60,40 +60,23 @@ Purchase History
             <div class="row">
                 <div class="card border-left-primary col-12 shadow mb-4">
                     <div class="card-body">
-                        Purchase History
+                        Order Track
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="card border-left-primary col-12 mb-4 shadow">
+                <div class="card border-left-primary col-12 shadow mb-4">
                     <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-5 invoice-number">
-                                <a href="{{url('ordertrack')}}">
-                                    #424515262541233
-                                </a>
-                                <p>01-08-2022 02:10PM</p>
-                            </div>
-                            <div class="col-3">
-                                <a href="{{url('ordertrack')}}">33,572.00</a>
-                            </div>
-                            <div class="col-2 text-left">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button class="button1">Delivered</button>
-                                    <button class="button2">Paid</button>
-                                    {{-- <button type="button" class="btn btn-success">Delivered</button>
-                                    <button type="button" class="btn btn-primary">Paid</button> --}}
-                                </div>
-                            </div>
-                            <div class="col-2 text-right">
-                                <a href="#" role="button" class="download-btn">
-                                    <i class="fas fa-arrow-down"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <h1>Hello World</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit porro dolor eveniet nihil quas dicta consectetur consequatur quaerat aperiam minus quos deleniti et excepturi sapiente neque doloremque ullam, in vero.
+                        Ut quisquam ad sed error ipsum fuga inventore provident cum magnam. Odio magni, quae, dicta aperiam vero tempore sequi consectetur culpa sint dolor facere non numquam minima accusantium impedit recusandae.
+                        Voluptatem expedita voluptatum amet non eos dignissimos modi cum dolore accusamus nobis? Eum, ipsa quaerat aut doloremque ullam maxime odio fuga illum modi temporibus veniam possimus amet dolor, commodi eaque!
+                        Quidem ut officia at quaerat libero iste voluptates dolores expedita. Quae distinctio doloremque aut est provident quibusdam illum quos necessitatibus dicta, tempore nobis animi quasi fugit iusto cumque sed ipsum.
+                        Nesciunt quod minus dignissimos consectetur accusamus adipisci? Tempora, accusamus. Optio vero doloremque ullam modi magni magnam, reprehenderit eaque voluptas accusamus similique dolorum alias qui fugiat nihil, dolore iste, fugit odit!</p>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
