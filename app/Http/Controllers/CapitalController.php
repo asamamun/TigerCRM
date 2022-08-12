@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCapitalRequest;
 use App\Http\Requests\UpdateCapitalRequest;
 use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CapitalController extends Controller
 {
@@ -42,17 +43,32 @@ class CapitalController extends Controller
      */
     public function store(StoreCapitalRequest $request)
     {
-        $c = new Capital();
-        $c->name = $request->name;
-        $c->amount = $request->amount;
-        $c->description = $request->description;
-        $a = Account::find($request->payment_type);
-        if($a->capitals()->save($c)){
-            return back()->with('message','Capital ' .$c->id. ' Create Successfully!!!');
+        DB::beginTransaction();
+        $message = "";
+        try {
+            $c = new Capital();
+            $a = Account::find($request->payment_type);
+            if($a){
+                $c->name = $request->name;
+                $c->amount = $request->amount;
+                $c->payment_type = $request->payment_type;
+                $c->description = $request->description;
+                $a->balance = $a->balance + $request->amount;
+                $a->save();
+                $c->save();
+                $message = 'Capital added successfully. ID: ' . $c->id;
+            } else{
+                return back()->withInput()->with('warning', 'Account not found!!');
+            }
+            DB::commit();
+            return back()->with('message', $message);
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withInput()->with('error', "Error!!! Transaction not completed");
+            abort(404);
         }
-        else{
-            return back()->with('message','Error!!');
-        }
+
     }
 
     /**

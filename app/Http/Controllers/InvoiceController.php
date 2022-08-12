@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
@@ -15,7 +16,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $allinvoice = Invoice::all();
+        return view('invoice.index',compact('allinvoice'))->with('supplier')->with('user',Auth::user());
     }
 
     /**

@@ -67,19 +67,18 @@ class TransferController extends Controller
                     $message = 'Account transfer done. Transaction ID: ' . $t->id;
                     //return back()->with('message', );
                 } else {
-                    $message = 'Error!! No sufficient amount. Tranasaction not done';
-                    //return back()->with('message', 'Error!! Contact Admin');
+                    return back()->withInput()->with('error', 'Error!! No sufficient amount. Tranasaction not done');
                 }
 
             } else {
-                $message = 'Account not found!!';
+                return back()->withInput()->with('warning', 'Account not found!!');
                 //return back()->with('message', 'Account not found!!');
             }
             DB::commit();
             return back()->with('message', $message);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('message', "Error!!! Transaction not completed");
+            return back()->withInput()->with('error', "Error!!! Transaction not completed");
             abort(404);
         }
         

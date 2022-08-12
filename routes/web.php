@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderTrackController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -90,6 +91,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // carousel
     Route::resource("carousel", CarouselController::class);
+
+    // invoice
+    Route::resource("invoice", InvoiceController::class);
 
 
 

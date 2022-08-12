@@ -9,7 +9,7 @@
         {!! Form::number('amount', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'amount', 'placeholder'=>'Amount']) !!}
     </div>
     <div class="col-sm-4">
-        {!! Form::select('payment_type', $accounts, null, ['required', 'placeholder' => 'Payment Type', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('payment_type', $accounts, null, ['required', 'placeholder' => 'Select Account', 'class'=>'form-control form-control-profile']) !!}
     </div>
 </div>
 

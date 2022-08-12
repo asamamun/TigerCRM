@@ -7,6 +7,7 @@ use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExpenseController extends Controller
 {
@@ -43,17 +44,35 @@ class ExpenseController extends Controller
      */
     public function store(StoreExpenseRequest $request)
     {
-        $e = new Expense();
-        $e->name = $request->name;
-        $e->amount = $request->amount;
-        $e->description = $request->description;
-        $a = Account::find($request->payment_type);
-        if($a->expenses()->save($e)){
-            return back()->with('message','Expense ' .$e->id. ' Create Successfully!!!');
+        DB::beginTransaction();
+        $message = "";
+        try {
+            $e = new Expense();
+            $a = Account::find($request->payment_type);
+            if($a){
+                $e->name = $request->name;
+                $e->amount = $request->amount;
+                $e->payment_type = $request->payment_type;
+                $e->description = $request->description;
+                $a->balance = $a->balance - $request->amount;
+                if($a->balance >= 0){
+                    $a->save();
+                    $e->save();
+                    $message = 'Expense added successfully. ID: ' . $e->id;
+                } else{
+                    return back()->withInput()->with('error', 'Error!! No sufficient amount. Tranasaction not done');
+                }
+            } else{
+                return back()->withInput()->with('message', 'Account not found!!');
+            }
+            DB::commit();
+            return back()->with('message', $message);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withInput()->with('error', "Error!!! Transaction not completed");
+            abort(404);
         }
-        else{
-            return back()->with('message','Error!!');
-        }
+        
     }
 
     /**
