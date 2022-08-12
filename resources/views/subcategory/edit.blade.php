@@ -13,7 +13,7 @@
             </a>
         </div>
         <div class="card-body">
-            {!! Form::model($subcategory, ['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['subcategory.update', $subcategory->id]]) !!}
+            {!! Form::model($subcategory, ['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['subcategory.update', $subcategory->slug]]) !!}
             @include('subcategory.form')
 
             <div class="form-group">

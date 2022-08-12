@@ -13,7 +13,7 @@
             </a>
         </div>
         <div class="card-body">
-            {!! Form::model($supplier, ['method' => 'put','class'=>'user','route' => ['supplier.update', $supplier->id]]) !!}
+            {!! Form::model($supplier, ['method' => 'put','class'=>'user','route' => ['supplier.update', $supplier->slug]]) !!}
             @include('supplier.form')
 
             <div class="form-group">

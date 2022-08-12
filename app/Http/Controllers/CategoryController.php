@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class CategoryController extends Controller
 {
@@ -139,4 +140,12 @@ class CategoryController extends Controller
             return back()->with('message',$category->id. ' Deleted!!!!');
         }
     }
+    // public function createslug(){
+        
+    //     $lists = Category::all();
+    //     foreach ($lists as $list) {
+    //         $slug = SlugService::createSlug(Category::class, 'slug', $list->name);            
+    //     $list->save();
+    //     }
+    // }
 }

@@ -32,7 +32,7 @@ Order Track
                     <img src="{{asset('assets/img/undraw_profile.svg')}}" class="profileimage" alt="Profile Image">
                     @endif
                     <div class="profilename text-center py-2">
-                        Syed Zayed Hossain
+                        {{ $user->name . ' ' . $user->lname }}
                     </div>
                 </div>
                 <a class="" href="{{'customerdashboard'}}">
@@ -47,7 +47,7 @@ Order Track
                         <span>Purchase History</span>
                     </div>
                 </a>
-                <a class="" href="#">
+                <a class="" href="{{url('manageprofile')}}">
                     <div class="dashboard-sidebar">
                         <i class="fas fa-user"></i>
                         <span>Manage Profile</span>
@@ -60,119 +60,96 @@ Order Track
             <div class="row">
                 <div class="card border-left-primary col-12 shadow mb-4">
                     <div class="card-body">
-                        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
                         <div class="container">
-                          <div class="col">
-                            <div class="row">
-                              <div class="col mb-3">
-                                <div class="card">
-                                  <div class="card-body">
-                                    <div class="e-profile">
-                                      <div class="row">
-                                        <div class="col-12 col-sm-auto mb-3">
-                                          <div class="mx-auto" style="width: 140px;">
-                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                              <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
-                                            </div>
-                                          </div>
+                            <article class="card">
+                                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                                <div class="card-body">
+                                    <h6>Customer Name: shariful islam</h6>
+                                    <h6>Phone: 01746959342</h6>
+                                    <h6>Address: Mirpur, dhaka</h6>
+                              
+                                    <hr>
+                                    <div class="row  my-3 justify-content-between">
+                                        <div class="col-md-2">
+                                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
+                                            class="img-fluid" alt="Phone">
                                         </div>
-                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                          <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">shariful islam</h4>
-                                            <p class="mb-0">@sharif</p>
-                                            <div class="mt-2">
-                                              <button class="btn btn-primary" type="button">
-                                                <input type="image" src="" alt="">
-                                                <i class="fa fa-fw fa-camera"></i>
-                                                <span>Change Photo</span>
-                                              </button>
-                                            </div>
-                                          </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0">Samsung Galaxy</p>
                                         </div>
-                                      </div>
-                                      <div class="tab-content pt-3">
-                                        <div class="tab-pane active">
-                                          <form class="form" novalidate="">
-                                            <div class="row">
-                                              <div class="col">
-                                                <div class="row">
-                                                  <div class="col">
-                                                    <div class="form-group">
-                                                      <label>Full Name</label>
-                                                      <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
-                                                    </div>
-                                                  </div>
-                                                  <div class="col">
-                                                    <div class="form-group">
-                                                      <label>Username</label>
-                                                      <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <div class="row">
-                                                  <div class="col">
-                                                    <div class="form-group">
-                                                      <label>Email</label>
-                                                      <input class="form-control" type="text" placeholder="user@example.com">
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <div class="row">
-                                                  <div class="col mb-3">
-                                                    <div class="form-group">
-                                                      <label>About</label>
-                                                      <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="row">
-                                              <div class="col-12 col-sm-6 mb-3">
-                                                <div class="mb-2"><b>Change Password</b></div>
-                                                <div class="row">
-                                                  <div class="col">
-                                                    <div class="form-group">
-                                                      <label>Current Password</label>
-                                                      <input class="form-control" type="password" placeholder="••••••">
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <div class="row">
-                                                  <div class="col">
-                                                    <div class="form-group">
-                                                      <label>New Password</label>
-                                                      <input class="form-control" type="password" placeholder="••••••">
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <div class="row">
-                                                  <div class="col">
-                                                    <div class="form-group">
-                                                      <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                                      <input class="form-control" type="password" placeholder="••••••"></div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="row">
-                                              <div class="col d-flex justify-content-end">
-                                                <button class="btn btn-primary" type="submit">Save Changes</button>
-                                              </div>
-                                            </div>
-                                          </form>
-                                      
+                                      {{--   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">White</p>
+                                        </div> --}}
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">Capacity: 64GB</p>
                                         </div>
-                                      </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">Qty: 1</p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">$499</p>
+                                         </div>
                                     </div>
-                                  </div>
+                                    <div class="row  my-3 justify-content-between">
+                                        <div class="col-md-2">
+                                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
+                                            class="img-fluid" alt="Phone">
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0">Samsung Galaxy</p>
+                                        </div>
+                                      {{--   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">White</p>
+                                        </div> --}}
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">Capacity: 64GB</p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">Qty: 1</p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">$499</p>
+                                         </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row  my-3 justify-content-between">
+                                        <div class="col-md-2">
+                                          
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0"></p>
+                                        </div>
+                                      {{--   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">White</p>
+                                        </div> --}}
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small"></p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">Total:  </p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">$499</p>
+                                         </div>
+                                    </div>
+                                    <article class="card">
+                                        <div class="card-body row">
+                                            <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2021 </div>
+                                            <div class="col"> <strong>Shipping BY:</strong> <br> shariful, | <i class="fa fa-phone"></i> +8801746959315</div>
+                                            <div class="col"> <strong>Status:</strong> <br> Picked by the courier </div>
+                                            <div class="col"> <strong>Tracking #:</strong> <br> BD045903594059 </div>
+                                        </div>
+                                    </article>
+                                    <div class="track">
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Ready for pickup</span> </div>
+                                    </div>
+                                    
+                                    <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to Dashboard</a>
                                 </div>
-                              </div>
-                          
-                            </div>
-                        
-                          </div>
-                        </div>
+                            </article>
                         </div>
                     </div>
                 </div>

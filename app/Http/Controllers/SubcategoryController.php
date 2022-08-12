@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SubcategoryController extends Controller
 {
@@ -161,4 +162,13 @@ class SubcategoryController extends Controller
             return back()->with('message',$subcategory->id. ' Deleted!!!!');
         }
     }
+    // public function createslug(){
+        
+    //     $lists = Subcategory::all();
+    //     foreach ($lists as $list) {
+    //         $slug = SlugService::createSlug(Subcategory::class, 'slug', $list->name);            
+    //     $list->save();
+    //     }
+    // }
+
 }

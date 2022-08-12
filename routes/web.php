@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/home/{slug}', [HomeController::class, 'show']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 
@@ -52,9 +54,11 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // category
     Route::resource("/category", CategoryController::class);
+    // Route::get('createslug', [CategoryController::class, 'createslug']);
 
     // subcategory
     Route::resource("/subcategory", SubcategoryController::class);
+    // Route::get('createsubslug', [SubcategoryController::class, 'createslug']);
 
     // product
     Route::resource("/product", ProductController::class);
@@ -115,6 +119,9 @@ Route::middleware(['customer', 'auth'])->group(function () {
 
     // order track
     Route::resource("ordertrack", OrderTrackController::class);
+
+    // manage profile
+    Route::resource("manageprofile", CustomerProfileController::class);
 });
 
 

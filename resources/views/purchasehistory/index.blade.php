@@ -47,7 +47,7 @@ Purchase History
                         <span>Purchase History</span>
                     </div>
                 </a>
-                <a class="" href="#">
+                <a class="" href="{{url('manageprofile')}}">
                     <div class="dashboard-sidebar">
                         <i class="fas fa-user"></i>
                         <span>Manage Profile</span>

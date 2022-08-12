@@ -19,6 +19,13 @@ class PurchaseController extends Controller
         return view('purchase.index')->with('user',Auth::user());
     }
 
+
+    public function search()
+    {
+        
+        return view('purchase.index')->with('user',Auth::user());
+    }
+
     /**
      * Show the form for creating a new resource.
      *

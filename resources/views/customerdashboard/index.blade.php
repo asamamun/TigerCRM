@@ -32,7 +32,7 @@
                         <img src="{{asset('assets/img/undraw_profile.svg')}}" class="profileimage" alt="Profile Image">
                         @endif
                         <div class="profilename text-center py-2">
-                            Syed Zayed Hossain
+                            {{ $user->name . ' ' . $user->lname }}
                         </div>
                     </div>
                     <a class="" href="{{url('customerdashboard')}}">
@@ -47,7 +47,7 @@
                             <span>Purchase History</span>
                         </div>
                     </a>
-                    <a class="" href="#">
+                    <a class="" href="{{url('manageprofile')}}">
                         <div class="dashboard-sidebar">
                             <i class="fas fa-user"></i>
                             <span>Manage Profile</span>
