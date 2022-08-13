@@ -31,4 +31,9 @@ class HomeController extends Controller
         // dd($allproducts);
         return view('ecommerce.show',compact('allproducts'))->with('user',Auth::user());
     }
+    
+    public function details()
+    {
+        return view('ecommerce.details')->with('user',Auth::user());
+    }
 }

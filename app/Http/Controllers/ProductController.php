@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         $p = new Product();
         $p->name = $request->name;
-        $p->barcode = rand(100000000000,999999999999);
+        $p->barcode = rand(1000000,9999999);
         $p->image = $path;
         $p->feature = $request->feature;
         $p->description = $request->description;

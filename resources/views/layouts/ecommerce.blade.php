@@ -113,59 +113,17 @@
         .card .card-body .align-items-center .invoice-number p{
             font-size: 14px;
         }
-        @media only screen and (max-width: 992px) {
-            .card .card-body .align-items-center{
-            font-size: 14px;
-        }
-            .card .card-body .align-items-center .invoice-number p{
-            font-size: 13px;
-        }
-        .card .card-body .align-items-center .col-3 .btn-group .button1{
-            font-size: 14px;
-        }
-        .card .card-body .align-items-center .col-2 .btn-group .button2{
-            font-size: 14px;
-        }
-        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
-            padding: 9px;
-            font-size: 14px;
-        }
-        }
-        @media only screen and (max-width: 768px) {
-            .card .card-body .align-items-center{
-            font-size: 13px;
-        }
-            .card .card-body .align-items-center .invoice-number p{
-            font-size: 12px;
-        }
-        .card .card-body .align-items-center .col-3 .btn-group .button1{
-            font-size: 13px;
-        }
-        .card .card-body .align-items-center .col-2 .btn-group .button2{
-            font-size: 13px;
-        }
-        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
-            padding: 9px;
-            font-size: 13px;
-        }
-        }
-        @media only screen and (max-width: 576px) {
-            .card .card-body .align-items-center{
-            font-size: 12px;
-        }
-            .card .card-body .align-items-center .invoice-number p{
-            font-size: 11px;
-        }
-        .card .card-body .align-items-center .col-3 .btn-group .button1{
-            font-size: 12px;
-        }
-        .card .card-body .align-items-center .col-2 .btn-group .button1{
-            font-size: 12px;
-        }
-        .card .card-body .align-items-center .col-2 .download-btn .fa-arrow-down{
-            padding: 9px;
-            font-size: 11px;
-        }
+        /* .product-info-group{
+            display: flex;
+        } */
+        .product-info{
+            display: inline-block;
+            background: rgba(55,73,187,.07);
+            /* background-color: #bcccda; */
+            color: #000;
+            margin: 2px;
+            padding: 5px 10px;
+            border-radius: 15px;
         }
 
         body{background-color: #eeeeee;.container{margin-top:50px;margin-bottom: 50px}.card{position: relative;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 0.10rem}.card-header:first-child{border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0}.card-header{padding: 0.75rem 1.25rem;margin-bottom: 0;background-color: #fff;border-bottom: 1px solid rgba(0, 0, 0, 0.1)}.track{position: relative;background-color: #ddd;height: 7px;display: -webkit-box;display: -ms-flexbox;display: flex;margin-bottom: 60px;margin-top: 50px}.track .step{-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;width: 25%;margin-top: -18px;text-align: center;position: relative}.track .step.active:before{background: #FF5722}.track .step::before{height: 7px;position: absolute;content: "";width: 100%;left: 0;top: 18px}.track .step.active .icon{background: #ee5435;color: #fff}.track .icon{display: inline-block;width: 40px;height: 40px;line-height: 40px;position: relative;border-radius: 100%;background: #ddd}.track .step.active .text{font-weight: 400;color: #000}.track .text{display: block;margin-top: 7px}.itemside{position: relative;display: -webkit-box;display: -ms-flexbox;display: flex;width: 100%}.itemside .aside{position: relative;-ms-flex-negative: 0;flex-shrink: 0}.img-sm{width: 80px;height: 80px;padding: 7px}ul.row, ul.row-sm{list-style: none;padding: 0}.itemside .info{padding-left: 15px;padding-right: 7px}.itemside .title{display: block;margin-bottom: 5px;color: #212529}p{margin-top: 0;margin-bottom: 1rem}.btn-warning{color: #ffffff;background-color: #ee5435;border-color: #ee5435;border-radius: 1px}.btn-warning:hover{color: #ffffff;background-color: #ff2b00;border-color: #ff2b00;border-radius: 1px}
@@ -251,7 +209,7 @@
         </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
+                <a href="{{url('/')}}" class="text-decoration-none">
                     <span class="h2 text-uppercase text-primary bg-dark px-2">Tiger</span>
                     <span class="h2 text-uppercase text-dark bg-primary px-2 ml-n1">Ecommerce</span>
                 </a>

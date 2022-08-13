@@ -15,8 +15,29 @@ class Customer extends Model
         'slug',
         'email',
         'mobile',
-        'address',
+        'password',
     ];
+
+     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -35,5 +56,10 @@ class Customer extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function customerprofile()
+    {
+    return $this->hasOne('App\Models\CustomerProfile');
     }
 }

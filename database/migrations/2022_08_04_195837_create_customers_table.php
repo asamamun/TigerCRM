@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug','60');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('mobile')->unique();
-            $table->string('address');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->set('role',['1','2','3'])->default('3');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

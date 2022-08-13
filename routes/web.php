@@ -39,6 +39,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/productdetails', [HomeController::class, 'details']);
 Route::get('/home/{slug}', [HomeController::class, 'show']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
