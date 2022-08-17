@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
+        // dd(session()->all());
         $categories = Category::with('products')->get();
         $brands = Brand::with('products')->get();
         // $allsubcategory = Subcategory::with('category')->get();

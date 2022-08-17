@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CustomerDashboard;
 use App\Http\Requests\StoreCustomerDashboardRequest;
 use App\Http\Requests\UpdateCustomerDashboardRequest;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerDashboardController extends Controller
@@ -16,7 +17,8 @@ class CustomerDashboardController extends Controller
      */
     public function index()
     {
-        return view('customerdashboard.index')->with('user',Auth::user());
+        $cinfo = Customer::find(session('cid'));
+        return view('customerdashboard.index')->with('customer',$cinfo);
     }
 
     /**

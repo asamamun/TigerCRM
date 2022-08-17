@@ -9,7 +9,9 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Supplier;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -191,5 +193,13 @@ class ProductController extends Controller
         if(Product::destroy($product->id)){
             return back()->with('message',$product->id. ' Deleted!!!!');
         }
+    }
+
+    public function search(Request $request){
+        $s = $request->term;
+        $products = Product::where('name','LIKE',"%{$s}%")->get();
+
+        //return the product in json format
+
     }
 }

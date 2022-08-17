@@ -17,9 +17,13 @@ class Customer
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != "3"){
+        if ($request->session()->has('cid') && $request->session()->has('clogged_in')) {
+            if(!intval(session('cid'))) return redirect("/");
+            if(!session('clogged_in')) return redirect("/");
+        }
+        else{
             return redirect("/");
-        };
+        }
         return $next($request);
     }
 }

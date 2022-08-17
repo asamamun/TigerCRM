@@ -78,3 +78,154 @@
 </div>
 
 @endsection
+
+@section('script')
+<script>
+    var BASE_URL = "{{url('/')}}";
+    function financial(x) {
+			return Number.parseFloat(x).toFixed(2);
+		}
+    $(document).ready(function() {
+        //autocomplete
+        $("#productsearch").autocomplete({
+            source: BASE_URL + '/search',
+            minLength: 1,
+            select: function(event, ui) {
+                console.log(ui);
+                var id = ui.item.id;
+                addProduct(id);
+            }
+        });
+
+        function addProduct(id) {
+            $.ajax({
+                url: BASE_URL + '/addtocart',
+                type: 'post',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    // console.log(response);
+                    // return;
+                    response = JSON.parse(response);
+                    $html = "<tr>";
+                    $html += "<th class='productid'>" + response.id + "</th>";
+                    $html += "<td class='barcode'>" + response.barcode + "</td>";
+                    $html += "<td class='productname'>" + response.name + "</td>";
+                    $html += "<td class='pprice'>" + response.price + "</td>";
+                    $html += "<td><input class='qu' type='number' min='1' name='quantity' value='1'></td>";
+                    $html += "<td class='itemtotal'>" + response.price + "</td>";
+                    $html += "<td class='deleteproduct'><i class='fa-solid fa-circle-xmark'></i></td>";
+                    $html += "</tr>";
+                    $('#dyn_tr').append($html);
+                    $("#productsearch").val("").focus();
+                    updateTotal();
+                }
+            });
+        }
+        //delete product
+        $(document).on('click', '.deleteproduct', function(e) {
+            e.preventDefault();
+            $(this).closest('tr').remove();
+        });
+        //update total
+        $(document).on('blur change keyup', '.qu', function() {
+            var $row = $(this).closest('tr');
+            var qty = $row.find('.qu').val();
+            var price = $row.find('.pprice').text();
+            var itemtotal = qty * price;
+            //console.log(itemtotal);
+            $row.find('.itemtotal').text(financial(itemtotal));
+            updateTotal();
+        });
+
+        function updateTotal() {
+            //console.log($('.itemtotal'));
+            var grandtotal = 0;
+            $('.itemtotal').each(function() {
+                grandtotal += parseFloat($(this).text());
+            });
+            $('#total').text(grandtotal);
+            // alert($("#discount").val());
+            $('#grandtotal').text(grandtotal - parseInt($("#discount").val()));
+        }
+        //
+        $("#discount").keyup(function() {
+            updateTotal();
+        })
+
+        //payment method
+        $("#payment_method").change(function() {
+            var payment_method = $(this).val();
+            if (payment_method == 'cash') {
+                $("#trxId").addClass('d-none');
+            } else {
+                $("#trxId").removeClass('d-none');
+            }
+        });
+
+        //customer autocomplete
+        $("#customersearch").autocomplete({
+            source: BASE_URL + '/customersearch',
+            minLength: 1,
+            select: function(event, ui) {
+                // console.log(ui);
+                    $html2 = "";
+                    $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
+                    $html2 += "<div>" + ui.item.address + "</div>";
+                    $html2 += "<div>" + ui.item.mobile + "</div>";
+                    $('#dyn_customer').html($html2);
+                    $("#customersearch").val("").focus();  
+                
+            }
+        });
+
+
+        // save button start
+        $("#saveBtn").click(function(){
+        $idArr = [];
+        $quanArr = [];
+        $priceArr = [];
+        $totalArr = [];
+        $(".productid").each(function(){$idArr.push($(this).text());})
+        $(".qu").each(function(){$quanArr.push($(this).val());})
+        $(".pprice").each(function(){$priceArr.push($(this).text());})
+        $(".itemtotal").each(function(){$totalArr.push($(this).text());})
+
+        console.log($quanArr);
+//post data
+$.ajax({
+                url: BASE_URL + '/placeorder',
+                type: 'post',
+                data: {
+                    ids: $idArr,
+                    quantity: $quanArr,
+                    pricearr :$priceArr,
+                    totalarr: $totalArr,
+                    cid: $("#customersearch").val(),
+                    total: $("#total").html(),
+                    discount: $("#discount").val(),
+                    gtotal: $("#grandtotal").html(),
+                    pmethod: $("#payment_method").val(),
+                    trxid: $("#trxId").val(),
+                    comment: $("#salenote").val()
+                        },
+                success: function(response) {
+                  $("#responseMessage").html(response);
+                  var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
+                  w.print();
+                  //console.log($pmethod);
+                  //exit();
+                    // location.reload();
+
+                }
+            });            
+//post data            
+
+
+        });
+        // save button end
+        // 
+    });
+</script>
+@endsection

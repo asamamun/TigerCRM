@@ -6,6 +6,7 @@ use App\Http\Controllers\CapitalController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerauthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CustomerProfileController;
@@ -38,11 +39,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/productdetails', [HomeController::class, 'details']);
 Route::get('/home/{slug}', [HomeController::class, 'show']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
+
+
+Route::get('customerregister', [CustomerauthController::class, 'register'])->name('customerregister');
+Route::post('customerregister', [CustomerauthController::class, 'store'])->name('customerregistersave');
+Route::get('customerlogin', [CustomerauthController::class, 'login'])->name('customerlogin');
+Route::post('customerlogin', [CustomerauthController::class, 'check'])->name('checkcustomerlogin');
 
 //admin group
 Route::middleware(['admin', 'auth'])->group(function () {
@@ -100,6 +107,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // invoice
     Route::resource("invoice", InvoiceController::class);
 
+    //search
+    Route::get('/search', [ProductController::class, 'search']);
 
 
 });
@@ -111,7 +120,8 @@ Route::middleware(['user', 'auth'])->group(function () {
 });
 
 //customer group
-Route::middleware(['customer', 'auth'])->group(function () {
+
+Route::middleware(['customer'])->group(function () {
     //customer dashboard
     Route::get('customerdashboard', [CustomerDashboardController::class, 'index']);
 
@@ -123,6 +133,7 @@ Route::middleware(['customer', 'auth'])->group(function () {
 
     // manage profile
     Route::resource("manageprofile", CustomerProfileController::class);
+    Route::get('customerlogout', [CustomerauthController::class, 'logout']);
 });
 
 
