@@ -12,12 +12,12 @@
         {!! Form::select('supplier_id', $suppliers, null, ['placeholder' => 'Select Supplier', 'class'=>'form-control form-control-profile']) !!}
     </div>
     <div class="col-sm-4">
-        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile','id'=>'category_id']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
-        {!! Form::select('subcategory_id', $subcategories, null, ['placeholder' => 'Select Subcategory', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('subcategory_id', [], null, ['placeholder' => 'Select Subcategory', 'class'=>'form-control form-control-profile','id'=>'subcategory_id']) !!}
     </div>
     <div class="col-sm-6">
         {!! Form::file('image', ['required', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}

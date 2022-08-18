@@ -162,6 +162,12 @@ class SubcategoryController extends Controller
             return back()->with('message',$subcategory->id. ' Deleted!!!!');
         }
     }
+
+    public function get_subcategories($cid){
+        //$cid = $request->cid;
+        $c = Subcategory::where('category_id',$cid)->pluck('name','id');
+        return response()->json($c);
+    }
     // public function createslug(){
         
     //     $lists = Subcategory::all();

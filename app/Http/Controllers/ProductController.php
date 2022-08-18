@@ -64,7 +64,7 @@ class ProductController extends Controller
         $img = Image::make($storagepath);
 
         // resize image instance
-        $img->resize(320, 320);
+        $img->resize(500, 500);
 
         // insert a watermark
         // $img->insert('public/watermark.png');
@@ -146,7 +146,7 @@ class ProductController extends Controller
         $img = Image::make($storagepath);
 
         // resize image instance
-        $img->resize(600, 600);
+        $img->resize(500, 500);
 
         // insert a watermark
         // $img->insert('public/watermark.png');

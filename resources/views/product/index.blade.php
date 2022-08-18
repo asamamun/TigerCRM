@@ -46,20 +46,23 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Barcode</th>
-                        <th>Brand</th>
-                        <th>Supplier</th>
-                        <th>Category</th>
-                        <th>Subcategory</th>
+                        <th>
+                            <span class="text-info">Brand</span><br>
+                            <span class="text-primary">Supplier</span><br>
+                            <span class="text-success">Category</span><br>
+                            <span class="text-warning">Subcategory</span>
+                        </th>
                         <th>Image</th>
-                        <th>Feature</th>
-                        <th>Description</th>
-                        <th>Information</th>
-                        <th>Regular Price</th>
-                        <th>Price</th>
-                        <th>Wholesale Price</th>
-                        <th>Purchase Price</th>
-                        <th>Discount</th>
-                        <th>Quantity</th>
+                        <th>
+                            <span class="text-info">Regular Price</span><br>
+                            <span class="text-primary">Price</span><br>
+                            <span class="text-success">Wholesale Price</span><br>
+                            <span class="text-warning">Purchase Price</span>
+                        </th>
+                        <th>
+                            <span class="text-info">Discount</span><br>
+                            <span class="text-primary">Quantity</span>
+                        </th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -68,20 +71,23 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Barcode</th>
-                        <th>Brand</th>
-                        <th>Supplier</th>
-                        <th>Category</th>
-                        <th>Subcategory</th>
+                        <th>
+                            <span class="text-info">Brand</span><br>
+                            <span class="text-primary">Supplier</span><br>
+                            <span class="text-success">Category</span><br>
+                            <span class="text-warning">Subcategory</span>
+                        </th>
                         <th>Image</th>
-                        <th>Feature</th>
-                        <th>Description</th>
-                        <th>Information</th>
-                        <th>Regular Price</th>
-                        <th>Price</th>
-                        <th>Wholesale Price</th>
-                        <th>Purchase Price</th>
-                        <th>Discount</th>
-                        <th>Quantity</th>
+                        <th>
+                            <span class="text-info">Regular Price</span><br>
+                            <span class="text-primary">Price</span><br>
+                            <span class="text-success">Wholesale Price</span><br>
+                            <span class="text-warning">Purchase Price</span>
+                        </th>
+                        <th>
+                            <span class="text-info">Discount</span><br>
+                            <span class="text-primary">Quantity</span>
+                        </th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -91,38 +97,41 @@
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->barcode }}</td>
-                        <td>{{ $product->brand->name }}</td>
-                        <td>{{ $product->supplier->name }}</td>
-                        <td>{{ $product->category->name }}</td>
-                        <td>{{ $product->subcategory->name }}</td>
+                        <td>
+                            <span class="text-info">{{ $product->brand->name }}</span><br>
+                            <span class="text-primary">{{ $product->supplier->name }}</span><br>
+                            <span class="text-success">{{ $product->category->name }}</span><br>
+                            <span class="text-warning">{{ $product->subcategory->name }}</span>
+                        </td>
                         <td>
                             @if ($product->image)
                                 <img src="{{url(Storage::url($product->image))}}" class="iconimage" alt="Image">       
                             @else            
                             @endif
                         </td>
-                        <td>{{ $product->feature }}</td>
-                        <td>{{ $product->description }}</td>
-                        <td>{{ $product->information }}</td>
-                        <td>{{ $product->regular_price }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->wholesale_price }}</td>
-                        <td>{{ $product->purchase_price }}</td>
-                        <td>{{ $product->discount }}</td>
-                        <td>{{ $product->quantity }}</td>
+                        <td>
+                            <span class="text-info">{{ $product->regular_price }}</span><br>
+                            <span class="text-primary">{{ $product->price }}</span><br>
+                            <span class="text-success">{{ $product->wholesale_price }}</span><br>
+                            <span class="text-warning">{{ $product->purchase_price }}</span>
+                        </td>
+                        <td>
+                            <span class="text-info">{{ $product->discount }}</span><br>
+                            <span class="text-primary">{{ $product->quantity }}</span>
+                        </td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->id],'id'=>'deleteform']) !!}
+                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->slug],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a>
                             {!! Form::close() !!}
-                            <a href="{{url('product/'.$product->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
+                            <a href="{{url('product/'.$product->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </a> --}}
-                            <a href="{{url('product/'.$product->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
+                            <a href="{{url('product/'.$product->slug)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

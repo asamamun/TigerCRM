@@ -24,3 +24,33 @@
     </div>
 @endsection
 
+@section('script')
+    <script>
+        $(document).ready(function () {
+            function createselect(ob){
+            $("#subcategory_id").html("");
+            let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        //const element = ob[key];
+                        html += "<option value='"+key+"'>"+ob[key]+"</option>";
+                    }
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function(){
+            // console.log( $(this).val() )
+            let URL = "{{url("getsubcategories")}}";
+            $.ajax({
+                type: "get",
+                url: URL + '/'+ $(this).val(),
+                data: "data",
+                dataType: "json",
+                success: function (response) {
+                    createselect(response);
+                }
+            });
+            });
+        });
+    </script>
+@endsection

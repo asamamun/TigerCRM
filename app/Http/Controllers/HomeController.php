@@ -16,6 +16,7 @@ class HomeController extends Controller
         $brands = Brand::with('products')->get();
         // $allsubcategory = Subcategory::with('category')->get();
         return view('ecommerce.index')->with('categories',$categories)->with('brands',$brands);
+        
     }
 
         /**

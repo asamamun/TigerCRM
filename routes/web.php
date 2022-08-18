@@ -110,6 +110,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
     //search
     Route::get('/search', [ProductController::class, 'search']);
 
+    Route::get('getsubcategories/{cid}', [SubcategoryController::class, 'get_subcategories']);
+
 
 });
 
