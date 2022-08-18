@@ -61,7 +61,7 @@
                 <hr>
                 <div class="row sale-table">
                     <div class="form-group col-12">
-                        {!! Form::text('payment_method', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'payment_method', 'placeholder'=>'Select Payment Method']) !!}
+                        {!! Form::select('payment_method', $accounts, null, ['placeholder' => 'Payment Method', 'class'=>'form-control form-control-profile']) !!}
                         {!! Form::text('trxId', null, ['class'=>'d-none form-control form-control-profile', 'id'=>'trxId', 'placeholder'=>'Transaction ID']) !!}
                     </div>
                 </div>

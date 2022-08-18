@@ -495,7 +495,8 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{url('assets/vendor/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{url('assets/vendor/jquery/jquery.min.js')}}"></script> --}}
+    <script src="{{url('assets/vendor/jquery/jquery-3.6.0.min.js')}}"></script>
     <script src="{{url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->

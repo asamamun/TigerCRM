@@ -133,7 +133,7 @@ Route::middleware(['customer'])->group(function () {
 
     // manage profile
     Route::resource("manageprofile", CustomerProfileController::class);
-    Route::get('customerlogout', [CustomerauthController::class, 'logout']);
+    Route::get('customerlogout', [CustomerauthController::class, 'logout'])->name('customerlogout');
 });
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class CustomerauthController extends Controller
 {
@@ -14,6 +15,12 @@ class CustomerauthController extends Controller
     }
     public function store(Request $request){
     //dd($request->all());
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+        'mobile' => ['required', 'string', 'max:255', 'unique:customers'],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    ]);
     $customer = Customer::create([
         'name' => $request->name,
         'mobile' => $request->mobile,

@@ -184,14 +184,28 @@
                         </div>
                         @endif
                     @endauth
-                    @guest   
+                    @guest
+                        @if (session('clogged_in'))
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        <div class="dropdown-menu dropdown-menu-right no-arrow">
+                            <a href="{{url('customerdashboard')}}" class="dropdown-item" type="button">Dashboard</a>
+                            <a href="{{ url('purchasehistory') }}" class="dropdown-item" type="button">Purchase History</a>
+                            <a href="#" class="dropdown-item" type="button">Manage Profile</a>
+                            <form method="POST" action="{{ route('customerlogout') }}">
+                                @csrf
+                                <a href="{{url('customerlogout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                            </form>
+                        </div>
+                        @else
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{ route('login') }}" class="dropdown-item" type="button">Login</a>
-                                <a href="{{route('register')}}" class="dropdown-item" type="button">Register</a>
+                                <a href="{{ route('customerlogin') }}" class="dropdown-item" type="button">Login</a>
+                                <a href="{{route('customerregister')}}" class="dropdown-item" type="button">Register</a>
                             </div>
-                        </div>
+                        </div> 
+                        @endif
+
                     @endguest
                     
                 </div>

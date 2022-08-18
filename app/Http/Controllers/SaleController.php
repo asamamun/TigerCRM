@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
+use App\Models\Account;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
@@ -16,7 +18,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('sale.index')->with('user',Auth::user());
+        $accounts = Account::pluck('name','id');
+        return view('sale.index')->with('accounts',$accounts)->with('user',Auth::user());
     }
 
     /**
@@ -83,5 +86,25 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         //
+    }
+    public function search()
+    {
+        $allproducts = Product::all();
+        $searchdata = $this->request->getGet("term");
+
+        $query->where('title', 'like', '%first%');
+        
+        $builder->like('barcode', $searchdata);
+        $builder->orLike('name', $searchdata);
+        $query = $builder->get();
+        $return_arr = [];
+        foreach ($query->getResultArray() as $row) {
+            $return_arr[] = array(
+                'label' => $row['name'],
+                'value' => $row['id'],
+                'id' => $row['id']
+            );
+        }
+        echo json_encode($return_arr);
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('discount','15','2');
             $table->decimal('grandtotal','15','2');
             $table->text('comment');
-            $table->bigInteger('payment_type')->unsigned()->nullable();
+            $table->bigInteger('payment_type')->unsigned();
             $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('restrict');
             $table->text('trxId')->nullable();
             $table->timestamps();

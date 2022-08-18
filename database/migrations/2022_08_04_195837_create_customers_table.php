@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->set('role',['1','2','3'])->default('3');
             $table->rememberToken();
             $table->timestamps();
         });
