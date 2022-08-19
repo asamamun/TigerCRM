@@ -38,8 +38,31 @@ class CustomerauthController extends Controller
 
     }
     
-    public function login(){}
-    public function check(){}
+    public function login(){
+        //return view('');
+        
+    }
+    public function check(Request $request){
+ $phone = $request->mobile;
+ $password = $request->password;
+//  $phone = '01911039525';
+//  $password = 'admin12345';
+//        echo Hash::make($password);
+        $c = Customer::where('mobile',$phone)->first();
+        //dd($c);
+        if(password_verify($password,$c->password)){ 
+            session([
+                'name' => $c->name,
+                'cid' => $c->id,
+                'clogged_in' => true
+            ]);
+            return redirect()->route('customerdashboard');
+
+        }
+        else echo "error";
+
+
+    }
     public function logout(){
         // session()->forget(['name', 'cid', 'clogged_in']);
         session()->flush();

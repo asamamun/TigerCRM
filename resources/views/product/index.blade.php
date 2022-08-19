@@ -101,7 +101,7 @@
                             <span class="text-info">{{ $product->brand->name }}</span><br>
                             <span class="text-primary">{{ $product->supplier->name }}</span><br>
                             <span class="text-success">{{ $product->category->name }}</span><br>
-                            <span class="text-warning">{{ $product->subcategory->name }}</span>
+                            <span class="text-warning">{{ $product->subcategory?->name }}</span>
                         </td>
                         <td>
                             @if ($product->image)
