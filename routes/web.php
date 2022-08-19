@@ -125,7 +125,7 @@ Route::middleware(['user', 'auth'])->group(function () {
 
 Route::middleware(['customer'])->group(function () {
     //customer dashboard
-    Route::get('customerdashboard', [CustomerDashboardController::class, 'index']);
+    Route::get('customerdashboard', [CustomerDashboardController::class, 'index'])->name('customerdashboard');
 
     //purchase history
     Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);

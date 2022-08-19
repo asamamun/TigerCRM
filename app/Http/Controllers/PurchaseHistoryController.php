@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PurchaseHistory;
 use App\Http\Requests\StorePurchaseHistoryRequest;
 use App\Http\Requests\UpdatePurchaseHistoryRequest;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 
 class PurchaseHistoryController extends Controller
@@ -16,7 +17,8 @@ class PurchaseHistoryController extends Controller
      */
     public function index()
     {
-        return view('purchasehistory.index')->with('user',Auth::user());
+        $cinfo = Customer::find(session('cid'));
+        return view('purchasehistory.index')->with('customer',$cinfo);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CustomerProfile;
 use App\Http\Requests\StoreCustomerProfileRequest;
 use App\Http\Requests\UpdateCustomerProfileRequest;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerProfileController extends Controller
@@ -16,7 +17,8 @@ class CustomerProfileController extends Controller
      */
     public function index()
     {
-        return view('customerprofile.index')->with('user',Auth::user());
+        $cinfo = Customer::find(session('cid'));
+        return view('customerprofile.index')->with('customer',$cinfo);
     }
 
     /**

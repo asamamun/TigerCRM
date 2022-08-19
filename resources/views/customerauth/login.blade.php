@@ -47,16 +47,16 @@
                                     <!-- Validation Errors -->
                                     <x-auth-validation-errors class="mb-4 alert alert-danger" :errors="$errors" />
 
-                                    <form class="user" method="POST" action="{{ route('login') }}">
+                                    <form class="user" method="POST" action="{{ route('customerlogin') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="tel" name="mobile" class="form-control form-control-user"
+                                                id="mobile" aria-describedby="emailHelp"
+                                                placeholder="Enter Mobile Number">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -77,10 +77,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{url('forgot-password')}}">Forgot Password?</a>
+                                        <a class="small" href="#">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{route('register')}}">Create an Account!</a>
+                                        <a class="small" href="{{route('customerregister')}}">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

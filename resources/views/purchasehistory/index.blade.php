@@ -26,22 +26,22 @@ Purchase History
         <div class="col-lg-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
-                    @if ($user->profile)
-                    <img src="{{url(Storage::url($user->profile->image))}}" class="profileimage" alt="Profile Image">
+                    @if ($customer->profile)
+                    <img src="{{url(Storage::url($customer->profile->image))}}" class="profileimage" alt="Profile Image">
                     @else
                     <img src="{{asset('assets/img/undraw_profile.svg')}}" class="profileimage" alt="Profile Image">
                     @endif
                     <div class="profilename text-center py-2">
-                        Syed Zayed Hossain
+                        {{ $customer->name  }}
                     </div>
                 </div>
-                <a class="" href="{{'customerdashboard'}}">
+                <a class="" href="{{url('customerdashboard')}}">
                     <div class="dashboard-sidebar">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </div>
                 </a>
-                <a class="" href="{{'purchasehistory'}}">
+                <a class="" href="{{url('purchasehistory')}}">
                     <div class="dashboard-sidebar">
                         <i class="fas fa-file-alt"></i>
                         <span>Purchase History</span>

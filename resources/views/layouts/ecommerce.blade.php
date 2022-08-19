@@ -191,10 +191,11 @@
                             <a href="{{url('customerdashboard')}}" class="dropdown-item" type="button">Dashboard</a>
                             <a href="{{ url('purchasehistory') }}" class="dropdown-item" type="button">Purchase History</a>
                             <a href="#" class="dropdown-item" type="button">Manage Profile</a>
-                            <form method="POST" action="{{ route('customerlogout') }}">
+                            <a href="{{url('customerlogout')}}" class="dropdown-item" type="button">Logout</a>
+                            {{-- <form method="POST" action="{{ route('customerlogout') }}">
                                 @csrf
                                 <a href="{{url('customerlogout')}}" class="dropdown-item" type="button" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
-                            </form>
+                            </form> --}}
                         </div>
                         @else
                         <div class="btn-group">
