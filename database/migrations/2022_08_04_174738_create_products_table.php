@@ -26,7 +26,6 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
             $table->bigInteger('subcategory_id')->unsigned()->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('restrict');
-            $table->string('image');
             $table->string('feature');
             $table->text('description');
             $table->text('information');

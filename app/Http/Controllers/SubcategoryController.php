@@ -37,8 +37,6 @@ class SubcategoryController extends Controller
     {
        
         $categories = Category::pluck('name','id');
-        // array_unshift($categories , ['-1'=>"Select Category"]);
-        // dd($categories);
         return view("subcategory.create")->with('categories',$categories)->with('user',Auth::user());
     }
 
@@ -64,22 +62,14 @@ class SubcategoryController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
-        // dd($request->category_id);
-
-        /* $data = [
-            'name'=>$request->name,
-            'category_id'=>$request->category_id,
-            'icon'=>$path,
-            'description'=>$request->description,
-        ];
-        dd($data);
-        $sc = Subcategory::create($data); */
         $sc = new Subcategory();
         $sc->name = $request->name;
         $sc->icon = $path;
         $sc->description = $request->description;
+        $sc->category_id = $request->category_id;
         $c = Category::find($request->category_id);
-        if($c->subcategories()->save($sc)){
+        if($c){
+            $sc->save();
             return back()->with('message','Subcategory ' .$sc->id. ' Create Successfully!!!');
         }
         else{

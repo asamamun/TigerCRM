@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Productimage;
 use App\Models\Subcategory;
 use App\Models\Supplier;
 use Illuminate\Http\Client\Request;
@@ -74,8 +75,12 @@ class ProductController extends Controller
 
         $p = new Product();
         $p->name = $request->name;
+        $p->brand_id = $request->brand_id;
+        $p->supplier_id = $request->supplier_id;
+        $p->category_id = $request->category_id;
+        $p->subcategory_id = $request->subcategory_id;
         $p->barcode = rand(1000000,9999999);
-        $p->image = $path;
+        // $p->image = $path;
         $p->feature = $request->feature;
         $p->description = $request->description;
         $p->information = $request->information;
@@ -90,9 +95,18 @@ class ProductController extends Controller
         $s = Supplier::find($request->supplier_id);
         $c = Category::find($request->category_id);
         $sc = Subcategory::find($request->subcategory_id);
-        // dd($sc);
-        if(($b->products()->save($p)) && ($s->products()->save($p)) && ($c->products()->save($p)) && ($sc->products()->save($p))){
-            return back()->with('message','Product ' .$p->id. ' Create Successfully!!!');
+        if($b && $s && $c && $sc){
+            if($p->save()){
+                $pi = new Productimage();
+                $pi->product_id = $p->id;
+                $pi->name = $path;                
+                $pi->save();
+                return back()->with('message','Product ' .$p->id. ' Create Successfully!!!');
+            }
+            else{
+                return back()->with('message','Product not save');
+            }
+
         }
         else{
             return back()->with('message','Error!!');
@@ -119,11 +133,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $productimages = new Productimage();
         $categories = Category::pluck('name','id');
         $subcategories = Subcategory::pluck('name','id');
         $brands = Brand::pluck('name','id');
         $suppliers = Supplier::pluck('name','id');
         return view('product.edit',compact('product'))
+        ->with('productimages',$productimages)
         ->with('categories',$categories)
         ->with('subcategories',$subcategories)
         ->with('brands',$brands)
@@ -140,8 +156,9 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        // dd($request);
         //upload
-        $path = $request->file('icon')->store('public/products');
+        $path = $request->file('name')->store('public/products');
         $storagepath = Storage::path($path);
         $img = Image::make($storagepath);
 

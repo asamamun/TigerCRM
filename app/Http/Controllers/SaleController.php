@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Account;
 use App\Models\Product;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
@@ -87,7 +88,7 @@ class SaleController extends Controller
     {
         //
     }
-    public function search()
+    public function search(Request $request)
     {
         $allproducts = Product::all();
         $searchdata = $this->request->getGet("term");

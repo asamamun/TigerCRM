@@ -52,7 +52,6 @@
                             <span class="text-success">Category</span><br>
                             <span class="text-warning">Subcategory</span>
                         </th>
-                        <th>Image</th>
                         <th>
                             <span class="text-info">Regular Price</span><br>
                             <span class="text-primary">Price</span><br>
@@ -77,7 +76,6 @@
                             <span class="text-success">Category</span><br>
                             <span class="text-warning">Subcategory</span>
                         </th>
-                        <th>Image</th>
                         <th>
                             <span class="text-info">Regular Price</span><br>
                             <span class="text-primary">Price</span><br>
@@ -102,12 +100,6 @@
                             <span class="text-primary">{{ $product->supplier->name }}</span><br>
                             <span class="text-success">{{ $product->category->name }}</span><br>
                             <span class="text-warning">{{ $product->subcategory?->name }}</span>
-                        </td>
-                        <td>
-                            @if ($product->image)
-                                <img src="{{url(Storage::url($product->image))}}" class="iconimage" alt="Image">       
-                            @else            
-                            @endif
                         </td>
                         <td>
                             <span class="text-info">{{ $product->regular_price }}</span><br>

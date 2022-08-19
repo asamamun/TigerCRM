@@ -43,15 +43,6 @@
                 <td>{{ $product->subcategory->name }}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Image</th>
-                <td>
-                    @if ($product->image)
-                    <img src="{{url(Storage::url($product->image))}}" class="iconimage" alt="Image">       
-                @else            
-                @endif
-                </td>
-            </tr>
-            <tr class="table-bordered">
                 <th>Feature</th>
                 <td>{{ $product->feature }}</td>
             </tr>

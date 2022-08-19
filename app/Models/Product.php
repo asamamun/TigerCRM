@@ -14,7 +14,6 @@ class Product extends Model
         'name',
         'slug',
         'barcode',
-        'image',
         'feature',
         'description',
         'information',
@@ -70,5 +69,9 @@ class Product extends Model
     public function InvoiceDtails()
     {
     return $this->hasMany('App\Models\InvoiceDetail');
+    }
+    public function productimages()
+    {
+    return $this->hasMany('App\Models\Productimage');
     }
 }

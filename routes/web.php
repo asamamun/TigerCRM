@@ -98,6 +98,12 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // sale
     Route::resource("sale", SaleController::class);
 
+    Route::get('search', [SaleController::class, 'search']);
+    Route::post('addtocart', [SaleController::class, 'addtocart']);
+    Route::get('customersearch', [SaleController::class, 'customersearch']);
+    Route::post('customerdetails', [SaleController::class, 'customerdetails']);
+    Route::post('placeorder', [SaleController::class, 'placeorder']);
+
     // purchase
     Route::resource("purchase", PurchaseController::class);
 
@@ -108,7 +114,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::resource("invoice", InvoiceController::class);
 
     //search
-    Route::get('/search', [ProductController::class, 'search']);
+    // Route::get('/search', [ProductController::class, 'search']);
 
     Route::get('getsubcategories/{cid}', [SubcategoryController::class, 'get_subcategories']);
 
