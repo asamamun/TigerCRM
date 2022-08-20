@@ -26,16 +26,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Product $product)
-    {
-        $category = new Category();
-        $allproducts = Product::where('category_id',$category->id);
-        // dd($allproducts);
-        return view('ecommerce.show',compact('allproducts'))->with('user',Auth::user());
-    }
+    // public function show(Product $product)
+    // {
+    //     $category = new Category();
+    //     $allproducts = Product::where('category_id',$category->id);
+    //     // dd($allproducts);
+    //     return view('ecommerce.show',compact('allproducts'));
+    // }
     
-    public function details()
-    {
-        return view('ecommerce.details')->with('user',Auth::user());
-    }
 }

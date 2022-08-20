@@ -59,20 +59,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //upload
-        $path = $request->file('image')->store('public/products');
-        $storagepath = Storage::path($path);
-        $img = Image::make($storagepath);
-
-        // resize image instance
-        $img->resize(500, 500);
-
-        // insert a watermark
-        // $img->insert('public/watermark.png');
-
-        // save image in desired format
-        $img->save($storagepath);
-
         $p = new Product();
         $p->name = $request->name;
         $p->brand_id = $request->brand_id;
@@ -80,7 +66,6 @@ class ProductController extends Controller
         $p->category_id = $request->category_id;
         $p->subcategory_id = $request->subcategory_id;
         $p->barcode = rand(1000000,9999999);
-        // $p->image = $path;
         $p->feature = $request->feature;
         $p->description = $request->description;
         $p->information = $request->information;
@@ -97,10 +82,31 @@ class ProductController extends Controller
         $sc = Subcategory::find($request->subcategory_id);
         if($b && $s && $c && $sc){
             if($p->save()){
-                $pi = new Productimage();
-                $pi->product_id = $p->id;
-                $pi->name = $path;                
-                $pi->save();
+                if($request->file('image')){
+                    for ($i=0; $i < count($request->file('image')); $i++) { 
+                        // $path = $request->file('image')[$i];
+                        $path = $request->file('image')[$i]->store('public/products');
+                        $storagepath = Storage::path($path);
+                        $img = Image::make($storagepath);
+                
+                        // resize image instance
+                        $img->resize(500, 500);
+                
+                        // insert a watermark
+                        // $img->insert('public/watermark.png');
+                
+                        // save image in desired format
+                        $img->save($storagepath);
+                        $pi = new Productimage();
+                        $pi->product_id = $p->id;
+                        $pi->name = $path;                
+                        $pi->save();
+                    }
+                }
+                else{
+                    return back()->with('message','Product image not found');
+                }
+
                 return back()->with('message','Product ' .$p->id. ' Create Successfully!!!');
             }
             else{
@@ -123,6 +129,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return view('product.show',compact('product'))->with('user',Auth::user());
+        // return view('shop.details',compact('product'));
     }
 
     /**
@@ -219,4 +226,5 @@ class ProductController extends Controller
         //return the product in json format
 
     }
+
 }

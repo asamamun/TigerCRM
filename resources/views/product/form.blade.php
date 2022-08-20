@@ -20,7 +20,7 @@
         {!! Form::select('subcategory_id', [], null, ['placeholder' => 'Select Subcategory', 'class'=>'form-control form-control-profile','id'=>'subcategory_id']) !!}
     </div>
     <div class="col-sm-6">
-        {!! Form::file('image', ['required', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}
+        {!! Form::file('image[]', ['required','multiple', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}
     </div>
 </div>
 <div class="form-group">
