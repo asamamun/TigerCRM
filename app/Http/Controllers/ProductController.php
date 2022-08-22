@@ -128,9 +128,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.show',compact('product'))->with('user',Auth::user());
-        // return view('shop.details',compact('product'));
+        // return view('product.show',compact('product'))->with('user',Auth::user());
+        return view('shop.details',compact('product'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

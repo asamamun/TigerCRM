@@ -200,7 +200,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href="{{url($product->slug)}}">{{Str::substr($product->name, 0, 26)}}...</a>
+                                    <a class="h6 text-decoration-none text-truncate" href="{{url('product/'.$product->slug)}}">{{Str::substr($product->name, 0, 26)}}...</a>
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <h5>&#2547; {{$product->price}}</h5><h6 class="text-muted ml-2"><del>&#2547; {{$product->regular_price}}</del></h6>
                                     </div>
