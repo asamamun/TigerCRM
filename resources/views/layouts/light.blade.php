@@ -22,6 +22,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{url('assets/css/admin.css')}}" rel="stylesheet">
+    <!-- UI -->
+    <link href="{{url('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
 
 
 </head>
@@ -509,6 +511,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{url('assets/js/admin.min.js')}}"></script>
+    <!-- UI -->
+    <script src="{{url('assets/js/jquery-ui.min.js')}}"></script>
 
     <script>
         $(document).ready( function () {

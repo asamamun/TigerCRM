@@ -98,6 +98,7 @@
         });
 
         function addProduct(id) {
+            alert("search for ID : " + id);
             $.ajax({
                 url: BASE_URL + '/addtocart',
                 type: 'post',

@@ -7,8 +7,9 @@ use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Account;
 use App\Models\Product;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SaleController extends Controller
 {
@@ -90,22 +91,16 @@ class SaleController extends Controller
     }
     public function search(Request $request)
     {
-        $allproducts = Product::all();
-        $searchdata = $this->request->getGet("term");
-
-        $query->where('title', 'like', '%first%');
-        
-        $builder->like('barcode', $searchdata);
-        $builder->orLike('name', $searchdata);
-        $query = $builder->get();
-        $return_arr = [];
-        foreach ($query->getResultArray() as $row) {
-            $return_arr[] = array(
-                'label' => $row['name'],
-                'value' => $row['id'],
-                'id' => $row['id']
-            );
+        $searchdata = $request->term;
+        $ps = Product::select('id','name')->where('name','LIKE',"%{$searchdata}%")->get();
+        $items = [];
+        foreach ($ps as $p) {
+            $items[] = [
+                'label' => $p->name,
+                'value' => $p->name,
+                'id' => $p->id
+            ];
         }
-        echo json_encode($return_arr);
+        return response()->json($items);
     }
 }
