@@ -70,18 +70,18 @@
                         <td>{{ $customer->mobile }}</td>
                         <td>{{ $customer->address }}</td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['customer.destroy', $customer->id],'id'=>'deleteform']) !!}
+                            {!! Form::open(['method' => 'delete','route' => ['customer.destroy', $customer->slug],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a>
                             {!! Form::close() !!}
-                            <a href="{{url('customer/'.$customer->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
+                            <a href="{{url('customer/'.$customer->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </a> --}}
-                            <a href="{{url('customer/'.$customer->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
+                            <a href="{{url('customer/'.$customer->slug)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
