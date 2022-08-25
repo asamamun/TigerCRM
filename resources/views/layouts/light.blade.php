@@ -23,7 +23,7 @@
     <!-- Custom styles for this template-->
     <link href="{{url('assets/css/admin.css')}}" rel="stylesheet">
     <!-- UI -->
-    <link href="{{url('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/css/jquery-ui.css')}}" rel="stylesheet">
 
 
 </head>

@@ -171,7 +171,7 @@
             source: BASE_URL + '/customersearch',
             minLength: 1,
             select: function(event, ui) {
-                // console.log(ui);
+                console.log(ui.item);
                     $html2 = "";
                     $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
                     $html2 += "<div>" + ui.item.mobile + "</div>";
@@ -189,6 +189,8 @@
         $priceArr = [];
         $totalArr = [];
         $(".productid").each(function(){$idArr.push($(this).text());})
+        // alert($idArr);
+        // return;
         $(".qu").each(function(){$quanArr.push($(this).val());})
         $(".pprice").each(function(){$priceArr.push($(this).text());})
         $(".itemtotal").each(function(){$totalArr.push($(this).text());})
@@ -212,10 +214,11 @@ $.ajax({
                     comment: $("#salenote").val()
                         },
                 success: function(response) {
+                    console.log(response);
                   $("#responseMessage").html(response);
                 //   var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
                 //   w.print();
-                  console.log(response);
+                  
                   //exit();
                     // location.reload();
 

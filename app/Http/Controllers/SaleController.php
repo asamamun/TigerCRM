@@ -125,7 +125,7 @@ class SaleController extends Controller
     public function customersearch(Request $request)
     {
         $searchdata = $request->term;
-        $cs = Customer::select('id','mobile')->where('mobile','LIKE',"%{$searchdata}%")->get();
+        $cs = Customer::select('id','mobile','name')->where('mobile','LIKE',"%{$searchdata}%")->get();
         $items = [];
         foreach ($cs as $c) {
             $items[] = [
@@ -141,11 +141,12 @@ class SaleController extends Controller
 
     public function placeorder(Request $request)
     {
-        $uid = Auth::user();
+        
+        $uid = Auth::id();
         $ord = new Order();
         // $details = new OrderDetail();
         $data = [
-            'user_id' => $request->$uid,
+            'user_id' => $uid,
             'customer_id' => $request->cid,
             'nettotal' => $request->total,
             'discount' => $request->discount,
@@ -154,8 +155,9 @@ class SaleController extends Controller
             'payment_type' => $request->pmethod,
             'trxid' => $request->trxid,
         ];
-        $ord->save($data);
-        $orderID = $ord->getInsertID();
+        // return response()->json($data);
+        $ord = Order::create($data);
+        $orderID = $ord->id;
         $ids = $request->ids;
         $quans = $request->quantity;
         $pprice = $request->pricearr;
@@ -164,19 +166,20 @@ class SaleController extends Controller
             $details = new OrderDetail();
             $pdata = [
                 'order_id' => $orderID,
-                'product_id' => $ids->$key,
-                'quantity' => $quans->$key,
-                'price' => $pprice->$key,
-                'total' => $ptotal->$key,
+                'product_id' => $ids[$key],
+                'quantity' => $quans[$key],
+                'price' => $pprice[$key],
+                'total' => $ptotal[$key],
             ];
             $details->save($pdata);
             //update quantity in product table
-            $pd = Product::find($ids->$key);
-            $pd->quantity = $pd->quantity - $quans->$key;
+            $pd = Product::find($ids[$key]);
+            $pd->quantity = $pd->quantity - $quans[$key];
             if ($pd->quantity >= 0) {
                 $pd->save();
+                //return response()->json(['error'=>0,'message'=>"Order Received"]);
             } else {
-                return back()->withInput()->with('error', 'Stock out');
+                //return response()->json(['error'=>1,'message'=>"Error"]);
             }
         }
         //balance addition
@@ -185,6 +188,6 @@ class SaleController extends Controller
         $pa->balance = $pa->balance + $gtotal;
         $pa->save();
 
-        echo "Order Saved. Order Id: " . $orderID;
+        return response()->json(['error'=>0,'message'=>"Order received"]);
     }
 }
