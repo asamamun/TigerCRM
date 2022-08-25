@@ -6,6 +6,9 @@ use App\Models\Sale;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Account;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -102,5 +105,86 @@ class SaleController extends Controller
             ];
         }
         return response()->json($items);
+    }
+
+    public function addtocart(Request $request)
+    {
+        $id = $request->id;
+        $p = Product::find($id);
+        // $row = $p->find($id);
+        $return_arr = [
+            'id' => $p->id,
+            'barcode' => $p->barcode,
+            'name' => $p->name,
+            'price' => $p->price,
+        ];
+
+        echo json_encode($return_arr);
+    }
+
+    public function customersearch(Request $request)
+    {
+        $searchdata = $request->term;
+        $cs = Customer::select('id','mobile')->where('mobile','LIKE',"%{$searchdata}%")->get();
+        $items = [];
+        foreach ($cs as $c) {
+            $items[] = [
+                'label' => $c->mobile,
+                'value' => $c->id,
+                'mobile' => $c->mobile,
+                'id' => $c->id,
+                'name' => $c->name,
+            ];
+        }
+        return response()->json($items);
+    }
+
+    public function placeorder(Request $request)
+    {
+        $uid = Auth::user();
+        $ord = new Order();
+        // $details = new OrderDetail();
+        $data = [
+            'user_id' => $request->$uid,
+            'customer_id' => $request->cid,
+            'nettotal' => $request->total,
+            'discount' => $request->discount,
+            'grandtotal' => $request->gtotal,
+            'comment' => $request->comment,
+            'payment_type' => $request->pmethod,
+            'trxid' => $request->trxid,
+        ];
+        $ord->save($data);
+        $orderID = $ord->getInsertID();
+        $ids = $request->ids;
+        $quans = $request->quantity;
+        $pprice = $request->pricearr;
+        $ptotal = $request->totalarr;
+        foreach ($ids as $key => $value) {
+            $details = new OrderDetail();
+            $pdata = [
+                'order_id' => $orderID,
+                'product_id' => $ids->$key,
+                'quantity' => $quans->$key,
+                'price' => $pprice->$key,
+                'total' => $ptotal->$key,
+            ];
+            $details->save($pdata);
+            //update quantity in product table
+            $pd = Product::find($ids->$key);
+            $pd->quantity = $pd->quantity - $quans->$key;
+            if ($pd->quantity >= 0) {
+                $pd->save();
+            } else {
+                return back()->withInput()->with('error', 'Stock out');
+            }
+        }
+        //balance addition
+        $gtotal = $request->gtotal;
+        $pa = Account::find($request->pmethod);
+        $pa->balance = $pa->balance + $gtotal;
+        $pa->save();
+
+        echo "Order Saved. Order Id: " . $orderID;
     }
 }

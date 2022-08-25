@@ -22,9 +22,10 @@
                 </div>
                 {!! Form::close() !!}
                 <div class="sale-table">
-                    <table class="table">
+                    <table class="table table-responsive">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Barcode</th>
                                 <th>Product(s)</th>
                                 <th>Unit Price</th>
@@ -61,7 +62,7 @@
                 <hr>
                 <div class="row sale-table">
                     <div class="form-group col-12">
-                        {!! Form::select('payment_method', $accounts, null, ['placeholder' => 'Payment Method', 'class'=>'form-control form-control-profile']) !!}
+                        {!! Form::select('payment_method', $accounts, null, ['id' => 'payment_method', 'placeholder' => 'Payment Method', 'class'=>'form-control form-control-profile']) !!}
                         {!! Form::text('trxId', null, ['class'=>'d-none form-control form-control-profile', 'id'=>'trxId', 'placeholder'=>'Transaction ID']) !!}
                     </div>
                 </div>
@@ -91,14 +92,14 @@
             source: BASE_URL + '/search',
             minLength: 1,
             select: function(event, ui) {
-                console.log(ui);
+                // console.log(ui);
                 var id = ui.item.id;
                 addProduct(id);
             }
         });
 
         function addProduct(id) {
-            alert("search for ID : " + id);
+            // alert("search for ID : " + id);
             $.ajax({
                 url: BASE_URL + '/addtocart',
                 type: 'post',
@@ -116,7 +117,7 @@
                     $html += "<td class='pprice'>" + response.price + "</td>";
                     $html += "<td><input class='qu' type='number' min='1' name='quantity' value='1'></td>";
                     $html += "<td class='itemtotal'>" + response.price + "</td>";
-                    $html += "<td class='deleteproduct'><i class='fa-solid fa-circle-xmark'></i></td>";
+                    $html += "<td class='deleteproduct'><i class='fas fa-times'></i></i></td>";
                     $html += "</tr>";
                     $('#dyn_tr').append($html);
                     $("#productsearch").val("").focus();
@@ -158,7 +159,7 @@
         //payment method
         $("#payment_method").change(function() {
             var payment_method = $(this).val();
-            if (payment_method == 'cash') {
+            if (payment_method == '1') {
                 $("#trxId").addClass('d-none');
             } else {
                 $("#trxId").removeClass('d-none');
@@ -173,7 +174,6 @@
                 // console.log(ui);
                     $html2 = "";
                     $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
-                    $html2 += "<div>" + ui.item.address + "</div>";
                     $html2 += "<div>" + ui.item.mobile + "</div>";
                     $('#dyn_customer').html($html2);
                     $("#customersearch").val("").focus();  
@@ -193,7 +193,7 @@
         $(".pprice").each(function(){$priceArr.push($(this).text());})
         $(".itemtotal").each(function(){$totalArr.push($(this).text());})
 
-        console.log($quanArr);
+        // console.log($quanArr);
 //post data
 $.ajax({
                 url: BASE_URL + '/placeorder',
@@ -213,9 +213,9 @@ $.ajax({
                         },
                 success: function(response) {
                   $("#responseMessage").html(response);
-                  var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
-                  w.print();
-                  //console.log($pmethod);
+                //   var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
+                //   w.print();
+                  console.log(response);
                   //exit();
                     // location.reload();
 
