@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orderdetails', function (Blueprint $table) {
+        Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('restrict');
+            $table->bigInteger('invoice_id')->unsigned();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('restrict');
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->decimal('quantity','15','2');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_details');
+        Schema::dropIfExists('invoice_details');
     }
 };

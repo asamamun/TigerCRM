@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/home/{slug}', [HomeController::class, 'show']);
+Route::get('/home/{slug}', [HomeController::class, 'show']);
 Route::get('/shop', [ShopController::class, 'index']);
 // Route::get('/{slug}', [ShopController::class, 'show']);
 // Route::get('/product/{slug}', [ProductController::class, 'show']);
@@ -108,6 +108,12 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // purchase
     Route::resource("purchase", PurchaseController::class);
+
+    // Route::get('search', [PurchaseController::class, 'search']);
+    // Route::post('addtocart', [PurchaseController::class, 'addtocart']);
+    Route::get('suppliersearch', [PurchaseController::class, 'suppliersearch']);
+    Route::post('supplierdetails', [PurchaseController::class, 'supplierdetails']);
+    Route::post('orderplace', [PurchaseController::class, 'orderplace']);
 
     // carousel
     Route::resource("carousel", CarouselController::class);

@@ -26,4 +26,8 @@ class Order extends Model
     {
     return $this->belongsTo('App\Models\Account','payment_type');
     }
+    public function User()
+    {
+    return $this->belongsTo('App\Models\User');
+    }
 }

@@ -25,6 +25,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Barcode</th>
                                 <th>Product(s)</th>
                                 <th>Unit Price</th>
@@ -41,7 +42,7 @@
                 <div class="form-group">
                     {!! Form::text('suppliersearch', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'suppliersearch', 'placeholder'=>'Enter Supplier Mobile Number']) !!}
                 </div>
-                <div id="dyn_customer"></div>
+                <div id="dyn_supplier"></div>
                 <hr>
                 <div class="row sale-table">
                     <div class="col-md-7 mb-3">Total:</div>
@@ -61,7 +62,7 @@
                 <hr>
                 <div class="row sale-table">
                     <div class="form-group col-12">
-                        {!! Form::text('payment_method', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'payment_method', 'placeholder'=>'Select Payment Method']) !!}
+                        {!! Form::select('payment_method', $accounts, null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'payment_method', 'placeholder'=>'Select Payment Method']) !!}
                         {!! Form::text('trxId', null, ['class'=>'d-none form-control form-control-profile', 'id'=>'trxId', 'placeholder'=>'Transaction ID']) !!}
                     </div>
                 </div>
@@ -80,7 +81,155 @@
 @endsection
 
 @section('script')
-    <script>
-        
-    </script>
+<script>
+    var BASE_URL = "{{url('/')}}";
+    function financial(x) {
+			return Number.parseFloat(x).toFixed(2);
+		}
+    $(document).ready(function() {
+        //autocomplete
+        $("#productsearch").autocomplete({
+            source: BASE_URL + '/search',
+            minLength: 1,
+            select: function(event, ui) {
+                // console.log(ui);
+                var id = ui.item.id;
+                addProduct(id);
+            }
+        });
+
+        function addProduct(id) {
+            // alert("search for ID : " + id);
+            $.ajax({
+                url: BASE_URL + '/addtocart',
+                type: 'post',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    // console.log(response);
+                    // return;
+                    response = JSON.parse(response);
+                    $html = "<tr>";
+                    $html += "<th class='productid'>" + response.id + "</th>";
+                    $html += "<td class='barcode'>" + response.barcode + "</td>";
+                    $html += "<td class='productname'>" + response.name + "</td>";
+                    $html += "<td class='pprice'>" + response.price + "</td>";
+                    $html += "<td><input class='qu' type='number' min='1' name='quantity' value='1'></td>";
+                    $html += "<td class='itemtotal'>" + response.price + "</td>";
+                    $html += "<td class='deleteproduct'><i class='fas fa-times'></i></i></td>";
+                    $html += "</tr>";
+                    $('#dyn_tr').append($html);
+                    $("#productsearch").val("").focus();
+                    updateTotal();
+                }
+            });
+        }
+        //delete product
+        $(document).on('click', '.deleteproduct', function(e) {
+            e.preventDefault();
+            $(this).closest('tr').remove();
+        });
+        //update total
+        $(document).on('blur change keyup', '.qu', function() {
+            var $row = $(this).closest('tr');
+            var qty = $row.find('.qu').val();
+            var price = $row.find('.pprice').text();
+            var itemtotal = qty * price;
+            //console.log(itemtotal);
+            $row.find('.itemtotal').text(financial(itemtotal));
+            updateTotal();
+        });
+
+        function updateTotal() {
+            //console.log($('.itemtotal'));
+            var grandtotal = 0;
+            $('.itemtotal').each(function() {
+                grandtotal += parseFloat($(this).text());
+            });
+            $('#total').text(grandtotal);
+            // alert($("#discount").val());
+            $('#grandtotal').text(grandtotal - parseInt($("#discount").val()));
+        }
+        //
+        $("#discount").keyup(function() {
+            updateTotal();
+        })
+
+        //payment method
+        $("#payment_method").change(function() {
+            var payment_method = $(this).val();
+            if (payment_method == '1') {
+                $("#trxId").addClass('d-none');
+            } else {
+                $("#trxId").removeClass('d-none');
+            }
+        });
+
+        //customer autocomplete
+        $("#suppliersearch").autocomplete({
+            source: BASE_URL + '/suppliersearch',
+            minLength: 1,
+            select: function(event, ui) {
+                console.log(ui.item);
+                    $html2 = "";
+                    $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
+                    $html2 += "<div>" + ui.item.mobile + "</div>";
+                    $('#dyn_supplier').html($html2);
+                    $("#suppliersearch").val("").focus();  
+                
+            }
+        });
+
+
+        // save button start
+        $("#saveBtn").click(function(){
+        $idArr = [];
+        $quanArr = [];
+        $priceArr = [];
+        $totalArr = [];
+        $(".productid").each(function(){$idArr.push($(this).text());})
+        // alert($idArr);
+        // return;
+        $(".qu").each(function(){$quanArr.push($(this).val());})
+        $(".pprice").each(function(){$priceArr.push($(this).text());})
+        $(".itemtotal").each(function(){$totalArr.push($(this).text());})
+
+        // console.log($quanArr);
+        //post data
+        $.ajax({
+                url: BASE_URL + '/orderplace',
+                type: 'post',
+                data: {
+                    ids: $idArr,
+                    quantity: $quanArr,
+                    pricearr :$priceArr,
+                    totalarr: $totalArr,
+                    sid: $("#suppliersearch").val(),
+                    total: $("#total").html(),
+                    discount: $("#discount").val(),
+                    gtotal: $("#grandtotal").html(),
+                    pmethod: $("#payment_method").val(),
+                    trxid: $("#trxId").val(),
+                    comment: $("#salenote").val()
+                        },
+                success: function(response) {
+                    console.log(response);
+                  $("#responseMessage").html(response);
+                //   var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
+                //   w.print();
+                  
+                  //exit();
+                    // location.reload();
+
+                }
+            });            
+            //post data            
+
+
+        });
+        // save button end
+        // 
+    });
+</script>
 @endsection
