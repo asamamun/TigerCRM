@@ -47,12 +47,14 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function show($id)
-    // {
-    //     $product = Product::find($id);
-    //     dd($product);
-    //     return view('shop.details',compact('product'));
-    // }
+    public function show($slug)
+    {
+        $product = Product::where('slug',$slug)->first();
+/*         foreach($product->productimages as $img){
+            echo $img->name."<br>";
+        } */
+       return view('shop.details',compact('product'));
+    }
 
     // public function show(Product $product)
     // {

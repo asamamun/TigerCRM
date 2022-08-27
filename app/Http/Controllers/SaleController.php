@@ -158,12 +158,13 @@ class SaleController extends Controller
         // return response()->json($data);
         $ord = Order::create($data);
         $orderID = $ord->id;
+        Log::info($orderID);
         $ids = $request->ids;
         $quans = $request->quantity;
         $pprice = $request->pricearr;
         $ptotal = $request->totalarr;
         foreach ($ids as $key => $value) {
-            $details = new OrderDetail();
+            //$details = new OrderDetail();
             $pdata = [
                 'order_id' => $orderID,
                 'product_id' => $ids[$key],
@@ -171,7 +172,7 @@ class SaleController extends Controller
                 'price' => $pprice[$key],
                 'total' => $ptotal[$key],
             ];
-            $details->save($pdata);
+            $details = OrderDetail::create($pdata);
             //update quantity in product table
             $pd = Product::find($ids[$key]);
             $pd->quantity = $pd->quantity - $quans[$key];
@@ -179,6 +180,7 @@ class SaleController extends Controller
                 $pd->save();
                 //return response()->json(['error'=>0,'message'=>"Order Received"]);
             } else {
+
                 //return response()->json(['error'=>1,'message'=>"Error"]);
             }
         }

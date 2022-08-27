@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-    
+    @php
+    // dd($category)    
+    @endphp
     
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
@@ -26,7 +28,7 @@
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    @foreach ($allsubcategory as $subcategory)
+                    @foreach ($category->subcategories as $subcategory)
                     <a class="breadcrumb-item text-dark" href="#">{{$subcategory->name}}</a>
                     @endforeach
                 </nav>
@@ -197,7 +199,7 @@
                             </div>
                         </div>
                     </div>
-                    @foreach ($allproducts as $product)
+                    @foreach ($category->products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">
