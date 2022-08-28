@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderTrackController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -39,8 +40,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/category/{slug}', [HomeController::class, 'show']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/category/{slug}', [HomeController::class, 'category']);
+Route::get('/brand/{slug}', [HomeController::class, 'brand']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/item/{slug}', [ShopController::class, 'show']);
 // Route::get('/product/{slug}', [ProductController::class, 'show']);
@@ -120,6 +122,12 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // invoice
     Route::resource("invoice", InvoiceController::class);
+
+    // order
+    Route::resource("order", OrderController::class);
+    Route::get('order/details/{id}', [OrderController::class, 'orderdetails']);
+    Route::get('order/print/{id}', [OrderController::class, 'print']);
+    Route::get('order/pdf/{id}', [OrderController::class, 'pdf']);
 
     //search
     // Route::get('/search', [ProductController::class, 'search']);

@@ -30,4 +30,8 @@ class Order extends Model
     {
     return $this->belongsTo('App\Models\User');
     }
+    public function Customer()
+    {
+    return $this->belongsTo('App\Models\Customer');
+    }
 }

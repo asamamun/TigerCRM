@@ -62,4 +62,8 @@ class Customer extends Model
     {
     return $this->hasOne('App\Models\CustomerProfile');
     }
+    public function Orders()
+    {
+    return $this->hasMany('App\Models\Order');
+    }
 }

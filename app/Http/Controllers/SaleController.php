@@ -12,6 +12,7 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class SaleController extends Controller
@@ -141,55 +142,62 @@ class SaleController extends Controller
 
     public function placeorder(Request $request)
     {
-        
-        $uid = Auth::id();
-        $ord = new Order();
-        // $details = new OrderDetail();
-        $data = [
-            'user_id' => $uid,
-            'customer_id' => $request->cid,
-            'nettotal' => $request->total,
-            'discount' => $request->discount,
-            'grandtotal' => $request->gtotal,
-            'comment' => $request->comment,
-            'payment_type' => $request->pmethod,
-            'trxid' => $request->trxid,
-        ];
-        // return response()->json($data);
-        $ord = Order::create($data);
-        $orderID = $ord->id;
-        Log::info($orderID);
-        $ids = $request->ids;
-        $quans = $request->quantity;
-        $pprice = $request->pricearr;
-        $ptotal = $request->totalarr;
-        foreach ($ids as $key => $value) {
-            //$details = new OrderDetail();
-            $pdata = [
-                'order_id' => $orderID,
-                'product_id' => $ids[$key],
-                'quantity' => $quans[$key],
-                'price' => $pprice[$key],
-                'total' => $ptotal[$key],
+        DB::beginTransaction();
+        try {
+            $uid = Auth::id();
+            $ord = new Order();
+            // $details = new OrderDetail();
+            $data = [
+                'user_id' => $uid,
+                'customer_id' => $request->cid,
+                'nettotal' => $request->total,
+                'discount' => $request->discount,
+                'grandtotal' => $request->gtotal,
+                'comment' => $request->comment,
+                'payment_type' => $request->pmethod,
+                'trxId' => $request->trxid,
             ];
-            $details = OrderDetail::create($pdata);
-            //update quantity in product table
-            $pd = Product::find($ids[$key]);
-            $pd->quantity = $pd->quantity - $quans[$key];
-            if ($pd->quantity >= 0) {
-                $pd->save();
-                //return response()->json(['error'=>0,'message'=>"Order Received"]);
-            } else {
+            // return response()->json($data);
+            $ord = Order::create($data);
+            $orderID = $ord->id;
+            // Log::info($orderID);
+            $ids = $request->ids;
+            $quans = $request->quantity;
+            $pprice = $request->pricearr;
+            $ptotal = $request->totalarr;
+            foreach ($ids as $key => $value) {
+                //$details = new OrderDetail();
+                $pdata = [
+                    'order_id' => $orderID,
+                    'product_id' => $ids[$key],
+                    'quantity' => $quans[$key],
+                    'price' => $pprice[$key],
+                    'total' => $ptotal[$key],
+                ];
+                $details = OrderDetail::create($pdata);
+                //update quantity in product table
+                $pd = Product::find($ids[$key]);
+                $pd->quantity = $pd->quantity - $quans[$key];
+                if ($pd->quantity >= 0) {
+                    $pd->save();
+                    //return response()->json(['error'=>0,'message'=>"Order Received"]);
+                } else {
 
-                //return response()->json(['error'=>1,'message'=>"Error"]);
+                    //return response()->json(['error'=>1,'message'=>"Error"]);
+                }
             }
+            //balance addition
+            $gtotal = $request->gtotal;
+            $pa = Account::find($request->pmethod);
+            $pa->balance = $pa->balance + $gtotal;
+            $pa->save();
+            DB::commit();
+            return response()->json(['error'=>0,'message'=>"Order received"]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withInput()->with('error', "Error!!! Transaction not completed");
+            abort(404);
         }
-        //balance addition
-        $gtotal = $request->gtotal;
-        $pa = Account::find($request->pmethod);
-        $pa->balance = $pa->balance + $gtotal;
-        $pa->save();
-
-        return response()->json(['error'=>0,'message'=>"Order received"]);
+               
     }
 }

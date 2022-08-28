@@ -13,9 +13,10 @@ class HomeController extends Controller
 {
     public function index(){
         $categories = Category::with('products')->has('products')->get();
-        $brands = Brand::with('products')->get();
-        // $allsubcategory = Subcategory::with('category')->get();
-        return view('ecommerce.index')->with('categories',$categories)->with('brands',$brands);
+        $brands = Brand::with('products')->has('products')->get();
+        $recentproducts = Product::orderBy('id','desc')->take('8')->get();
+        // dd($recentproducts);
+        return view('ecommerce.index')->with('categories',$categories)->with('brands',$brands)->with('recentproducts',$recentproducts);
         
     }
 
@@ -26,12 +27,20 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show($s)
+    public function category($s)
     {
         
-        $category = Category::where('slug',$s)->with('products','subcategories')->get();
+        $category = Category::where('slug',$s)->with('products','subcategories')->paginate(9);
         // dd($category);
-        return view('ecommerce.show')->with('category',$category[0]);
+        return view('ecommerce.category')->with('category',$category[0]);
+    }
+
+    public function brand($s)
+    {
+        
+        $brands = Brand::where('slug',$s)->with('products')->paginate(9);
+        // dd($brands);
+        return view('ecommerce.brand')->with('brands',$brands[0]);
     }
     
 }

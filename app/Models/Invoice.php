@@ -9,10 +9,12 @@ class Invoice extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'supplier_id',
         'nettotal',
         'discount',
         'grandtotal',
         'comment',
+        'payment_type',
         'trxId',
     ];
     public function InvoiceDtails()

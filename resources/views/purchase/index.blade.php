@@ -166,7 +166,7 @@
             }
         });
 
-        //customer autocomplete
+        //supplier autocomplete
         $("#suppliersearch").autocomplete({
             source: BASE_URL + '/suppliersearch',
             minLength: 1,
@@ -211,8 +211,8 @@
                     gtotal: $("#grandtotal").html(),
                     pmethod: $("#payment_method").val(),
                     trxid: $("#trxId").val(),
-                    comment: $("#salenote").val()
-                        },
+                    comment: $("#purchasenote").val()
+                },
                 success: function(response) {
                     console.log(response);
                   $("#responseMessage").html(response);

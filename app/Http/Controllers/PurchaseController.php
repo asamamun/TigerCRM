@@ -26,13 +26,6 @@ class PurchaseController extends Controller
         return view('purchase.index')->with('accounts',$accounts)->with('user',Auth::user());
     }
 
-
-    // public function search()
-    // {
-        
-    //     return view('purchase.index')->with('user',Auth::user());
-    // }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -127,7 +120,7 @@ class PurchaseController extends Controller
             'grandtotal' => $request->gtotal,
             'comment' => $request->comment,
             'payment_type' => $request->pmethod,
-            'trxid' => $request->trxid,
+            'trxId' => $request->trxid,
         ];
         // return response()->json($data);
         $inv = Invoice::create($data);
@@ -139,7 +132,7 @@ class PurchaseController extends Controller
         foreach ($ids as $key => $value) {
             $details = new InvoiceDetail();
             $pdata = [
-                'order_id' => $invoiceID,
+                'invoice_id' => $invoiceID,
                 'product_id' => $ids[$key],
                 'quantity' => $quans[$key],
                 'price' => $pprice[$key],
@@ -148,14 +141,18 @@ class PurchaseController extends Controller
             $details->save($pdata);
             //update quantity in product table
             $pd = Product::find($ids[$key]);
-            $pd->quantity = $pd->quantity - $quans[$key];
+            $pd->quantity = $pd->quantity + $quans[$key];
             $pd->save();
         }
         //balance addition
         $gtotal = $request->gtotal;
         $pa = Account::find($request->pmethod);
         $pa->balance = $pa->balance - $gtotal;
-        $pa->save();
+        if($pa->balance >= 0){
+            $pa->save();
+        } else{
+
+        }
 
         return response()->json(['error'=>0,'message'=>"Purchase done"]);
     }
