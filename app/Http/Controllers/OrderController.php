@@ -102,7 +102,7 @@ class OrderController extends Controller
         $orderdetails = OrderDetail::where('order_id',$id)->with('product')->get();
         $pdf = PDF::loadView('order.details',compact('orderdetails'))->setPaper('a4', 'portrait');
         // Pdf::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('InvoiceNo_'.$id.'.pdf');
 
     }
 

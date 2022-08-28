@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [HomeController::class, 'category']);
 Route::get('/brand/{slug}', [HomeController::class, 'brand']);
 Route::get('/shop', [ShopController::class, 'index']);
@@ -155,9 +155,11 @@ Route::middleware(['customer'])->group(function () {
     // order track
     Route::resource("ordertrack", OrderTrackController::class);
 
-    // manage profile
-    Route::resource("manageprofile", CustomerProfileController::class);
-    Route::get('customerlogout', [CustomerauthController::class, 'logout'])->name('customerlogout');
+    // profile
+    Route::resource("customerprofile", CustomerProfileController::class);
+
+
+    Route::post('customerlogout', [CustomerauthController::class, 'logout'])->name('customerlogout');
 });
 
 

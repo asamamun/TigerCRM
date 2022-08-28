@@ -26,8 +26,8 @@ Purchase History
         <div class="col-lg-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
-                    @if ($customer->profile)
-                    <img src="{{url(Storage::url($customer->profile->image))}}" class="profileimage" alt="Profile Image">
+                    @if ($customer->customerprofile)
+                    <img src="{{url(Storage::url($customer->customerprofile->image))}}" class="profileimage" alt="Profile Image">
                     @else
                     <img src="{{asset('assets/img/undraw_profile.svg')}}" class="profileimage" alt="Profile Image">
                     @endif
@@ -47,7 +47,7 @@ Purchase History
                         <span>Purchase History</span>
                     </div>
                 </a>
-                <a class="" href="{{url('manageprofile')}}">
+                <a class="" href="{{url('customerprofile')}}">
                     <div class="dashboard-sidebar">
                         <i class="fas fa-user"></i>
                         <span>Manage Profile</span>

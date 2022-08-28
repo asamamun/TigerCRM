@@ -59,7 +59,7 @@
           <td class="desc">{{$details->product->name}}</td>
           <td class="unit"> {{$details->price}}</td>
           <td class="qty">{{$details->quantity}}</td>
-          <td class="total">&#2547; {{$details->total}}</td>
+          <td class="total">Tk {{$details->total}}</td>
         </tr>
         @endforeach
       </tbody>
@@ -67,17 +67,17 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">SUBTOTAL</td>
-          <td>&#2547; {{$details->order->nettotal}}</td>
+          <td>Tk {{$details->order->nettotal}}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">DISCOUNT</td>
-          <td>&#2547; {{$details->order->discount}}</td>
+          <td>Tk {{$details->order->discount}}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">GRAND TOTAL</td>
-          <td>&#2547; {{$details->order->grandtotal}}</td>
+          <td>Tk {{$details->order->grandtotal}}</td>
         </tr>
       </tfoot>
     </table>

@@ -58,7 +58,7 @@ class Customer extends Model
         return 'slug';
     }
 
-    public function customerprofile()
+    public function Customerprofile()
     {
     return $this->hasOne('App\Models\CustomerProfile');
     }
