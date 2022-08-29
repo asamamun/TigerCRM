@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PurchaseController extends Controller
 {
@@ -125,6 +126,7 @@ class PurchaseController extends Controller
         // return response()->json($data);
         $inv = Invoice::create($data);
         $invoiceID = $inv->id;
+        log::info($invoiceID);
         $ids = $request->ids;
         $quans = $request->quantity;
         $pprice = $request->pricearr;
@@ -138,6 +140,7 @@ class PurchaseController extends Controller
                 'price' => $pprice[$key],
                 'total' => $ptotal[$key],
             ];
+            log::info($pdata);
             $details->save($pdata);
             //update quantity in product table
             $pd = Product::find($ids[$key]);
@@ -154,6 +157,6 @@ class PurchaseController extends Controller
 
         }
 
-        return response()->json(['error'=>0,'message'=>"Purchase done"]);
+        return response()->json(['error'=>0,'message'=>"Purchase done",'pid'=>$invoiceID]);
     }
 }

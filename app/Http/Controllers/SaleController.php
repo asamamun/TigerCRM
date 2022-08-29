@@ -160,7 +160,7 @@ class SaleController extends Controller
             // return response()->json($data);
             $ord = Order::create($data);
             $orderID = $ord->id;
-            // Log::info($orderID);
+            Log::info($orderID);
             $ids = $request->ids;
             $quans = $request->quantity;
             $pprice = $request->pricearr;
@@ -174,6 +174,7 @@ class SaleController extends Controller
                     'price' => $pprice[$key],
                     'total' => $ptotal[$key],
                 ];
+                Log::info($pdata);
                 $details = OrderDetail::create($pdata);
                 //update quantity in product table
                 $pd = Product::find($ids[$key]);
@@ -192,11 +193,11 @@ class SaleController extends Controller
             $pa->balance = $pa->balance + $gtotal;
             $pa->save();
             DB::commit();
-            return response()->json(['error'=>0,'message'=>"Order received"]);
+            return response()->json(['error'=>0,'message'=>"Order received",'orderid'=>$orderID]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->withInput()->with('error', "Error!!! Transaction not completed");
-            abort(404);
+            return response()->json(['error'=>1,'message'=>"ERROR"]); 
+            // abort(404);
         }
                
     }
