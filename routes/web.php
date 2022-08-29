@@ -63,6 +63,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // supplier
     Route::resource("/supplier", SupplierController::class);
+    Route::get('export_supplier_pdf', [SupplierController::class, 'export_supplier_pdf']);
 
     // category
     Route::resource("/category", CategoryController::class);
@@ -111,8 +112,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // purchase
     Route::resource("purchase", PurchaseController::class);
 
-    // Route::get('search', [PurchaseController::class, 'search']);
-    // Route::post('addtocart', [PurchaseController::class, 'addtocart']);
+    Route::get('psearch', [PurchaseController::class, 'psearch']);
+    Route::post('addcart', [PurchaseController::class, 'addcart']);
     Route::get('suppliersearch', [PurchaseController::class, 'suppliersearch']);
     Route::post('supplierdetails', [PurchaseController::class, 'supplierdetails']);
     Route::post('orderplace', [PurchaseController::class, 'orderplace']);
@@ -122,6 +123,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // invoice
     Route::resource("invoice", InvoiceController::class);
+    Route::get('invoice/details/{id}', [InvoiceController::class, 'invoicedetails']);
+    Route::get('invoice/print/{id}', [InvoiceController::class, 'print']);
+    Route::get('invoice/pdf/{id}', [InvoiceController::class, 'pdf']);
 
     // order
     Route::resource("order", OrderController::class);

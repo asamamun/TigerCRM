@@ -29,7 +29,6 @@ class ProductController extends Controller
         return view("product.index")
         ->with('allproduct',$allproduct)
         ->with('user',Auth::user());
-        // dd($allsubcategory->categories);
     }
 
     /**
@@ -218,14 +217,6 @@ class ProductController extends Controller
         if(Product::destroy($product->id)){
             return back()->with('message',$product->id. ' Deleted!!!!');
         }
-    }
-
-    public function search(Request $request){
-        $s = $request->term;
-        $products = Product::where('name','LIKE',"%{$s}%")->get();
-
-        //return the product in json format
-
     }
 
 }

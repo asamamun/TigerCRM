@@ -160,7 +160,7 @@ class SaleController extends Controller
             // return response()->json($data);
             $ord = Order::create($data);
             $orderID = $ord->id;
-            Log::info($orderID);
+            // Log::info($orderID);
             $ids = $request->ids;
             $quans = $request->quantity;
             $pprice = $request->pricearr;
@@ -174,7 +174,7 @@ class SaleController extends Controller
                     'price' => $pprice[$key],
                     'total' => $ptotal[$key],
                 ];
-                Log::info($pdata);
+                // Log::info($pdata);
                 $details = OrderDetail::create($pdata);
                 //update quantity in product table
                 $pd = Product::find($ids[$key]);

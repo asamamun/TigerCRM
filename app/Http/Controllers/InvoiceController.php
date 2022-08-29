@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use App\Models\InvoiceDetail;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -84,5 +86,24 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function invoicedetails($id){
+        $invoicedetails = InvoiceDetail::where('invoice_id',$id)->with('product')->get();
+        return view('invoice.details',compact('invoicedetails'));
+    }
+
+    public function pdf($id)
+    {
+        $invoicedetails = InvoiceDetail::where('invoice_id',$id)->with('product')->get();
+        $pdf = PDF::loadView('invoice.details',compact('invoicedetails'))->setPaper('a4', 'portrait');
+        // Pdf::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
+        return $pdf->download('InvoiceNo_'.$id.'.pdf');
+
+    }
+
+    public function print($id){
+        $invoicedetails = InvoiceDetail::where('invoice_id',$id)->with('product')->get();
+        return view('invoice.details',compact('invoicedetails'));
     }
 }

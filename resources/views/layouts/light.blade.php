@@ -91,7 +91,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('purchase')}}">Purchase</a>
                         <a class="collapse-item" href="{{url('invoice')}}">Purchase List</a>
-                        <a class="collapse-item" href="#">Purchase Return</a>
+                        {{-- <a class="collapse-item" href="#">Purchase Return</a> --}}
                     </div>
                 </div>
             </li>

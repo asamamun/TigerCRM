@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class SupplierController extends Controller
 {
@@ -106,4 +107,14 @@ class SupplierController extends Controller
             return back()->with('message',$supplier->id. ' Deleted!!!!');
         }
     }
+
+    public function export_supplier_pdf()
+    {
+        $allsupplier = Supplier::get();
+        $pdf = PDF::loadView('supplier.pdf',compact('allsupplier'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Supplierlist.pdf');
+    }
+
+
 }

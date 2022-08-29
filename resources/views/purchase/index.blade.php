@@ -20,7 +20,6 @@
                 <div class="form-group">
                     {!! Form::text('search', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'productsearch', 'placeholder'=>'Enter Product Name/SKU/Scan Bar Code']) !!}
                 </div>
-                {!! Form::close() !!}
                 <div class="sale-table">
                     <table class="table">
                         <thead>
@@ -73,6 +72,7 @@
             <div class="form-group col-12">
                 {!! Form::submit('Save', ['class'=>'btn btn-primary btn-profile btn-block','id'=>'saveBtn']) !!}
             </div>
+            {!! Form::close() !!}
             <h3 id="responseMessage"></h3>
         </div>
     </div>
@@ -89,7 +89,7 @@
     $(document).ready(function() {
         //autocomplete
         $("#productsearch").autocomplete({
-            source: BASE_URL + '/search',
+            source: BASE_URL + '/psearch',
             minLength: 1,
             select: function(event, ui) {
                 // console.log(ui);
@@ -101,7 +101,7 @@
         function addProduct(id) {
             // alert("search for ID : " + id);
             $.ajax({
-                url: BASE_URL + '/addtocart',
+                url: BASE_URL + '/addcart',
                 type: 'post',
                 data: {
                     id: id
@@ -171,7 +171,7 @@
             source: BASE_URL + '/suppliersearch',
             minLength: 1,
             select: function(event, ui) {
-                console.log(ui.item);
+                // console.log(ui.item);
                     $html2 = "";
                     $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
                     $html2 += "<div>" + ui.item.mobile + "</div>";
@@ -214,13 +214,13 @@
                     comment: $("#purchasenote").val()
                 },
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                   $("#responseMessage").html(response);
-                //   var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
-                //   w.print();
-                  
-                  //exit();
-                    // location.reload();
+                  if(!response.error){
+                    var w = open(BASE_URL + "/invoice/details/"+response.pid , "InvWindow", "width=800,height=500");
+                    w.print();
+                    location.reload();
+                    }
 
                 }
             });            

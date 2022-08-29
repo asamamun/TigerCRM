@@ -73,17 +73,17 @@
                         <td>{{ $invoice->nettotal }}</td>          
                         <td>{{ $invoice->discount }}</td>          
                         <td>{{ $invoice->grandtotal }}</td>          
-                        <td>{{ $invoice->payment_type }}</td>          
+                        <td>{{ $invoice->account->name }}</td>          
                         <td>{{ $invoice->trxId }}</td>          
                         <td class="d-flex justify-content-center">
 
-                            <a href="{{url('invoice/'.$invoice->id)}}" class="btn btn-primary btn-circle btn-sm" title="PDF">
+                            <a href="{{url('invoice/pdf/'.$invoice->id)}}" class="btn btn-primary btn-circle btn-sm" title="PDF">
                                 <i class="far fa-file-pdf"></i>
                             </a>
-                            <a href="{{url('invoice/'.$invoice->id)}}" class="btn btn-primary btn-circle btn-sm" title="Print">
+                            <a href="{{url('invoice/print/'.$invoice->id)}}" class="btn btn-primary btn-circle btn-sm" title="Print">
                                 <i class="fas fa-print"></i>
                             </a>
-                            <a href="{{url('invoice/'.$invoice->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
+                            <a href="{{url('invoice/details/'.$invoice->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

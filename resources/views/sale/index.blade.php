@@ -218,11 +218,11 @@ $.ajax({
                     //return;
                 //   $("#responseMessage").html(response);
                 //   console.log(response.id);
-if(!response.error){
-                  var w = open(BASE_URL + "/order/details/"+response.orderid , "InvWindow", "width=800,height=500");
-                  w.print();
-                  location.reload();
-}
+                    if(!response.error){
+                    var w = open(BASE_URL + "/order/details/"+response.orderid , "InvWindow", "width=800,height=500");
+                    w.print();
+                    location.reload();
+                    }
 
                 }
             });            
