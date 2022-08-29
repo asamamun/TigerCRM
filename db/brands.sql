@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2022 at 04:00 PM
+-- Generation Time: Aug 29, 2022 at 03:10 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -56,7 +56,7 @@ INSERT INTO `brands` (`id`, `name`, `slug`, `icon`, `description`, `created_at`,
 (28, 'Cougar', 'cougar', 'public/brands/NDKAGZPac8AnzfcFJ9H1RyLx04RTFudADfTxPJ03.jpg', 'Cougar Brand', '2022-08-18 04:24:01', '2022-08-18 07:13:36'),
 (29, 'CRYORIG', 'cryorig', 'public/brands/V1TGgwDqpv1EVKO0xsYLnlDh3NmLAOHv5X5MBu1i.jpg', 'CRYORIG Brand', '2022-08-18 04:24:15', '2022-08-18 04:24:15'),
 (30, 'Dahua', 'dahua', 'public/brands/mEBkIxh4yaqgVbJ9nNSvyFErpp6IxVefSIye2V1C.png', 'Dahua Brand', '2022-08-18 04:24:40', '2022-08-18 04:24:40'),
-(31, 'Deli', 'deli', 'public/brands/VwazKAgoWN4ASl1Nhl7osWO6kv4mSwczUaa3gopY.png', 'Deli Brand', '2022-08-18 04:25:06', '2022-08-18 04:25:06'),
+(31, 'Dell', 'deli', 'public/brands/o4VmEPkgE50DUuXlPeWgcwVEaQogsw3quCsidTDa.jpg', 'Dell Brand', '2022-08-18 04:25:06', '2022-08-28 03:07:20'),
 (32, 'D-Link', 'd-link', 'public/brands/EA7ZcTXG65rJu6wDPwIXrvs27Chuzs6asNyMdk2T.jpg', 'D-Link Brand', '2022-08-18 04:25:22', '2022-08-18 07:13:53'),
 (33, 'EKEN', 'eken', 'public/brands/Sk3oIlFK6K3sci8eG1cmwg4NeqeGBdF9lYEJpbad.jpg', 'EKEN Brand', '2022-08-18 04:25:39', '2022-08-18 04:25:39'),
 (34, 'EKWB', 'ekwb', 'public/brands/jt7epmQ9OQ7NlSUAZRBHrkpQdRIahonnwpxwISsQ.png', 'EKWB Brand', '2022-08-18 04:26:12', '2022-08-18 04:26:12'),
