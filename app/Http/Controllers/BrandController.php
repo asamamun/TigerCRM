@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBrandRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use PDF;
 
 class BrandController extends Controller
 {
@@ -139,5 +140,12 @@ class BrandController extends Controller
         if(Brand::destroy($brand->id)){
             return back()->with('message',$brand->id. ' Deleted!!!!');
         }
+    }
+    public function export_brand_pdf()
+    {
+        $allbrand = Brand::get();
+        $pdf = PDF::loadView('brand.pdf',compact('allbrand'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Brandlist.pdf');
     }
 }

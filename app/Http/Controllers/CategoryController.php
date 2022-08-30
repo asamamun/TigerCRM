@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Policies\CategoryPolicy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use PDF;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class CategoryController extends Controller
@@ -148,4 +150,13 @@ class CategoryController extends Controller
     //     $list->save();
     //     }
     // }
+
+    public function export_category_pdf()
+    {
+        $allcategory = Category::get();
+        $pdf = PDF::loadView('category.pdf',compact('allcategory'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Categorylist.pdf');
+    }
+
 }

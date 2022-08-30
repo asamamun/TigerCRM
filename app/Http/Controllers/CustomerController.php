@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -104,5 +105,12 @@ class CustomerController extends Controller
         if(Customer::destroy($customer->id)){
             return back()->with('message',$customer->id. ' Deleted!!!!');
         }
+    }
+    public function export_customer_pdf()
+    {
+        $allcustomer = customer::get();
+        $pdf = PDF::loadView('customer.pdf',compact('allcustomer'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Customerlist.pdf');
     }
 }

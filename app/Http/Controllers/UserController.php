@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,6 +77,13 @@ class UserController extends Controller
         else{
             return back()->with('message',"Update Failed!!!");
         }
+    }
+    public function export_user_pdf()
+    {
+        $alluser = User::get();
+        $pdf = PDF::loadView('user.pdf',compact('alluser'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Userlist.pdf');
     }
 
 }

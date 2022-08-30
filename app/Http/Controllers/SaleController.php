@@ -13,6 +13,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Pdf;
 use Illuminate\Support\Facades\Log;
 
 class SaleController extends Controller
@@ -200,5 +201,12 @@ class SaleController extends Controller
             // abort(404);
         }
                
+    }
+    public function export_sale_pdf()
+    {
+        $allsale = Sale::get();
+        $pdf = PDF::loadView('sale.pdf',compact('allsale'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Salelist.pdf');
     }
 }

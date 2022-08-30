@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use PDF;
 
 class ProductController extends Controller
 {
@@ -217,6 +218,13 @@ class ProductController extends Controller
         if(Product::destroy($product->id)){
             return back()->with('message',$product->id. ' Deleted!!!!');
         }
+    }
+    public function export_product_pdf()
+    {
+        $allproduct = Product::get();
+        $pdf = PDF::loadView('product.pdf',compact('allproduct'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Productlist.pdf');
     }
 
 }

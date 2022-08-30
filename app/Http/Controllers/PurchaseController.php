@@ -13,6 +13,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 use Illuminate\Support\Facades\Log;
 
 class PurchaseController extends Controller
@@ -194,5 +195,12 @@ class PurchaseController extends Controller
             return response()->json(['error'=>1,'message'=>"ERROR"]); 
         }   
         
+    }
+    public function export_purchase_pdf()
+    {
+        $allpurchase = Purchase::get();
+        $pdf = PDF::loadView('Purchase.pdf',compact('allPurchase'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Purchaselist.pdf');
     }
 }

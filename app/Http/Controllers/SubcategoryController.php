@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use PDF;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SubcategoryController extends Controller
@@ -166,5 +167,12 @@ class SubcategoryController extends Controller
     //     $list->save();
     //     }
     // }
+    public function export_subcategory_pdf()
+    {
+        $allsubcategory = Subcategory::get();
+        $pdf = PDF::loadView('subcategory.pdf',compact('allsubcategory'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Subcategorylist.pdf');
+    }
 
 }
