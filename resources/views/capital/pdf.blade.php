@@ -31,23 +31,21 @@
 </head>
 <body>
 
-<h1 class="title">Purchase List</h1>
+<h1 class="title">Capital List</h1>
 
 <table id="customers">
   <tr>
     <th>#</th>
     <th>Name</th>
-    <th>Mobile</th>
-    <th>Email</th>
-    <th>Address</th>
+    <th>Amount</th>
+    <th>Description</th>
   </tr>
-  @foreach ($allpurchase as $purchase)
+  @foreach ($allcapital as $capital)
   <tr>
-    <td>{{$purchase->id}}</td>
-    <td>{{$purchase->name}}</td>
-    <td>{{$purchase->mobile}}</td>
-    <td>{{$purchase->email}}</td>
-    <td>{{$purchase->address}}</td>
+    <td>{{$capital->id}}</td>
+    <td>{{$capital->name}}</td>
+    <td>{{$capital->amount}}</td>
+    <td>{{$capital->description}}</td>
   </tr>
   @endforeach
 </table>

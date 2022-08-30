@@ -85,19 +85,24 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // account
     Route::resource("/account", AccountController::class);
+    Route::get('export_account_pdf', [AccountController::class, 'export_account_pdf']);
 
     // transfer
     Route::resource("/transfer", TransferController::class);
+    Route::get('export_transfer_pdf', [TransferController::class, 'export_transfer_pdf']);
 
     // expense
     Route::resource("/expense", ExpenseController::class);
+    Route::get('export_expense_pdf', [ExpenseController::class, 'export_expense_pdf']);
 
     // capital
     Route::resource("/capital", CapitalController::class);
+    Route::get('export_capital_pdf', [CapitalController::class, 'export_capital_pdf']);
 
     // customer
     Route::resource("/customer", CustomerController::class);
     Route::get('export_customer_pdf', [CustomerController::class, 'export_customer_pdf']);
+    
     // profile
     Route::resource("profile", ProfileController::class);
 
@@ -113,7 +118,6 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('customersearch', [SaleController::class, 'customersearch']);
     Route::post('customerdetails', [SaleController::class, 'customerdetails']);
     Route::post('placeorder', [SaleController::class, 'placeorder']);
-    Route::get('export_sale_pdf', [SaleController::class, 'export_sale_pdf']);
 
     // purchase
     Route::resource("purchase", PurchaseController::class);
@@ -123,7 +127,6 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('suppliersearch', [PurchaseController::class, 'suppliersearch']);
     Route::post('supplierdetails', [PurchaseController::class, 'supplierdetails']);
     Route::post('orderplace', [PurchaseController::class, 'orderplace']);
-    Route::get('export_purchase_pdf', [PurchaseController::class, 'export_purchase_pdf']);
 
     // carousel
     Route::resource("carousel", CarouselController::class);

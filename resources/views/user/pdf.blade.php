@@ -37,17 +37,15 @@
   <tr>
     <th>#</th>
     <th>Name</th>
-    <th>Mobile</th>
+    <th>Last Name</th>
     <th>Email</th>
-    <th>Address</th>
   </tr>
   @foreach ($alluser as $user)
   <tr>
     <td>{{$user->id}}</td>
     <td>{{$user->name}}</td>
-    <td>{{$user->mobile}}</td>
+    <td>{{$user->lname}}</td>
     <td>{{$user->email}}</td>
-    <td>{{$user->address}}</td>
   </tr>
   @endforeach
 </table>

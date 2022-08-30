@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class AccountController extends Controller
 {
@@ -104,5 +105,13 @@ class AccountController extends Controller
         if(Account::destroy($account->id)){
             return back()->with('message',$account->id. ' Deleted!!!!');
         }
+    }
+
+    public function export_account_pdf()
+    {
+        $allaccount = Account::get();
+        $pdf = PDF::loadView('account.pdf',compact('allaccount'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Accountlist.pdf');
     }
 }

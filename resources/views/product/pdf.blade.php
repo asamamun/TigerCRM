@@ -37,17 +37,17 @@
   <tr>
     <th>#</th>
     <th>Name</th>
-    <th>Mobile</th>
-    <th>Email</th>
-    <th>Address</th>
+    <th>Features</th>
+    <th>Purchase Price</th>
+    <th>Price</th>
   </tr>
   @foreach ($allproduct as $product)
   <tr>
     <td>{{$product->id}}</td>
     <td>{{$product->name}}</td>
-    <td>{{$product->mobile}}</td>
-    <td>{{$product->email}}</td>
-    <td>{{$product->address}}</td>
+    <td>{{$product->feature}}</td>
+    <td>{{$product->purchase_price}}</td>
+    <td>{{$product->price}}</td>
   </tr>
   @endforeach
 </table>

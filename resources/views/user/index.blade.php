@@ -22,7 +22,7 @@
                     Add
                 </a>
                 <div class="dropdown-divider"></div> --}}
-                <a class="dropdown-item" href="{{url('export_brand_pdf')}}">
+                <a class="dropdown-item" href="{{url('export_user_pdf')}}">
                     <i class="fas fa-file-pdf fa-sm fa-fw mr-2 text-primary"></i>
                     PDF
                 </a>

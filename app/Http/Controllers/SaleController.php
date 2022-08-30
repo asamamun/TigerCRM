@@ -202,11 +202,4 @@ class SaleController extends Controller
         }
                
     }
-    public function export_sale_pdf()
-    {
-        $allsale = Sale::get();
-        $pdf = PDF::loadView('sale.pdf',compact('allsale'));
-        // $pdf = PDF::loadView('supplier.pdf');
-        return $pdf->download('Salelist.pdf');
-    }
 }

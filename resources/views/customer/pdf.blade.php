@@ -39,7 +39,7 @@
     <th>Name</th>
     <th>Mobile</th>
     <th>Email</th>
-    <th>Address</th>
+    
   </tr>
   @foreach ($allcustomer as $customer)
   <tr>
@@ -47,7 +47,6 @@
     <td>{{$customer->name}}</td>
     <td>{{$customer->mobile}}</td>
     <td>{{$customer->email}}</td>
-    <td>{{$customer->address}}</td>
   </tr>
   @endforeach
 </table>

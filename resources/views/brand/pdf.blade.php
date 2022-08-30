@@ -37,17 +37,13 @@
   <tr>
     <th>#</th>
     <th>Name</th>
-    <th>Mobile</th>
-    <th>Email</th>
-    <th>Address</th>
+    <th>Icon</th>
   </tr>
   @foreach ($allbrand as $brand)
   <tr>
     <td>{{$brand->id}}</td>
     <td>{{$brand->name}}</td>
-    <td>{{$brand->mobile}}</td>
-    <td>{{$brand->email}}</td>
-    <td>{{$brand->address}}</td>
+    <td> <img src="{{url(Storage::url($brand->icon))}}" class="iconimage" alt="Icon" width="70px" height="70px">  </td>
   </tr>
   @endforeach
 </table>

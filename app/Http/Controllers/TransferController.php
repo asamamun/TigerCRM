@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTransferRequest;
 use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class TransferController extends Controller
 {
@@ -140,5 +141,12 @@ class TransferController extends Controller
         if (Transfer::destroy($transfer->id)) {
             return back()->with('message', $transfer->id . ' Deleted!!!!');
         }
+    }
+    public function export_transfer_pdf()
+    {
+        $alltransfer = Transfer::get();
+        $pdf = PDF::loadView('transfer.pdf',compact('alltransfer'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('Transferlist.pdf');
     }
 }

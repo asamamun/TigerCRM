@@ -196,11 +196,5 @@ class PurchaseController extends Controller
         }   
         
     }
-    public function export_purchase_pdf()
-    {
-        $allpurchase = Purchase::get();
-        $pdf = PDF::loadView('Purchase.pdf',compact('allPurchase'));
-        // $pdf = PDF::loadView('supplier.pdf');
-        return $pdf->download('Purchaselist.pdf');
-    }
+  
 }
