@@ -95,12 +95,10 @@ class WishlistController extends Controller
         $customerid = session('clogged_in');
         // Log::info($customerid);
         $wish = new Wishlist();
-        // $details = new OrderDetail();
         $data = [
             'customer_id' => $customerid,
             'product_id' => $request->pid
         ];
-        // return response()->json($data);
         if(session('clogged_in')){
             $wish = Wishlist::create($data);
             return response()->json(['error'=>0,'message'=>"Wishlist added"]);
@@ -109,25 +107,5 @@ class WishlistController extends Controller
             return response()->json(['error'=>1,'message'=>"Please login first!"]);
         }
 
-
-        // if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
-        //     if(isset($_POST['bookid'])){
-        //         require "../../connection.php";
-        //         $id = $conn->escape_string($_POST['bookid']);
-        //         $userid = $conn->escape_string($_SESSION['user_id']);
-        //         $addtowishlist = "insert into fav(user_id,bookpost_id) values ('$userid','$id')";
-        //         $conn->query($addtowishlist);
-        //         if($conn->affected_rows > 0){
-        //             echo "Book added to your favourite list";
-        //         }
-        //         else{
-        //             echo "Already added";
-        //         }
-            
-        //     }
-        // }
-        // else{
-        //     echo "Create an account to add books to wishlist";
-        // }
     }
 }

@@ -77,21 +77,21 @@
                     <div class="product-info">Stock: <strong>{{$product->quantity}} Pcs</strong></div>
                     {{-- <div class="product-info">Brand: <strong>{{$product->brand->name}}</strong></div> --}}
                 <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                        <div class="input-group quantity mr-3" style="width: 130px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary btn-minus">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary btn-plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                        <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary px-3 mr-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                    <button class="btn btn-primary px-3" id="favbtn" data-productid="{{$product->id}}"><i class="fa fa-heart mr-1"></i> Wishlist</button>
+                        <button class="btn btn-primary px-3 mr-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                        <button class="btn btn-primary px-3" id="favbtn" data-productid="{{$product->id}}"><i class="fa fa-heart mr-1"></i> Wishlist</button>
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>
