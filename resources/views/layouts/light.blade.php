@@ -513,6 +513,7 @@
     <script src="{{url('assets/js/admin.min.js')}}"></script>
     <!-- UI -->
     <script src="{{url('assets/js/jquery-ui.min.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(document).ready( function () {

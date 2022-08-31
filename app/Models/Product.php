@@ -70,8 +70,12 @@ class Product extends Model
     {
     return $this->hasMany('App\Models\InvoiceDetail');
     }
-    public function productimages()
+    public function Productimages()
     {
     return $this->hasMany('App\Models\Productimage');
+    }
+    public function Wishlists()
+    {
+    return $this->hasMany('App\Models\Wishlist');
     }
 }

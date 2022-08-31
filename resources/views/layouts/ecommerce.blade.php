@@ -392,6 +392,7 @@
 
     <!-- Template Javascript -->
     <script src="{{url('assets/js/main.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @yield('script')
 </body>

@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary px-3 mr-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                    <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Wishlist</button>
+                    <button class="btn btn-primary px-3" id="favbtn" data-productid="{{$product->id}}"><i class="fa fa-heart mr-1"></i> Wishlist</button>
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>
@@ -363,4 +363,23 @@
 
 
 
+@endsection
+
+@section('script')
+    <script>
+        var BASE_URL = "{{url('/')}}";
+        $(document).ready(function() {
+            $("#favbtn").click(function() {
+                $productid = $(this).data("productid");
+                // alert($productid);
+                $.post( BASE_URL + "/favourite", {
+                    productid: $productid
+                }, function(d) {
+                    //sweetalert(d);
+                    Swal.fire(d);
+                    // alert(d);
+                })
+            });
+        });
+    </script>
 @endsection

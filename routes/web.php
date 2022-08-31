@@ -26,6 +26,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,7 @@ Route::get('/item/{slug}', [ShopController::class, 'show']);
 // Route::get('/product/{slug}', [ProductController::class, 'show']);
 // Route::resource("/shop", ShopController::class);
 Route::get('/contact', [ContactController::class, 'index']);
+Route::get('/favourite', [WishlistController::class, 'favourite']);
 
 
 Route::get('customerregister', [CustomerauthController::class, 'register'])->name('customerregister');

@@ -66,4 +66,8 @@ class Customer extends Model
     {
     return $this->hasMany('App\Models\Order');
     }
+    public function Wishlists()
+    {
+    return $this->hasMany('App\Models\Wishlist');
+    }
 }
