@@ -90,9 +90,20 @@ class WishlistController extends Controller
     }
 
     public function favourite(Request $request){
-        // Log::info($request->pid);
+        $customerid = session('cid');
+        // $count = Wishlist::where([
+        //     'customer_id' => $customerid,            
+        // ])->count();
+        // Log::info($count);
+        
+        if(Wishlist::where([
+            'customer_id' => $customerid,
+            'product_id' => $request->pid
+        ])->count()){
+            return response()->json(['error'=>1,'message'=>"Wishlist Already Added"]);
+        }
 
-        $customerid = session('clogged_in');
+        
         // Log::info($customerid);
         $wish = new Wishlist();
         $data = [
