@@ -49,7 +49,7 @@ Route::get('/item/{slug}', [ShopController::class, 'show']);
 // Route::get('/product/{slug}', [ProductController::class, 'show']);
 // Route::resource("/shop", ShopController::class);
 Route::get('/contact', [ContactController::class, 'index']);
-Route::get('/favourite', [WishlistController::class, 'favourite']);
+Route::post('/favourite', [WishlistController::class, 'favourite']);
 
 
 Route::get('customerregister', [CustomerauthController::class, 'register'])->name('customerregister');
@@ -175,6 +175,7 @@ Route::middleware(['customer'])->group(function () {
     Route::resource("customerprofile", CustomerProfileController::class);
 
 
+    // Route::get('wishlist', [WishlistController::class, 'index']);
     Route::post('customerlogout', [CustomerauthController::class, 'logout'])->name('customerlogout');
 });
 

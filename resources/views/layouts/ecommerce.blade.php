@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href="#" rel="icon">
@@ -207,6 +208,9 @@
                     
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
+                    {{-- @foreach ($wishlists as $wishlist)
+                        
+                    @endforeach --}}
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
@@ -393,6 +397,17 @@
     <!-- Template Javascript -->
     <script src="{{url('assets/js/main.js')}}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready( function () {
+        $('#dataTable').DataTable();
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
     @yield('script')
 </body>

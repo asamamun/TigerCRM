@@ -370,14 +370,14 @@
         var BASE_URL = "{{url('/')}}";
         $(document).ready(function() {
             $("#favbtn").click(function() {
-                $productid = $(this).data("productid");
-                // alert($productid);
-                $.post( BASE_URL + "/favourite", {
-                    productid: $productid
+                var productid = $(this).data("productid");
+                // alert(productid);
+                // return;
+                $.post( BASE_URL + "/favourite",
+                {
+                    pid: productid
                 }, function(d) {
-                    //sweetalert(d);
-                    Swal.fire(d);
-                    // alert(d);
+                    Swal.fire(d.message);
                 })
             });
         });

@@ -196,8 +196,8 @@
         $(".itemtotal").each(function(){$totalArr.push($(this).text());})
 
         // console.log($quanArr);
-//post data
-$.ajax({
+        //post data
+        $.ajax({
                 url: BASE_URL + '/placeorder',
                 type: 'post',
                 data: {
