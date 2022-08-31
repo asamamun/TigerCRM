@@ -441,10 +441,10 @@
                         @endif
                         
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            <button class="btn btn-outline-dark btn-square" id="cart"><i class="fa fa-shopping-cart mr-1"></i> </button>
+                            <button class="btn btn-outline-dark btn-square favbtn" data-productid="{{$rproduct->id}}"><i class="far fa-heart mr-1"></i> </button>
+                            <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-sync-alt mr-1"></i> </button>
+                            <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-search mr-1"></i> </button>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -487,4 +487,41 @@
     <!-- Vendor End -->
 
 
+@endsection
+
+
+@section('script')
+    <script>
+        var BASE_URL = "{{url('/')}}";
+        $(document).ready(function() {
+            $(".favbtn").click(function() {
+                var productid = $(this).data("productid");
+                // alert(productid);
+                // return;
+                $.post( BASE_URL + "/favourite",
+                {
+                    pid: productid
+                }, function(d) {
+                    if(d.error){
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'warning',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }else
+                    {
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    };
+                })
+            });
+        });
+    </script>
 @endsection

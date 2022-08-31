@@ -18,9 +18,10 @@ class WishlistController extends Controller
     public function index()
     {
 
-        // $wishlists = Wishlist::where('customer_id', session('clogged_in'))->get;
+        $wishlists = Wishlist::where('customer_id', session('cid'))->get();
         // dd($wishlists);
         // return view('layouts.ecommerce',compact('wishlists'));
+        return view('wishlist.index',compact('wishlists'));
     }
 
     /**
@@ -84,9 +85,16 @@ class WishlistController extends Controller
      * @param  \App\Models\Wishlist  $wishlist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wishlist $wishlist)
+    // public function destroy(Wishlist $wishlist)
+    // {
+    //     if(Wishlist::destroy($wishlist->id)){
+    //         return back()->with('message',$wishlist->id. ' Deleted!!!!');
+    //     }
+    // }
+    public function delete(Request $request)
     {
-        //
+        // Log::info($request->wishlist_id);
+        Wishlist::destroy($request->wishlist_id);
     }
 
     public function favourite(Request $request){

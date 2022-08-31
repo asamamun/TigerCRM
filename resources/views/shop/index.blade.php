@@ -193,10 +193,10 @@
                                     <img class="img-fluid w-100" src="{{url('assets/img/product-1.jpg')}}" alt="">           
                                     @endif
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                        <button class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart mr-1"></i> </button>
+                                        <button class="btn btn-outline-dark btn-square favbtn" data-productid="{{$product->id}}"><i class="far fa-heart mr-1"></i> </button>
+                                        <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-sync-alt mr-1"></i> </button>
+                                        <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-search mr-1"></i> </button>
                                     </div>
                                 </div>
                                 <div class="text-center py-4">
@@ -217,8 +217,8 @@
                         </div>
                     @endforeach
                     <div class="col-12">
-                        {{-- {{$products->onEachSide(1)->links()}} --}}
-                        {{$products->links()}}
+                        {{$products->onEachSide(1)->links()}}
+                        {{-- {{$products->links()}} --}}
                     </div>
                 </div>
             </div>
@@ -228,4 +228,41 @@
     <!-- Shop End -->
 
 
+@endsection
+
+@section('script')
+    <script>
+        var BASE_URL = "{{url('/')}}";
+        $(document).ready(function() {
+            $(".favbtn").click(function() {
+                var productid = $(this).data("productid");
+                // alert(productid);
+                // return;
+                $.post( BASE_URL + "/favourite",
+                {
+                    pid: productid
+                }, function(d) {
+                    // Swal.fire(d.message);
+                    if(d.error){
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'warning',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }else
+                    {
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }
+                })
+            });
+        });
+    </script>
 @endsection

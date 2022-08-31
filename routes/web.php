@@ -80,6 +80,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // product
     Route::resource("/product", ProductController::class);
     Route::get('export_product_pdf', [ProductController::class, 'export_product_pdf']);
+    Route::post("product_delete", [ProductController::class, 'delete']);
 
     // brand
     Route::resource("/brand", BrandController::class);
@@ -168,6 +169,9 @@ Route::middleware(['customer'])->group(function () {
     //purchase history
     Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);
 
+    //add to cart
+    Route::get('addcart/{id}', [ShopController::class, 'addToCart']);
+
     // order track
     Route::resource("ordertrack", OrderTrackController::class);
 
@@ -175,7 +179,11 @@ Route::middleware(['customer'])->group(function () {
     Route::resource("customerprofile", CustomerProfileController::class);
 
 
-    // Route::get('wishlist', [WishlistController::class, 'index']);
+    Route::get("cartlist", [ShopController::class, 'cartlist']);
+
+    Route::resource("wishlist", WishlistController::class);
+    Route::post("wishlist_delete", [WishlistController::class, 'delete']);
+
     Route::post('customerlogout', [CustomerauthController::class, 'logout'])->name('customerlogout');
 });
 

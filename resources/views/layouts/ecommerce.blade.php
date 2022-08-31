@@ -1,9 +1,7 @@
-@php
-                    
-                    $wishcount =\App\Models\Wishlist::where([
-                        'customer_id' => session('cid'),            
-                    ])->count();
-                    
+@php               
+    $wishcount =\App\Models\Wishlist::where([
+        'customer_id' => session('cid'),            
+    ])->count();                
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -219,11 +217,11 @@
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     
                     
-                    <a href="" class="btn px-0 ml-2">
+                    <a href="{{url('wishlist')}}" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                     </a>
-                    <a href="" class="btn px-0 ml-2">
+                    <a href="{{url('cartlist')}}" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
                     </a>
@@ -304,11 +302,11 @@
                             <a href="{{url('contact')}}" class="nav-item nav-link  {{ Request::is('contact') ? 'active' : '' }}">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="" class="btn px-0">
+                            <a href="{{url('wishlist')}}" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="{{url('cartlist')}}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>

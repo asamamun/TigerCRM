@@ -369,7 +369,24 @@
                 {
                     pid: productid
                 }, function(d) {
-                    Swal.fire(d.message);
+                    if(d.error){
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'warning',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }else
+                    {
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }
                 })
             });
         });
