@@ -26,8 +26,8 @@
                     @forelse ($wishlists as $wishlist)
                     <tr>
                         <td class="align-middle">{{$sl++}}</td>
-                        <td class="align-middle"><a href="#"><img src="#" alt="" style="width: 50px;">Img</a></td>
-                        <td class="align-middle"><a href="#">{{$wishlist->product_id}}</a></td>
+                        <td class="align-middle"><a href="#"><img src="#" alt="" style="width: 50px;">{{$wishlist->product->productimages->first()->name}}</a></td>
+                        <td class="align-middle"><a href="#">{{$wishlist->product->name}}</a></td>
                         <td class="align-middle">Tk 150</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">

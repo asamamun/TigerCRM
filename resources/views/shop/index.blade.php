@@ -253,13 +253,14 @@
                         })
                     }else
                     {
+                        $("span.wishlistcount").html(d.ti);
                         Swal.fire({
                         position: 'top',
                         icon: 'success',
                         title: d.message,
                         showConfirmButton: false,
                         timer: 1500
-                        })
+                        });
                     }
                 })
             });

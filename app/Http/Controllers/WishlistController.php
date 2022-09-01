@@ -18,7 +18,8 @@ class WishlistController extends Controller
     public function index()
     {
 
-        $wishlists = Wishlist::where('customer_id', session('cid'))->get();
+        $wishlists = Wishlist::with('customer','product.productimages')->where('customer_id', session('cid'))->get();
+        
         // dd($wishlists);
         // return view('layouts.ecommerce',compact('wishlists'));
         return view('wishlist.index',compact('wishlists'));
@@ -120,7 +121,10 @@ class WishlistController extends Controller
         ];
         if(session('clogged_in')){
             $wish = Wishlist::create($data);
-            return response()->json(['error'=>0,'message'=>"Wishlist added"]);
+            $totalitem = Wishlist::where([
+                'customer_id' => $customerid                
+            ])->count();
+            return response()->json(['error'=>0,'message'=>"Wishlist added",'ti'=>$totalitem]);
         } 
         else{
             return response()->json(['error'=>1,'message'=>"Please login first!"]);

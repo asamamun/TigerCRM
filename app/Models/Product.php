@@ -74,8 +74,8 @@ class Product extends Model
     {
     return $this->hasMany('App\Models\Productimage');
     }
-    public function Wishlist()
+    public function Wishlists()
     {
-    return $this->belongsTo('App\Models\Wishlist');
+    return $this->hasMany('App\Models\Wishlist');
     }
 }

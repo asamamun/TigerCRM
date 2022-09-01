@@ -13,12 +13,12 @@ class Wishlist extends Model
         'customer_id',
         'product_id',
     ];
-    public function Customers()
+    public function Customer()
     {
-    return $this->hasMany('App\Models\Customer');
+    return $this->belongsTo('App\Models\Customer');
     }
-    public function Products()
+    public function Product()
     {
-    return $this->hasMany('App\Models\Product');
+    return $this->belongsTo('App\Models\Product');
     }
 }

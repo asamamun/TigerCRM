@@ -219,7 +219,7 @@
                     
                     <a href="{{url('wishlist')}}" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
+                        <span class="wishlistcount badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                     </a>
                     <a href="{{url('cartlist')}}" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
@@ -304,7 +304,7 @@
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="{{url('wishlist')}}" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
+                                <span class="wishlistcount badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                             </a>
                             <a href="{{url('cartlist')}}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
