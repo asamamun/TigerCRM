@@ -512,6 +512,7 @@
                         })
                     }else
                     {
+                        $("span.wishlistcount").html(d.ti);
                         Swal.fire({
                         position: 'top',
                         icon: 'success',

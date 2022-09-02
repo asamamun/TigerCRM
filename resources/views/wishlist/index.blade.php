@@ -19,16 +19,16 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="align-middle">
+                <tbody class="">
                     @php
                         $sl = 1;
                     @endphp
                     @forelse ($wishlists as $wishlist)
                     <tr>
                         <td class="align-middle">{{$sl++}}</td>
-                        <td class="align-middle"><a href="#"><img src="#" alt="" style="width: 50px;">{{$wishlist->product->productimages->first()->name}}</a></td>
+                        <td class="align-middle"><a href="#"><img src="{{url(Storage::url($wishlist->product->productimages->first()->name))}}" alt="" style="width: 60px;"></a></td>
                         <td class="align-middle"><a href="#">{{$wishlist->product->name}}</a></td>
-                        <td class="align-middle">Tk 150</td>
+                        <td class="align-middle">Tk {{$wishlist->product->price}}</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn mx-2">
@@ -86,6 +86,7 @@
                             'delete' : true
                         },
                         success: function(response){
+                            location.reload();
                             Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -93,9 +94,9 @@
                         );
                         // $("#wish_table").load(location.href + " #wish_table");
 
-                        setTimeout(function(){
-                        location.reload();
-                        }, 1000);
+                        // setTimeout(function(){
+                        // location.reload();
+                        // }, 1000);
                         }
                     })
                     

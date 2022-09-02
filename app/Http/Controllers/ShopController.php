@@ -79,13 +79,14 @@ class ShopController extends Controller
     {
         //
     }
-    public function cartlist(){
+    public function cart(){
         return view('cart.index');
     }
 
     public function addToCart($id) // by this function we add product of choose in card
     {
         $product = Product::find($id);
+        // dd($product);
 
         if(!$product) {
 
@@ -106,7 +107,7 @@ class ShopController extends Controller
                         "name" => $product->name,
                         "quantity" => 1,
                         "price" => $product->price,
-                        "photo" => $product->photo
+                        // "photo" => $product->productimages->first()->name
                     ]
             ];
 
@@ -131,12 +132,13 @@ class ShopController extends Controller
             "name" => $product->name,
             "quantity" => 1,
             "price" => $product->price,
-            "photo" => $product->photo
+            // "photo" => $product->photo
         ];
 
         session()->put('cart', $cart); // this code put product of choose in cart
 
         return redirect()->back()->with('success', 'Product added to cart successfully!');
+        // dd($cart);
     }
 
     // update product of choose in cart
@@ -164,7 +166,6 @@ class ShopController extends Controller
             if(isset($cart[$request->id])) {
 
                 unset($cart[$request->id]);
-
                 session()->put('cart', $cart);
             }
 

@@ -193,7 +193,7 @@
                                     <img class="img-fluid w-100" src="{{url('assets/img/product-1.jpg')}}" alt="">           
                                     @endif
                                     <div class="product-action">
-                                        <button class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart mr-1"></i> </button>
+                                        <a class="btn btn-outline-dark btn-square addToCartBtn" href="{{ url('add-to-cart/'.$product->id) }}"><i class="fa fa-shopping-cart mr-1"></i> </a>
                                         <button class="btn btn-outline-dark btn-square favbtn" data-productid="{{$product->id}}"><i class="far fa-heart mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-sync-alt mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-search mr-1"></i> </button>
@@ -234,6 +234,7 @@
     <script>
         var BASE_URL = "{{url('/')}}";
         $(document).ready(function() {
+            //wishlist start
             $(".favbtn").click(function() {
                 var productid = $(this).data("productid");
                 // alert(productid);
@@ -264,6 +265,39 @@
                     }
                 })
             });
+            //wishlist end
+
+            //add to cart start
+            /* $(".addToCartBtn").click(function(){
+                var productId = $(this).data("productid");
+                // alert(productId);
+                $.post( BASE_URL + "/addcart",
+                {
+                    pid: productId
+                }, function(d) {
+                    // Swal.fire(d.message);
+                    if(d.error){
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'warning',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }else
+                    {
+                        $("span.wishlistcount").html(d.ti);
+                        Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: d.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                    }
+                })
+            }); */
+            //add to cart end
         });
     </script>
 @endsection

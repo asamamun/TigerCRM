@@ -221,10 +221,17 @@
                         <i class="fas fa-heart text-dark"></i>
                         <span class="wishlistcount badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                     </a>
-                    <a href="{{url('cartlist')}}" class="btn px-0 ml-2">
+                    @if (session('cart'))
+                    <a href="{{url('cart')}}" class="btn px-0 ml-2">
+                        <i class="fas fa-shopping-cart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{ count(session('cart')) }}</span>
+                    </a>
+                    @else
+                    <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
                     </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -306,10 +313,17 @@
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="wishlistcount badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                             </a>
-                            <a href="{{url('cartlist')}}" class="btn px-0 ml-3">
+                            @if (session('cart'))
+                            <a href="{{url('cart')}}" class="btn px-0 ml-3">
+                                <i class="fas fa-shopping-cart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{ count(session('cart')) }}</span>
+                            </a>
+                            @else
+                            <a href="{{url('cart')}}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
+                            @endif
                         </div>
                     </div>
                 </nav>

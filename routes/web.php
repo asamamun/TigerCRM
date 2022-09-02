@@ -171,7 +171,10 @@ Route::middleware(['customer'])->group(function () {
     Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);
 
     //add to cart
-    Route::get('addcart/{id}', [ShopController::class, 'addToCart']);
+    Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
+    Route::get("cart", [ShopController::class, 'cart']);
+    Route::patch("update-cart", [ShopController::class, 'update']);
+    Route::delete("remove-from-cart", [ShopController::class, 'remove']);
 
     // order track
     Route::resource("ordertrack", OrderTrackController::class);
@@ -180,7 +183,7 @@ Route::middleware(['customer'])->group(function () {
     Route::resource("customerprofile", CustomerProfileController::class);
 
 
-    Route::get("cartlist", [ShopController::class, 'cartlist']);
+
 
     Route::resource("wishlist", WishlistController::class);
     Route::post("wishlist_delete", [WishlistController::class, 'delete']);
