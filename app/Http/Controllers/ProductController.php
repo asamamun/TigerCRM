@@ -229,8 +229,8 @@ class ProductController extends Controller
 
     public function delete(Request $request)
     {
-        // Log::info($request->wishlist_id);
-        product::destroy($request->product_id);
+        // Log::info($request->product_id);
+        Product::destroy($request->product_id);
     }
 
 }

@@ -103,9 +103,9 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        if(Customer::destroy($customer->id)){
-            return back()->with('message',$customer->id. ' Deleted!!!!');
-        }
+        // if(Customer::destroy($customer->id)){
+        //     return back()->with('message',$customer->id. ' Deleted!!!!');
+        // }
     }
     public function export_customer_pdf()
     {
@@ -113,10 +113,5 @@ class CustomerController extends Controller
         $pdf = PDF::loadView('customer.pdf',compact('allcustomer'));
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Customerlist.pdf');
-    }
-    public function delete(Request $request)
-    {
-        // Log::info($request->wishlist_id);
-        customer::destroy($request->customer_id);
     }
 }

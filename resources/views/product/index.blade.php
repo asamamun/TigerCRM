@@ -116,10 +116,10 @@
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a> --}}
+                            {{-- {!! Form::close() !!} --}}
                             <div class="input-group-btn mx-2">
-                                <button class="btn btn-sm btn-danger delete" type="button" value="{{$product->id}}"><i class="fa fa-times"></i></button>
+                                <button class="btn btn-sm btn-danger btn-circle delete" type="button" value="{{$product->id}}"><i class="fa fa-times"></i></button>
                             </div>
-                            {!! Form::close() !!}
                             <a href="{{url('product/'.$product->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -147,6 +147,7 @@
                 e.preventDefault();
                 var id = $(this).val();
                 // alert(id);
+                // return;
                 Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -176,8 +177,7 @@
                         location.reload();
                         }, 1000);
                         }
-                    })
-                    
+                    })   
                 }
                 })
             });
