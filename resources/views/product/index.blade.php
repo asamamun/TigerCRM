@@ -112,10 +112,13 @@
                             <span class="text-primary">{{ $product->quantity }}</span>
                         </td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->slug],'id'=>'deleteform']) !!}
+                         {{--    {!! Form::open(['method' => 'delete','route' => ['product.destroy', $product->slug],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
-                            </a>
+                            </a> --}}
+                            <div class="input-group-btn mx-2">
+                                <button class="btn btn-sm btn-danger delete" type="button" value="{{$product->id}}"><i class="fa fa-times"></i></button>
+                            </div>
                             {!! Form::close() !!}
                             <a href="{{url('product/'.$product->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
@@ -134,4 +137,52 @@
         </div>
     </div>
 </div>
+
+@endsection
+@section('script')
+    <script>
+    var BASE_URL = "{{url('/')}}";
+        $(document).ready(function(){
+            $('.delete').click(function(e){
+                e.preventDefault();
+                var id = $(this).val();
+                // alert(id);
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        method: 'POST',
+                        url: BASE_URL + '/product_delete',
+                        data: {
+                            'product_id' : id,
+                            'delete' : true
+                        },
+                        success: function(response){
+                            Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                        // $("#wish_table").load(location.href + " #wish_table");
+
+                        setTimeout(function(){
+                        location.reload();
+                        }, 1000);
+                        }
+                    })
+                    
+                }
+                })
+            });
+        });
+
+        
+    </script>
 @endsection

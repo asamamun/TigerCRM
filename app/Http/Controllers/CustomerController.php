@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use PDF;
 
 class CustomerController extends Controller
@@ -112,5 +113,10 @@ class CustomerController extends Controller
         $pdf = PDF::loadView('customer.pdf',compact('allcustomer'));
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Customerlist.pdf');
+    }
+    public function delete(Request $request)
+    {
+        // Log::info($request->wishlist_id);
+        customer::destroy($request->customer_id);
     }
 }

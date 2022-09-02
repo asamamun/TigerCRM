@@ -46,6 +46,7 @@ Route::get('/category/{slug}', [HomeController::class, 'category']);
 Route::get('/brand/{slug}', [HomeController::class, 'brand']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/item/{slug}', [ShopController::class, 'show']);
+
 // Route::get('/product/{slug}', [ProductController::class, 'show']);
 // Route::resource("/shop", ShopController::class);
 Route::get('/contact', [ContactController::class, 'index']);
@@ -105,6 +106,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // customer
     Route::resource("/customer", CustomerController::class);
     Route::get('export_customer_pdf', [CustomerController::class, 'export_customer_pdf']);
+    Route::post("customer_delete", [CustomerController::class, 'delete']);
     
     // profile
     Route::resource("profile", ProfileController::class);

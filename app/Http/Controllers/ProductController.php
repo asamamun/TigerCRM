@@ -227,6 +227,10 @@ class ProductController extends Controller
         return $pdf->download('Productlist.pdf');
     }
 
-
+    public function delete(Request $request)
+    {
+        // Log::info($request->wishlist_id);
+        product::destroy($request->product_id);
+    }
 
 }
