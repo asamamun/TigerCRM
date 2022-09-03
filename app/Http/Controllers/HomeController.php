@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-        $categories = Category::with('products')->has('products')->get();
+
+        $categories = Category::with('subcategories','products')->has('products')->get();
         $brands = Brand::with('products')->has('products')->get();
         $recentproducts = Product::orderBy('id','desc')->take('8')->get();
         $carousel = Carousel::where('status',1)->get();

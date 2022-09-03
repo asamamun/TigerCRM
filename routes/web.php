@@ -173,6 +173,7 @@ Route::middleware(['customer'])->group(function () {
 
     //add to cart
     Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
+    Route::post('removecart/{id}', [ShopController::class, 'removeFromCart']);
     Route::get("cart", [ShopController::class, 'cart']);
     Route::patch("update-cart", [ShopController::class, 'update']);
     Route::delete("remove-from-cart", [ShopController::class, 'remove']);

@@ -106,6 +106,10 @@ class ShopController extends Controller
         ));        
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
+    public function removeFromCart($id){
+        \Cart::session(session('cid'))->remove($id);
+        return response()->json(['id'=>$id,'message'=>"Item Removed"]);
+    }
 
     // update product of choose in cart
     public function update(Request $request)
