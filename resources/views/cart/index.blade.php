@@ -6,6 +6,7 @@
 @section('content')
 <!-- Cart Start -->
 <div class="container-fluid">
+    @if (session('cart'))
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-light table-borderless table-hover text-center mb-0">
@@ -23,13 +24,13 @@
                     @php
                         $total = 0
                     @endphp
-                    @if (session('cart'))
+
                         @foreach (session('cart') as $id => $details)
                         @php
                         $total += $details['price'] * $details['quantity']
                         @endphp
                         <tr>
-                            <td class="align-middle"><img src="" alt="" style="width: 50px;">Img</td>
+                            <td class="align-middle"><img src="" alt="" style="width: 50px;">img</td>
                             <td class="align-middle">{{ $details['name'] }}</td>
                             <td class="align-middle">Tk {{ $details['price'] }}</td>
                             <td class="align-middle">
@@ -50,8 +51,7 @@
                             <td class="align-middle">Tk {{ $details['price'] * $details['quantity'] }}</td>
                             <td class="align-middle"><button class="btn btn-sm btn-danger deleteproduct"><i class="fa fa-times"></i></button></td>
                         </tr>
-                        @endforeach
-                    @endif                   
+                        @endforeach                 
                 </tbody>
             </table>
         </div>
@@ -86,6 +86,11 @@
             </div>
         </div>
     </div>
+    @else
+    <hr>
+    <h2 class="text-center"><i class="fas fa-shopping-cart"></i> Empty</h2>
+    <hr>
+@endif  
 </div>
 <!-- Cart End -->
 @endsection

@@ -26,7 +26,7 @@
                     @forelse ($wishlists as $wishlist)
                     <tr>
                         <td class="align-middle">{{$sl++}}</td>
-                        <td class="align-middle"><a href="#"><img src="{{url(Storage::url($wishlist->product->productimages->first()->name))}}" alt="" style="width: 60px;"></a></td>
+                        <td class="align-middle"><a href="#"><img src="{{url(Storage::url($wishlist->product->productimages->first()->name))}}" alt="Image" style="width: 60px;"></a></td>
                         <td class="align-middle"><a href="#">{{$wishlist->product->name}}</a></td>
                         <td class="align-middle">Tk {{$wishlist->product->price}}</td>
                         <td class="align-middle">
@@ -49,7 +49,7 @@
                     </tr>                        
                     @empty
                     <tr>
-                        <td colspan="5"><h3>Empty</h3></td>
+                        <td colspan="5"><h2><i class="fas fa-heart"></i> Empty</h2></td>
                     </tr>
                     @endforelse
                 </tbody>
