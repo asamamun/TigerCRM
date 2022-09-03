@@ -1,7 +1,7 @@
 @extends('layouts.ecommerce')
 
 @section('pagetitle')
-    {{$category->name}}
+    {{$subcategory->name}}
 @endsection
 
 @section('content')
@@ -19,21 +19,6 @@
         </div>
     </div>
     <!-- Breadcrumb End -->
-
-    <!-- Subcategory Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    @foreach ($category->subcategories as $subcategory)
-                    <div class="product-info"><a href="{{url('subcategory/'.$subcategory->slug)}}">{{$subcategory->name}}</a></div>
-                    @endforeach
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- Subcategory End -->
-
 
     <!-- Shop Start -->
     <div class="container-fluid">
@@ -196,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    @foreach ($category->products as $product)
+                    @foreach ($subcategory->products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">

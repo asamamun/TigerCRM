@@ -42,5 +42,12 @@ class HomeController extends Controller
         // dd($brands);
         return view('ecommerce.brand')->with('brands',$brands[0]);
     }
+
+    public function subcategory($sc)
+    {
+        $subcategory = Subcategory::where('slug',$sc)->with('products')->paginate(9);
+        // dd($subcategory);
+        return view('ecommerce.subcategory')->with('subcategory',$subcategory[0]);
+    }
     
 }
