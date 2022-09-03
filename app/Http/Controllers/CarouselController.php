@@ -106,7 +106,7 @@ class CarouselController extends Controller
         $img = Image::make($storagepath);
 
         // resize image instance
-        $img->resize(320, 320);
+        $img->resize(1000, 430);
 
         // insert a watermark
         // $img->insert('public/watermark.png');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Carousel;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
@@ -15,8 +16,9 @@ class HomeController extends Controller
         $categories = Category::with('products')->has('products')->get();
         $brands = Brand::with('products')->has('products')->get();
         $recentproducts = Product::orderBy('id','desc')->take('8')->get();
-        // dd($recentproducts);
-        return view('ecommerce.index')->with('categories',$categories)->with('brands',$brands)->with('recentproducts',$recentproducts);
+        $carousel = Carousel::where('status',1)->get();
+        // dd($carousel);
+        return view('ecommerce.index')->with('categories',$categories)->with('brands',$brands)->with('recentproducts',$recentproducts)->with('carousel',$carousel);
         
     }
 
