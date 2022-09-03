@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Darryldecode\Cart\Facades\CartFacade;
 
 class ShopController extends Controller
 {
@@ -80,65 +81,30 @@ class ShopController extends Controller
         //
     }
     public function cart(){
-        return view('cart.index');
+        //https://github.com/darryldecode/laravelshoppingcart
+        $items = \Cart::session(session('cid'))->getContent();
+        // dd($items);
+        return view('cart.index')->with('items',$items);
     }
 
     public function addToCart($id) // by this function we add product of choose in card
     {
+ /*        \Cart::session(session('cid'))->remove($id);
+        return; */
+        
         $product = Product::find($id);
-        // dd($product);
-
         if(!$product) {
 
             abort(404);
 
         }
-        // what is Session:
-        //Sessions are used to store information about the user across the requests.
-        // Laravel provides various drivers like file, cookie, apc, array, Memcached, Redis, and database to handle session data. 
-        // so cause write the below code in controller and tis code is fix
-        $cart = session()->get('cart');  
-
-        // if cart is empty then this the first product
-        if(!$cart) {
-
-            $cart = [
-                    $id => [
-                        "name" => $product->name,
-                        "quantity" => 1,
-                        "price" => $product->price,
-                        // "photo" => $product->productimages->first()->name
-                    ]
-            ];
-
-            session()->put('cart', $cart);
-
-            return redirect()->back()->with('success', 'added to cart successfully!');
-        }
-
-        // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
-
-            $cart[$id]['quantity']++;
-
-            session()->put('cart', $cart); // this code put product of choose in cart
-
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-
-        }
-
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price,
-            // "photo" => $product->photo
-        ];
-
-        session()->put('cart', $cart); // this code put product of choose in cart
-
+        \Cart::session(session('cid'))->add(array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,            
+        ));        
         return redirect()->back()->with('success', 'Product added to cart successfully!');
-        // dd($cart);
     }
 
     // update product of choose in cart

@@ -22,17 +22,18 @@
                 </thead>
                 <tbody class="align-middle">
                     @php
-                        $total = 0
+                        $total = 0;
+                        
                     @endphp
 
-                        @foreach (session('cart') as $id => $details)
+                        @foreach ($items as $row)
                         @php
-                        $total += $details['price'] * $details['quantity']
+                        $total += $row->quantity *$row->price
                         @endphp
                         <tr>
-                            <td class="align-middle"><img src="" alt="" style="width: 50px;">img</td>
-                            <td class="align-middle">{{ $details['name'] }}</td>
-                            <td class="align-middle">Tk {{ $details['price'] }}</td>
+                            <td class="align-middle"><img src="" alt="{{$row->id}}" style="width: 50px;">img</td>
+                            <td class="align-middle">{{ $row->name }}</td>
+                            <td class="align-middle">Tk {{ $row->price }}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -40,7 +41,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center" value="{{ $details['quantity'] }}">
+                                    <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center" value="{{ $row->quantity }}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -48,7 +49,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">Tk {{ $details['price'] * $details['quantity'] }}</td>
+                            <td class="align-middle">Tk {{ $row->quantity * $row->price}}</td>
                             <td class="align-middle"><button class="btn btn-sm btn-danger deleteproduct"><i class="fa fa-times"></i></button></td>
                         </tr>
                         @endforeach                 
