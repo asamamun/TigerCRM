@@ -215,12 +215,17 @@
                 
                     <!-- <a href="#">TOTAL {{$wishcount}}</a> -->
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
-                    
-                    
+                    @if (session('clogged_in'))
                     <a href="{{url('wishlist')}}" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
                         <span class="wishlistcount badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                     </a>
+                    @else
+                    <a href="{{url('customerlogin')}}" class="btn px-0 ml-2">
+                        <i class="fas fa-heart text-dark"></i>
+                        <span class="wishlistcount badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
+                    </a>
+                    @endif
                     @if (session('cart'))
                     <a href="{{url('cart')}}" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
@@ -309,10 +314,17 @@
                             <a href="{{url('contact')}}" class="nav-item nav-link  {{ Request::is('contact') ? 'active' : '' }}">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                            @if (session('clogged_in'))
                             <a href="{{url('wishlist')}}" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="wishlistcount badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
                             </a>
+                            @else
+                            <a href="{{url('customerlogin')}}" class="btn px-0">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="wishlistcount badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{$wishcount}}</span>
+                            </a>
+                            @endif
                             @if (session('cart'))
                             <a href="{{url('cart')}}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
