@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -21,6 +22,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+            // $date = Carbon::now()->subDays(30);
+            // $users = Order::where('created_at', '>=', $date)->get();
+        
+            // dd($users);
         // $allorder = Order::all();
         $allorder = Order::with('user','customer','account')->get();
         return view('order.index',compact('allorder'))->with('user',Auth::user());
