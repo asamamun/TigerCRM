@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderTrackController;
 use App\Http\Controllers\ProductController;
@@ -152,6 +153,10 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // Route::get('/search', [ProductController::class, 'search']);
 
     Route::get('getsubcategories/{cid}', [SubcategoryController::class, 'get_subcategories']);
+
+    //lead
+    Route::get('purchaselead', [LeadController::class, 'purchaselead']);
+    Route::get('salelead', [LeadController::class, 'salelead']);
 
 
 });

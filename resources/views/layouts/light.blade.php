@@ -197,8 +197,8 @@
                 <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Purchase Report</a>
-                        <a class="collapse-item" href="#">Sale Report</a>
+                        <a class="collapse-item" href="{{url('purchaselead')}}">Purchase Report</a>
+                        <a class="collapse-item" href="{{url('salelead')}}">Sale Report</a>
                     </div>
                 </div>
             </li>
@@ -213,8 +213,8 @@
                 <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Purchase Lead</a>
-                        <a class="collapse-item" href="#">Sale Lead</a>
+                        <a class="collapse-item" href="{{url('purchaselead')}}">Purchase Lead</a>
+                        <a class="collapse-item" href="{{url('salelead')}}">Sale Lead</a>
                     </div>
                 </div>
             </li>
