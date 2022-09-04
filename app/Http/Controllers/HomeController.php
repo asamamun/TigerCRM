@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function subcategory($sc)
     {
         $categories = Category::with('subcategories','products')->has('products')->get();
-        $subcategory = Subcategory::where('slug',$sc)->with('products')->paginate(9);
+        $subcategory = Subcategory::where('slug',$sc)->with('products','category')->paginate(9);
         // dd($subcategory);
         return view('ecommerce.subcategory')->with('subcategory',$subcategory[0])->with(compact('categories'));
     }
