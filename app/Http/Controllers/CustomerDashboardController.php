@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CustomerDashboard;
 use App\Http\Requests\StoreCustomerDashboardRequest;
 use App\Http\Requests\UpdateCustomerDashboardRequest;
+use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,9 @@ class CustomerDashboardController extends Controller
      */
     public function index()
     {
+        $categories = Category::with('subcategories','products')->has('products')->get();
         $cinfo = Customer::find(session('cid'));
-        return view('customerdashboard.index')->with('customer',$cinfo);
+        return view('customerdashboard.index')->with('customer',$cinfo)->with(compact('categories'));
     }
 
     /**

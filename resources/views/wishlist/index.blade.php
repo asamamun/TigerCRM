@@ -3,6 +3,10 @@
     Wishlist
 @endsection
 
+@section('catmenu')
+@include('partial.catmenu',['categories'=>$categories])
+@endsection
+
 @section('content')
 
 <!-- Cart Start -->
@@ -26,8 +30,8 @@
                     @forelse ($wishlists as $wishlist)
                     <tr>
                         <td class="align-middle">{{$sl++}}</td>
-                        <td class="align-middle"><a href="#"><img src="{{url(Storage::url($wishlist->product->productimages->first()->name))}}" alt="Image" style="width: 60px;"></a></td>
-                        <td class="align-middle"><a href="#">{{$wishlist->product->name}}</a></td>
+                        <td class="align-middle"><a href="{{url('item/'.$wishlist->product->slug)}}"><img src="{{url(Storage::url($wishlist->product->productimages->first()->name))}}" alt="Image" style="width: 60px;"></a></td>
+                        <td class="align-middle"><a href="{{url('item/'.$wishlist->product->slug)}}">{{$wishlist->product->name}}</a></td>
                         <td class="align-middle">Tk {{$wishlist->product->price}}</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -37,13 +41,6 @@
                                 <div class="input-group-btn mx-2">
                                     <button class="btn btn-sm btn-danger delete" type="button" value="{{$wishlist->id}}"><i class="fa fa-times"></i></button>
                                 </div>
-                                {{-- <div class="input-group-btn">
-                                    {!! Form::open(['method' => 'delete','route' => ['wishlist.destroy', $wishlist->id],'id'=>'deleteform']) !!}
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                    {!! Form::close() !!}
-                                </div> --}}
                             </div>
                         </td>
                     </tr>                        

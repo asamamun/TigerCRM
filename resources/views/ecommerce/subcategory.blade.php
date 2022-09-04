@@ -4,6 +4,10 @@
     {{$subcategory->name}}
 @endsection
 
+@section('catmenu')
+@include('partial.catmenu',['categories'=>$categories])
+@endsection
+
 @section('content')
     
     <!-- Breadcrumb Start -->

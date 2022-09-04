@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PurchaseHistory;
 use App\Http\Requests\StorePurchaseHistoryRequest;
 use App\Http\Requests\UpdatePurchaseHistoryRequest;
+use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,9 @@ class PurchaseHistoryController extends Controller
      */
     public function index()
     {
+        $categories = Category::with('subcategories','products')->has('products')->get();
         $cinfo = Customer::find(session('cid'));
-        return view('purchasehistory.index')->with('customer',$cinfo);
+        return view('purchasehistory.index')->with('customer',$cinfo)->with(compact('categories'));
     }
 
     /**

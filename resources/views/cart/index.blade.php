@@ -3,10 +3,13 @@
     Cartlist
 @endsection
 
+@section('catmenu')
+@include('partial.catmenu',['categories'=>$categories])
+@endsection
+
 @section('content')
 <!-- Cart Start -->
 <div class="container-fluid">
-    @if (session('cart'))
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-light table-borderless table-hover text-center mb-0">
@@ -50,7 +53,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">Tk {{ $row->quantity * $row->price}}</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger deleteproduct"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><a href="{{url('removecart/'.$row->id)}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a></td>
                         </tr>
                         @endforeach                 
                 </tbody>
@@ -74,7 +77,7 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">Tk 10</h6>
+                        <h6 class="font-weight-medium">Tk <span>50</span></h6>
                     </div>
                 </div>
                 <div class="pt-2">
@@ -87,18 +90,13 @@
             </div>
         </div>
     </div>
-    @else
-    <hr>
-    <h2 class="text-center"><i class="fas fa-shopping-cart"></i> Empty</h2>
-    <hr>
-@endif  
 </div>
 <!-- Cart End -->
 @endsection
 
 @section('script')
     <script>
-        var BASE_URL = "{{ url('/') }}";
+        // var BASE_URL = "{{ url('/') }}";
         // this function is for update card
 /*         $(".update-cart").click(function (e) {
            e.preventDefault();
@@ -115,7 +113,7 @@
                }
         }); */
         //delete product
-        $(document).on('click', '.deleteproduct', function(e) {
+        /* $(document).on('click', '.deleteproduct', function(e) {
         e.preventDefault();
         $(this).closest('tr').remove();
         var ele = $(this);
@@ -130,7 +128,7 @@
                     }
                 });
             }
-        });
+        }); */
         //remove from cart
         /* $(".remove-from-cart").click(function (e) {
             e.preventDefault();

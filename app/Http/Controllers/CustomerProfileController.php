@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CustomerProfile;
 use App\Http\Requests\StoreCustomerProfileRequest;
 use App\Http\Requests\UpdateCustomerProfileRequest;
+use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,8 +20,9 @@ class CustomerProfileController extends Controller
      */
     public function index()
     {
+        $categories = Category::with('subcategories','products')->has('products')->get();
         $cinfo = Customer::find(session('cid'));
-        return view('customerprofile.index')->with('customer',$cinfo);
+        return view('customerprofile.index')->with('customer',$cinfo)->with(compact('categories'));
     }
 
     /**

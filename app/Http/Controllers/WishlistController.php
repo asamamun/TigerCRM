@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use App\Http\Requests\StoreWishlistRequest;
 use App\Http\Requests\UpdateWishlistRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -17,12 +18,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-
+        $categories = Category::with('subcategories','products')->has('products')->get();
         $wishlists = Wishlist::with('customer','product.productimages')->where('customer_id', session('cid'))->get();
-        
-        // dd($wishlists);
-        // return view('layouts.ecommerce',compact('wishlists'));
-        return view('wishlist.index',compact('wishlists'));
+        return view('wishlist.index',compact('wishlists'))->with(compact('categories'));
     }
 
     /**

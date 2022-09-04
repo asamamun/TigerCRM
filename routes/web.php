@@ -172,11 +172,11 @@ Route::middleware(['customer'])->group(function () {
     Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);
 
     //add to cart
-    Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
-    Route::post('removecart/{id}', [ShopController::class, 'removeFromCart']);
     Route::get("cart", [ShopController::class, 'cart']);
-    Route::patch("update-cart", [ShopController::class, 'update']);
-    Route::delete("remove-from-cart", [ShopController::class, 'remove']);
+    Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
+    Route::get('removecart/{id}', [ShopController::class, 'removeFromCart']);
+    // Route::patch("update-cart", [ShopController::class, 'update']);
+    // Route::delete("remove-from-cart", [ShopController::class, 'remove']);
 
     // order track
     Route::resource("ordertrack", OrderTrackController::class);
