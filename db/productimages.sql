@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 03:12 PM
+-- Generation Time: Sep 04, 2022 at 06:35 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -398,7 +398,8 @@ INSERT INTO `productimages` (`id`, `product_id`, `name`, `created_at`, `updated_
 (375, 146, 'public/products/vNwZWrYrnfq8m7it8S3paV9NzFRjNj9ZQbUjO3rN.webp', '2022-08-28 04:16:34', '2022-08-28 04:16:34'),
 (376, 147, 'public/products/oQTQRRMkZAz7Bqb5h6ZGEOiSP81JC13SaRIqItyn.jpg', '2022-08-28 04:41:35', '2022-08-28 04:41:35'),
 (377, 148, 'public/products/tFoTCpljz3wAJj20HrqgJ0XN5EsJS9ycveudigPc.jpg', '2022-08-28 04:45:13', '2022-08-28 04:45:13'),
-(378, 149, 'public/products/fpO9xLttrcGZRyznyKrrD3mCNGkR2V4Ly74wI4Gv.jpg', '2022-08-28 04:49:51', '2022-08-28 04:49:51');
+(378, 149, 'public/products/fpO9xLttrcGZRyznyKrrD3mCNGkR2V4Ly74wI4Gv.jpg', '2022-08-28 04:49:51', '2022-08-28 04:49:51'),
+(379, 150, 'public/products/6P6v5PaYGY2qf7kzDdAzhe9vjpWwQSv6gw6OdTaZ.jpg', '2022-08-31 04:29:50', '2022-08-31 04:29:50');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
