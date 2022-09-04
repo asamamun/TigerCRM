@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class LeadController extends Controller
 {
     public function purchaselead(){
-        // $invoice = Invoice::where('supplier_id',);
-        $supplier = Supplier::with('invoices')->get();
+        $invoice = Invoice::with('supplier')->get();
+        $invoice = $invoice->groupBy('supplier_id');
+        dd($invoice);
+
+        // $supplier = Supplier::with('invoices')->groupBy('id')->get();
         // dd($supplier);
-        return view('lead.purchase',compact('supplier'))->with('user',Auth::user());
+        return view('lead.purchase',compact('invoice'))->with('user',Auth::user());
 
     }
 
