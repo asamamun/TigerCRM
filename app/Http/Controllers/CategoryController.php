@@ -75,10 +75,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Category $cat)
     {
-        // dd($category);
-        return view('category.show',compact('category'))->with('user',Auth::user());
+        // dd($cat);
+        return view('category.show',compact('cat'))->with('user',Auth::user());
     }
 
     /**
@@ -87,9 +87,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $cat)
     {
-        return view('category.edit',compact('category'))->with('user',Auth::user());
+        return view('category.edit',compact('cat'))->with('user',Auth::user());
     }
 
     /**
@@ -99,7 +99,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $cat)
     {
         //upload
         $path = $request->file('icon')->store('public/categories');
@@ -115,15 +115,15 @@ class CategoryController extends Controller
         // save image in desired format
         $img->save($storagepath);
 
-        if($category->icon){
-            Storage::delete($category->icon);
+        if($cat->icon){
+            Storage::delete($cat->icon);
         }
 
-        $category->name = $request->name;
-        $category->icon = $path;
-        $category->description = $request->description;
+        $cat->name = $request->name;
+        $cat->icon = $path;
+        $cat->description = $request->description;
 
-        if($category->save()){
+        if($cat->save()){
             return back()->with('message',"Update Successfully!!!");
         }
         else{
@@ -137,10 +137,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $cat)
     {
-        if(Category::destroy($category->id)){
-            return back()->with('message',$category->id. ' Deleted!!!!');
+        if(Category::destroy($cat->slug)){
+            return back()->with('message',$cat->slug. ' Deleted!!!!');
         }
     }
     // public function createslug(){

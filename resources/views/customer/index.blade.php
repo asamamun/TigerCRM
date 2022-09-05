@@ -17,11 +17,11 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                 aria-labelledby="dropdownMenuLink">
                 {{-- <div class="dropdown-header">Dropdown Header:</div> --}}
-                <a class="dropdown-item" href="{{url('customer/create')}}">
+                {{-- <a class="dropdown-item" href="{{url('customer/create')}}">
                     <i class="fas fa-plus fa-sm fa-fw mr-2 text-primary"></i>
                     Add
                 </a>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div> --}}
                 <a class="dropdown-item" href="{{url('export_customer_pdf')}}">
                     <i class="fas fa-file-pdf fa-sm fa-fw mr-2 text-primary"></i>
                     PDF

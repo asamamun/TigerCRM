@@ -16,24 +16,24 @@
         <table class="table table-responsive">
             <tr class="table-bordered">
                 <th>Id</th>
-                <td>{{ $category->id }}</td>
+                <td>{{ $cat->id }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Name</th>
-                <td>{{ $category->name }}</td>
+                <td>{{ $cat->name }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Icon</th>
                 <td>
-                    @if ($category->icon)
-                    <img src="{{url(Storage::url($category->icon))}}" class="iconimage" alt="Icon">       
+                    @if ($cat->icon)
+                    <img src="{{url(Storage::url($cat->icon))}}" class="iconimage" alt="Icon">       
                 @else            
                 @endif
                 </td>
             </tr>
             <tr class="table-bordered">
                 <th>Description</th>
-                <td>{{ $category->description }}</td>
+                <td>{{ $cat->description }}</td>
             </tr>
         </table>
     </div>

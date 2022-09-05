@@ -8,12 +8,12 @@
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Update Subcategory</h6>
-            <a href="{{url('subcategory')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Subcategory List">
+            <a href="{{url('subcat')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Subcategory List">
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
         <div class="card-body">
-            {!! Form::model($subcategory, ['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['subcategory.update', $subcategory->slug]]) !!}
+            {!! Form::model($subcategory, ['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['subcat.update', $subcategory->slug]]) !!}
             @include('subcategory.form')
 
             <div class="form-group">

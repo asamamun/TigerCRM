@@ -23,17 +23,17 @@
                 <td>{{ $customer->name }}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Mobile</th>
+                <th>Email</th>
                 <td>{{ $customer->email }}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Email</th>
+                <th>Mobile</th>
                 <td>{{ $customer->mobile }}</td>
             </tr>
-            <tr class="table-bordered">
+            {{-- <tr class="table-bordered">
                 <th>Address</th>
                 <td>{{ $customer->address }}</td>
-            </tr>
+            </tr> --}}
         </table>
     </div>
 </div>

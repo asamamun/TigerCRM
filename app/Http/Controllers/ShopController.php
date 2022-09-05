@@ -82,6 +82,9 @@ class ShopController extends Controller
     {
         //
     }
+
+
+
     public function cart(){
         //https://github.com/darryldecode/laravelshoppingcart
         $categories = Category::with('subcategories','products')->has('products')->get();
