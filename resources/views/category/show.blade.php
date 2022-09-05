@@ -8,7 +8,7 @@
 <div class="card card-hover shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Category Details</h6>
-        <a href="{{url('category')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Category List">
+        <a href="{{url('cat')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Category List">
             <i class="fas fa-arrow-left"></i>
         </a>
     </div>

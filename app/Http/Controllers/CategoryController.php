@@ -77,6 +77,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        // dd($category);
         return view('category.show',compact('category'))->with('user',Auth::user());
     }
 

@@ -47,7 +47,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
-                        <th>Address</th>
+                        {{-- <th>Address</th> --}}
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
-                        <th>Address</th>
+                        {{-- <th>Address</th> --}}
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -68,19 +68,20 @@
                         <td>{{ $customer->name }}</td>
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->mobile }}</td>
-                        <td>{{ $customer->address }}</td>
+                        {{-- <td>{{ $customer->address }}</td> --}}
                         <td class="d-flex justify-content-center">
                        {{--      {!! Form::open(['method' => 'delete','route' => ['customer.destroy', $customer->slug],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a> --}}
-                            <div class="input-group-btn mx-2">
+                            {{-- {!! Form::close() !!} --}}
+                            {{-- <div class="input-group-btn mx-2">
                                 <button class="btn btn-sm btn-danger delete" type="button" value="{{$customer->id}}"><i class="fa fa-times"></i></button>
-                            </div>
-                            {!! Form::close() !!}
-                            <a href="{{url('customer/'.$customer->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
+                            </div> --}}
+
+                            {{-- <a href="{{url('customer/'.$customer->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
-                            </a>
+                            </a> --}}
                             {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </a> --}}

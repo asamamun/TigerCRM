@@ -47,10 +47,7 @@ Route::get('/category/{slug}', [HomeController::class, 'category']);
 Route::get('/subcategory/{slug}', [HomeController::class, 'subcategory']);
 Route::get('/brand/{slug}', [HomeController::class, 'brand']);
 Route::get('/shop', [ShopController::class, 'index']);
-Route::get('/item/{slug}', [ShopController::class, 'show']);
-
-// Route::get('/product/{slug}', [ProductController::class, 'show']);
-// Route::resource("/shop", ShopController::class);
+Route::get('/item/{slug}', [ShopController::class, 'show']);;
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/favourite', [WishlistController::class, 'favourite']);
 
@@ -71,7 +68,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('export_supplier_pdf', [SupplierController::class, 'export_supplier_pdf']);
 
     // category
-    Route::resource("/category", CategoryController::class);
+    Route::resource("/cat", CategoryController::class);
     // Route::get('createslug', [CategoryController::class, 'createslug']);
     Route::get('export_category_pdf', [CategoryController::class, 'export_category_pdf']);
 
