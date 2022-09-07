@@ -19,7 +19,7 @@ class ShopController extends Controller
     public function index()
     {
         $categories = Category::with('subcategories','products')->has('products')->get();
-        $products = Product::with('productimages')->paginate(9);
+        $products = Product::with('productimages')->orderBy('id','desc')->paginate(9);
         // dd($products->productimages);
         return view('shop.index', compact('products'))->with(compact('categories'));
     }

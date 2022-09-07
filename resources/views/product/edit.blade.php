@@ -9,7 +9,7 @@
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Update Product</h6>
             <a href="{{url('product')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Product List">
-                <i class="fas fa-undo"></i>
+                <i class="fas fa-arrow-left"></i>
             </a>
         </div>
         <div class="card-body">
@@ -28,21 +28,24 @@
 @section('script')
 <script>
 $(document).ready(function () {
+    // var BASE_URL = {{url()}};
     $(document).on("click",".remove-image",function(){
         if(!confirm("Are You Sure?")){return;}
         $id = $(this).data('id');
         alert("remove" + $id);
-/*         $.ajax({
+        $.ajax({
             type: "post",
-            url: "url",
-            data: {id:$id},
+            url: BASE_URL + "/imgDel",
+            data: {
+                id : $id
+            },
             dataType: "dataType",
             success: function (response) {
                 if(response.done = 1){
                     location.reload();
                 }
             }
-        }); */
+        });
     })
 });
     </script>

@@ -62,9 +62,12 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @php
+                        $sl = 1;
+                    @endphp
                     @foreach ($invoice as $inv)
                     <tr>
-                        <td>{{ $inv->supplier_id }}</td>
+                        <td>{{ $sl++ }}</td>
                         <td>{{ $inv->supplier->name }}</td>
                         <td>{{ $inv->supplier->email }}</td>
                         <td>{{ $inv->supplier->mobile }}</td>

@@ -67,7 +67,7 @@
                     <small class="pt-1">(99 Reviews)</small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">৳ {{$product->price}}</h3>
-                <p class="mb-4">{{$product->feature}}</p>
+                <p class="mb-4">{!!$product->feature!!}</p>
                     {{-- <div class="product-info">Price: <strong>121000 ৳</strong></div> --}}
                     <div class="product-info">Regular Price: ৳ <strong>{{$product->regular_price}}</strong></div>
                     <div class="product-info">Product Code: <strong>{{$product->barcode}}</strong></div>
@@ -120,12 +120,12 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>{{$product->description}}</p>
+                        {{-- <h4 class="mb-3">Product Description</h4> --}}
+                        <p>{!!$product->description!!}</p>
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
-                        <h4 class="mb-3">Additional Information</h4>
-                        <p>{{$product->information}}</p>
+                        {{-- <h4 class="mb-3">Additional Information</h4> --}}
+                        <p>{!!$product->information!!}</p>
                         {{-- <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-group list-group-flush">

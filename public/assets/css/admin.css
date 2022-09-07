@@ -11341,11 +11341,11 @@ body.sidebar-toggled footer.sticky-footer {
 /* image delete btn css*/
 .image-area {
   position: relative;
-  width: 120px;
+  width: 100%;
   background: #333;
 }
 .image-area img{
-  max-width: 120px;
+  max-width: 100%;
   height: auto;
 }
 .remove-image {
