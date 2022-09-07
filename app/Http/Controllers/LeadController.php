@@ -10,9 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class LeadController extends Controller
 {
     public function purchaselead(){
-        $invoice = Invoice::with('supplier')->get();
-        $invoice = $invoice->groupBy('supplier_id');
-        dd($invoice);
+        //SELECT supplier_id, sum(`nettotal`) as total FROM `invoices` WHERE 1 group by `supplier_id` order by total desc;
+        /* $invoice = Invoice::with('supplier')->get();
+        $invoice = $invoice->groupBy('supplier_id'); */
+        $invoice = Invoice::with('supplier')
+    ->selectRaw("supplier_id, SUM(grandtotal) as total")    
+    ->groupBy('supplier_id')
+    ->orderBy('total','desc')
+    ->get();
+        // dd($invoice);
 
         // $supplier = Supplier::with('invoices')->groupBy('id')->get();
         // dd($supplier);

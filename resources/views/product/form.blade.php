@@ -23,6 +23,22 @@
         {!! Form::file('image[]', ['required','multiple', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}
     </div>
 </div>
+<div class="form-group row">
+@isset($product)
+@forelse ($product->productimages as $img)
+<div class="col-sm-3">
+<div class="image-area">
+  <img src="{{ url(Storage::url($img->name)) }}"  alt="Preview">
+  <a class="remove-image" data-id="{{$img->id}}" href="javascript:void(0)" style="display: inline;">&#215;</a>
+</div>
+</div>
+    
+@empty
+    <p>No Image available</p>
+@endforelse
+@endisset
+    
+</div>
 <div class="form-group">
     {!! Form::text('feature', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'feature', 'placeholder'=>'Feature']) !!}
 </div>

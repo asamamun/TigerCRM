@@ -24,3 +24,26 @@
     </div>
 @endsection
 
+
+@section('script')
+<script>
+$(document).ready(function () {
+    $(document).on("click",".remove-image",function(){
+        if(!confirm("Are You Sure?")){return;}
+        $id = $(this).data('id');
+        alert("remove" + $id);
+/*         $.ajax({
+            type: "post",
+            url: "url",
+            data: {id:$id},
+            dataType: "dataType",
+            success: function (response) {
+                if(response.done = 1){
+                    location.reload();
+                }
+            }
+        }); */
+    })
+});
+    </script>
+@endsection
