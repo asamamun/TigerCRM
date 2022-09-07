@@ -40,13 +40,13 @@
     
 </div>
 <div class="form-group">
-    {!! Form::text('feature', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'feature', 'placeholder'=>'Feature']) !!}
+    {!! Form::textarea('feature', null, ['required', 'class'=>'ckeditor form-control form-control-profile', 'id'=>'feature', 'placeholder'=>'Feature']) !!}
 </div>
 <div class="form-group">
-    {!! Form::text('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description', 'placeholder'=>'Description']) !!}
+    {!! Form::textarea('description', null, ['required', 'class'=>'ckeditor form-control form-control-profile', 'id'=>'description', 'placeholder'=>'Description']) !!}
 </div>
 <div class="form-group">
-    {!! Form::text('information', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'information', 'placeholder'=>'Information']) !!}
+    {!! Form::textarea('information', null, ['required', 'class'=>'ckeditor form-control form-control-profile', 'id'=>'information', 'placeholder'=>'Information']) !!}
 </div>
 <div class="form-group row">
     <div class="col-sm-4 mb-3 mb-sm-0">
