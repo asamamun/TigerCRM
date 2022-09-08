@@ -28,7 +28,7 @@
 @section('script')
 <script>
 $(document).ready(function () {
-    // var BASE_URL = {{url()}};
+    var BASE_URL = '{{url('/')}}';
     $(document).on("click",".remove-image",function(){
         if(!confirm("Are You Sure?")){return;}
         $id = $(this).data('id');
@@ -38,12 +38,12 @@ $(document).ready(function () {
             url: BASE_URL + "/imgDel",
             data: {
                 id : $id
-            },
-            dataType: "dataType",
+            },            
             success: function (response) {
-                if(response.done = 1){
-                    location.reload();
-                }
+                console.log(response);
+                // if(response.done = 1){
+                //     location.reload();
+                // }
             }
         });
     })

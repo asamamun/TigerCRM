@@ -11,6 +11,7 @@ use App\Models\Productimage;
 use App\Models\Subcategory;
 use App\Models\Supplier;
 use Illuminate\Http\Client\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -242,11 +243,12 @@ class ProductController extends Controller
 
     public function imgDel(Request $request)
     {
-        if(Productimage::destroy($request->id)){
+        echo $request->id;
+/*         if(Productimage::destroy($request->id)){
             return response()->json(['done'=> 1,'message'=>'Image Deleted']);
         }else{
             return response()->json(['done'=> 0,'message'=>'Image Not Deleted']);
-        }
+        } */
 
     }
 
