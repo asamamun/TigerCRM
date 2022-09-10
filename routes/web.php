@@ -82,7 +82,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::resource("/product", ProductController::class);
     Route::get('export_product_pdf', [ProductController::class, 'export_product_pdf']);
     Route::post("product_delete", [ProductController::class, 'delete']);
-    Route::post("imgDel", [ProductController::class, 'imgDel']);
+    Route::post("imgdel", [ProductController::class, 'imgDel']);
 
     // brand
     Route::resource("/brand", BrandController::class);

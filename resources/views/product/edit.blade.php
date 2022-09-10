@@ -32,18 +32,22 @@ $(document).ready(function () {
     $(document).on("click",".remove-image",function(){
         if(!confirm("Are You Sure?")){return;}
         $id = $(this).data('id');
-        alert("remove" + $id);
+        // alert("remove" + $id);
         $.ajax({
             type: "post",
-            url: BASE_URL + "/imgDel",
+            url: BASE_URL + "/imgdel",
             data: {
                 id : $id
             },            
             success: function (response) {
-                console.log(response);
-                // if(response.done = 1){
-                //     location.reload();
-                // }
+                // console.log(response);
+                if(response.done = 1){
+                    location.reload();
+                    // Swal.fire(
+                    // 'Deleted!',
+                    // response.message,
+                    // 'success'
+                }
             }
         });
     })

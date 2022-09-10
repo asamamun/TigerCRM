@@ -10,8 +10,8 @@ use App\Models\Category;
 use App\Models\Productimage;
 use App\Models\Subcategory;
 use App\Models\Supplier;
-use Illuminate\Http\Client\Request;
-// use Illuminate\Http\Request;
+// use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -223,8 +223,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if(Product::destroy($product->id)){
-            return back()->with('message',$product->id. ' Deleted!!!!');
+        if(Product::destroy($product->slug)){
+            return back()->with('message',$product->slug. ' Deleted!!!!');
         }
     }
     public function export_product_pdf()
@@ -243,12 +243,16 @@ class ProductController extends Controller
 
     public function imgDel(Request $request)
     {
-        echo $request->id;
-/*         if(Productimage::destroy($request->id)){
+        // echo $request->id;
+        // Log::info($request);
+        if(Productimage::destroy($request->id)){
+            // if($request->name){
+            //     Storage::delete($request->name);
+            // }
             return response()->json(['done'=> 1,'message'=>'Image Deleted']);
         }else{
             return response()->json(['done'=> 0,'message'=>'Image Not Deleted']);
-        } */
+        }
 
     }
 
