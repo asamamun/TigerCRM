@@ -22,7 +22,7 @@
                     Add
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{url('export_invoice_pdf')}}">
                     <i class="fas fa-file-pdf fa-sm fa-fw mr-2 text-primary"></i>
                     PDF
                 </a>
@@ -66,9 +66,12 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @php
+                    $sl = 1;
+                    @endphp
                     @foreach ($allinvoice as $invoice)
                     <tr>
-                        <td>{{ $invoice->id }}</td>
+                        <td>{{ $sl++ }}</td>
                         <td>{{ $invoice->supplier->name }}</td>                        
                         <td>{{ $invoice->nettotal }}</td>          
                         <td>{{ $invoice->discount }}</td>          

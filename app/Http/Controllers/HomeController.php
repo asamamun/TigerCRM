@@ -16,13 +16,15 @@ class HomeController extends Controller
 
         $categories = Category::with('subcategories','products')->has('products')->get();
         $brands = Brand::with('products')->has('products')->get();
-        $recentproducts = Product::orderBy('id','desc')->take('8')->get();
+        $recentproducts = Product::orderBy('id','desc')->take('12')->get();
+        $featureproducts = Product::orderBy('id','asc')->take('12')->get();
         $carousel = Carousel::where('status',1)->get();
         // dd($carousel);
         return view('ecommerce.index')
         ->with('categories',$categories)
         ->with('brands',$brands)
         ->with('recentproducts',$recentproducts)
+        ->with('featureproducts',$featureproducts)
         ->with('carousel',$carousel);
         
     }

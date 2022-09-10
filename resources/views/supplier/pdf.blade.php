@@ -41,9 +41,12 @@
     <th>Email</th>
     <th>Address</th>
   </tr>
+  @php
+      $sl = 1;
+  @endphp
   @foreach ($allsupplier as $supplier)
   <tr>
-    <td>{{$supplier->id}}</td>
+    <td>{{$sl++}}</td>
     <td>{{$supplier->name}}</td>
     <td>{{$supplier->mobile}}</td>
     <td>{{$supplier->email}}</td>

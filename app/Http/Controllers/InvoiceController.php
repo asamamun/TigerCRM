@@ -106,4 +106,12 @@ class InvoiceController extends Controller
         $invoicedetails = InvoiceDetail::where('invoice_id',$id)->with('product')->get();
         return view('invoice.details',compact('invoicedetails'));
     }
+
+    public function export_invoice_pdf()
+    {
+        $allinvoice = Invoice::all();
+        // return view('invoice.index',compact('allinvoice'))->with('supplier')->with('user',Auth::user());
+        $pdf = PDF::loadView('invoice.pdf',compact('allinvoice'));
+        return $pdf->download('Invoicelist.pdf');
+    }
 }

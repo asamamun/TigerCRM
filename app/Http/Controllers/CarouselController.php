@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Http\Requests\StoreCarouselRequest;
 use App\Http\Requests\UpdateCarouselRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -86,7 +88,7 @@ class CarouselController extends Controller
     {
         $status = [
             '1'=>'Active',
-            '2'=>'Inactive',
+            '0'=>'Inactive',
         ];
         return view('carousel.edit',compact('carousel'))->with('status',$status)->with('user',Auth::user());
     }
@@ -142,5 +144,18 @@ class CarouselController extends Controller
         if(Carousel::destroy($carousel->id)){
             return back()->with('message',$carousel->id. ' Deleted!!!!');
         }
+    }
+
+    public function updatecarouselstatus(Request $request){
+        // echo $request->id;
+        // Log::info($request->id);
+        $status = Carousel::find($request->id);
+        $status->status = $request->status;
+        if($status->save()){
+            return response()->json(['done'=> 1,'message'=>'Carousel Active']);
+        }else{
+            return response()->json(['done'=> 0,'message'=>'Carousel Inactive']);
+        }
+
     }
 }

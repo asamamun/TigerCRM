@@ -139,18 +139,21 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     // carousel
     Route::resource("carousel", CarouselController::class);
+    Route::post('updatecarouselstatus', [CarouselController::class, 'updatecarouselstatus']);
 
     // invoice
     Route::resource("invoice", InvoiceController::class);
     Route::get('invoice/details/{id}', [InvoiceController::class, 'invoicedetails']);
     Route::get('invoice/print/{id}', [InvoiceController::class, 'print']);
     Route::get('invoice/pdf/{id}', [InvoiceController::class, 'pdf']);
+    Route::get('export_invoice_pdf', [InvoiceController::class, 'export_invoice_pdf']);
 
     // order
     Route::resource("order", OrderController::class);
     Route::get('order/details/{id}', [OrderController::class, 'orderdetails']);
     Route::get('order/print/{id}', [OrderController::class, 'print']);
     Route::get('order/pdf/{id}', [OrderController::class, 'pdf']);
+    Route::get('export_order_pdf', [OrderController::class, 'export_order_pdf']);
 
     //search
     // Route::get('/search', [ProductController::class, 'search']);
@@ -159,7 +162,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     //lead
     Route::get('purchaselead', [LeadController::class, 'purchaselead']);
+    Route::get('export_purchase_lead_pdf', [LeadController::class, 'export_purchase_lead_pdf']);
     Route::get('salelead', [LeadController::class, 'salelead']);
+    Route::get('export_sale_lead_pdf', [LeadController::class, 'export_sale_lead_pdf']);
 
 
 });

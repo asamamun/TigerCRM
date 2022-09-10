@@ -44,8 +44,8 @@
   @foreach ($alltransfer as $transfer)
   <tr>
     <td>{{$transfer->id}}</td>
-    <td>{{$transfer->sender_account}}</td>
-    <td>{{$transfer->receiver_account}}</td>
+    <td>{{$transfer->sender->name}}</td>
+    <td>{{$transfer->receiver->name}}</td>
     <td>{{$transfer->amount}}</td>
     <td>{{$transfer->description}}</td>
   </tr>

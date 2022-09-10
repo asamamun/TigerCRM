@@ -39,9 +39,12 @@
     <th>Name</th>
     <th>Icon</th>
   </tr>
+  @php
+  $sl = 1;
+  @endphp
   @foreach ($allbrand as $brand)
   <tr>
-    <td>{{$brand->id}}</td>
+    <td>{{$sl++}}</td>
     <td>{{$brand->name}}</td>
     <td> <img src="{{url(Storage::url($brand->icon))}}" class="iconimage" alt="Icon" width="70px" height="70px">  </td>
   </tr>

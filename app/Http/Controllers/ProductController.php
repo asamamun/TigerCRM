@@ -10,7 +10,6 @@ use App\Models\Category;
 use App\Models\Productimage;
 use App\Models\Subcategory;
 use App\Models\Supplier;
-// use Illuminate\Http\Client\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -257,9 +256,6 @@ class ProductController extends Controller
         $image = Productimage::find($request->id)->name;
         if(Productimage::destroy($request->id)){
             Storage::delete($image);
-            // if($request->name){
-            //     Storage::delete($request->name);
-            // }
             return response()->json(['done'=> 1,'message'=>'Image Deleted']);
         }else{
             return response()->json(['done'=> 0,'message'=>'Image Not Deleted']);

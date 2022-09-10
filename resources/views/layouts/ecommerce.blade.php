@@ -343,8 +343,8 @@
                 <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
                 <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>24/4, Mirpur, Dhaka-1216</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>tigereco@gmail.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>01234567890</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>zayedbd24@gmail.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+8801629999666</p>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
@@ -352,16 +352,16 @@
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="{{url('/')}}"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-secondary mb-2" href="{{url('shop')}}"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-secondary" href="{{url('contact')}}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-secondary mb-2" href="{{url('/')}}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="{{url('shop')}}"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-secondary" href="{{url('contact')}}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">

@@ -8,7 +8,7 @@
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Add Subcategory</h6>
-            <a href="{{url('subcat')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Category List">
+            <a href="{{url('subcat')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Subategory List">
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>

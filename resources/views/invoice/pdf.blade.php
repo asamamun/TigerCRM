@@ -31,28 +31,30 @@
 </head>
 <body>
 
-<h1 class="title">Product List</h1>
+<h1 class="title">Purchase List</h1>
 
 <table id="customers">
   <tr>
     <th>#</th>
-    <th>Name</th>
-    <th>Barcode</th>
-    <th>Purchase Price</th>
-    <th>Price</th>
-    <th>Stock</th>
+    <th>Supplier</th>
+    <th>Net Total</th>
+    <th>Discount</th>
+    <th>Grand Total</th>
+    <th>Payment Type</th>
+    <th>TrxID</th>
   </tr>
   @php
   $sl = 1;
   @endphp
-  @foreach ($allproduct as $product)
+  @foreach ($allinvoice as $invoice)
   <tr>
     <td>{{$sl++}}</td>
-    <td>{{$product->name}}</td>
-    <td>{{$product->barcode}}</td>
-    <td>{{$product->purchase_price}}</td>
-    <td>{{$product->price}}</td>
-    <td>{{$product->quantity}}</td>
+    <td>{{$invoice->supplier->name}}</td>
+    <td>{{$invoice->nettotal}}</td>
+    <td>{{$invoice->discount}}</td>
+    <td>{{$invoice->grandtotal}}</td>
+    <td>{{$invoice->account->name}}</td>
+    <td>{{$invoice->trxId}}</td>
   </tr>
   @endforeach
 </table>

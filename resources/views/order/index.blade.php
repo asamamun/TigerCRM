@@ -16,13 +16,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                 aria-labelledby="dropdownMenuLink">
-                {{-- <div class="dropdown-header">Dropdown Header:</div> --}}
-                {{-- <a class="dropdown-item" href="{{url('category/create')}}">
-                    <i class="fas fa-plus fa-sm fa-fw mr-2 text-primary"></i>
-                    Add
-                </a> --}}
-                {{-- <div class="dropdown-divider"></div> --}}
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{url('export_order_pdf')}}">
                     <i class="fas fa-file-pdf fa-sm fa-fw mr-2 text-primary"></i>
                     PDF
                 </a>
@@ -68,9 +62,12 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @php
+                    $sl = 1;
+                    @endphp
                     @foreach ($allorder as $order)
                     <tr>
-                        <td>{{ $order->id }}</td>
+                        <td>{{ $sl++ }}</td>
                         <td>{{ $order->user->name .' '. $order->user->lname }}</td>
                         <td>{{ $order->customer->name }}</td>
                         <td>{{ $order->nettotal }}</td>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('image');
             $table->text('description');
-            $table->set('status',['1','2'])->default('1');
+            $table->set('status',['1','0'])->default('1');
             $table->timestamps();
         });
     }

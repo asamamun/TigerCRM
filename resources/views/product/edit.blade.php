@@ -42,11 +42,12 @@ $(document).ready(function () {
             success: function (response) {
                 // console.log(response);
                 if(response.done = 1){
-                    location.reload();
                     // Swal.fire(
                     // 'Deleted!',
                     // response.message,
-                    // 'success'
+                    // 'success';
+                    location.reload();
+
                 }
             }
         });

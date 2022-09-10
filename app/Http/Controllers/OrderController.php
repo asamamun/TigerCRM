@@ -117,4 +117,11 @@ class OrderController extends Controller
         return view('order.details',compact('orderdetails'));
     }
 
+    public function export_order_pdf()
+    {
+        $allorder = Order::with('user','customer','account')->get();
+        $pdf = PDF::loadView('order.pdf',compact('allorder'));
+        return $pdf->download('Orderlist.pdf');
+    }
+
 }

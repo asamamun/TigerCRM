@@ -36,9 +36,8 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-       
-        $categories = Category::pluck('name','id');
-        return view("subcategory.create")->with('categories',$categories)->with('user',Auth::user());
+        $cats = Category::pluck('name','id');
+        return view("subcategory.create")->with('cats',$cats)->with('user',Auth::user());
     }
 
     /**
@@ -84,9 +83,10 @@ class SubcategoryController extends Controller
      * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcategory $subcategory)
+    public function show(Subcategory $subcat)
     {
-        return view('subcategory.show',compact('subcategory'))->with('user',Auth::user());
+        // dd($subcat);
+        return view('subcategory.show',compact('subcat'))->with('user',Auth::user());
     }
 
     /**
@@ -95,10 +95,10 @@ class SubcategoryController extends Controller
      * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcategory $subcategory)
+    public function edit(Subcategory $subcat)
     {
-        $categories = Category::pluck('name','id');
-        return view('subcategory.edit',compact('subcategory'))->with('categories',$categories)->with('user',Auth::user());
+        $cats = Category::pluck('name','id');
+        return view('subcategory.edit',compact('subcat'))->with('cats',$cats)->with('user',Auth::user());
     }
 
     /**

@@ -31,28 +31,26 @@
 </head>
 <body>
 
-<h1 class="title">Product List</h1>
+<h1 class="title">Sale Lead</h1>
 
 <table id="customers">
   <tr>
     <th>#</th>
     <th>Name</th>
-    <th>Barcode</th>
-    <th>Purchase Price</th>
-    <th>Price</th>
-    <th>Stock</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Total Tk</th>
   </tr>
   @php
-  $sl = 1;
+      $sl = 1;
   @endphp
-  @foreach ($allproduct as $product)
+  @foreach ($salelead as $lead)
   <tr>
     <td>{{$sl++}}</td>
-    <td>{{$product->name}}</td>
-    <td>{{$product->barcode}}</td>
-    <td>{{$product->purchase_price}}</td>
-    <td>{{$product->price}}</td>
-    <td>{{$product->quantity}}</td>
+    <td>{{$lead->customer->name}}</td>
+    <td>{{$lead->customer->email}}</td>
+    <td>{{$lead->customer->mobile}}</td>
+    <td>{{$lead->total}}</td>
   </tr>
   @endforeach
 </table>

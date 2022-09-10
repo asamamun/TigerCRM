@@ -82,7 +82,6 @@ class UserController extends Controller
     {
         $alluser = User::get();
         $pdf = PDF::loadView('user.pdf',compact('alluser'));
-        // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Userlist.pdf');
     }
 

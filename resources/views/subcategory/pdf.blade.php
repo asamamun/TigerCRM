@@ -41,9 +41,12 @@
     <th>Description</th>
 
   </tr>
+  @php
+  $sl = 1;
+  @endphp
   @foreach ($allsubcategory as $subcategory)
   <tr>
-    <td>{{$subcategory->id}}</td>
+    <td>{{$sl++}}</td>
     <td>{{$subcategory->name}}</td>
     <td>{{$subcategory->Icon}}</td>
     <td> <img src="{{url(Storage::url($subcategory->icon))}}" class="iconimage" alt="Icon" width="70px" height="70px">  </td>

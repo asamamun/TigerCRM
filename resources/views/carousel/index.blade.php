@@ -74,11 +74,10 @@
                         </td>
                         <td>{{ $carousel->description }}</td>
                         <td>
-                            {{ $carousel->status }}
-                            <div class="form-check form-switch">
-  <input class="form-check-input flexSwitchCheck" type="checkbox" id="flexSwitchCheckDefault" data-id="{{$carousel->id}}" {{($carousel->status == "1")?"checked":""}} />
-  <!-- <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label> -->
-</div>
+                            <div class="form-check form-switch text-center">
+                                <span> {{ $carousel->status }}</span>
+                                <input class="form-check-input flexSwitchCheck" type="checkbox" id="flexSwitchCheckDefault" data-id="{{$carousel->id}}" {{($carousel->status == "1")?"checked":""}} />
+                            </div>
                         </td>
                         <td class="d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['carousel.destroy', $carousel->id],'id'=>'deleteform']) !!}
@@ -110,16 +109,19 @@ $(document).ready(function () {
             type: "post",
             url: "{{url('updatecarouselstatus')}}",
             data: {
-                status: $(this).is(':checked'),
-                id: $(this).data('id') 
+                status : $(this).is(':checked'),
+                id: $(this).data('id')
             },
-            dataType: "dataType",
             success: function (response) {
-                //todo
-                location.reload();
+                if(response.done = 1){
+                    alert(response.message);
+                    location.reload();
+                }else{
+                    alert(response.message);
+                }
             }
         });
-        console.log($(this).is(':checked') + ":" + $(this).data('id'));
+        // console.log($(this).is(':checked') + ":" + $(this).data('id'));
     })
 });
 </script>

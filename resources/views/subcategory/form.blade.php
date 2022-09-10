@@ -7,7 +7,7 @@
     </div>
     
     <div class="col-sm-4 mb-3 mb-sm-0">
-        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('category_id', $cats, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::file('icon', ['required', 'class'=>'form-control form-control-profile', 'id'=>'icon']) !!}
