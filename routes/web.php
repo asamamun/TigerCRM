@@ -50,6 +50,10 @@ Route::get('/shop', [ShopController::class, 'index']);
 // Route::get('/product/{slug}', [ShopController::class, 'product']);
 Route::get('/item/{slug}', [ShopController::class, 'show']);;
 Route::get('/contact', [ContactController::class, 'index']);
+// Route::post('/send_user_email', [ContactController::class, 'send_user_email']);
+// Route::get('contact-us', [ContactController::class, 'index']);
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+
 Route::post('/favourite', [WishlistController::class, 'favourite']);
 
 
