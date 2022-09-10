@@ -73,7 +73,13 @@
                             @endif
                         </td>
                         <td>{{ $carousel->description }}</td>
-                        <td>{{ $carousel->status }}</td>
+                        <td>
+                            {{ $carousel->status }}
+                            <div class="form-check form-switch">
+  <input class="form-check-input flexSwitchCheck" type="checkbox" id="flexSwitchCheckDefault" data-id="{{$carousel->id}}" {{($carousel->status == "1")?"checked":""}} />
+  <!-- <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label> -->
+</div>
+                        </td>
                         <td class="d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['carousel.destroy', $carousel->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
@@ -94,4 +100,27 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section("script")
+<script>
+$(document).ready(function () {
+    $(document).on("change",'.flexSwitchCheck',function(){
+        $.ajax({
+            type: "post",
+            url: "{{url('updatecarouselstatus')}}",
+            data: {
+                status: $(this).is(':checked'),
+                id: $(this).data('id') 
+            },
+            dataType: "dataType",
+            success: function (response) {
+                //todo
+                location.reload();
+            }
+        });
+        console.log($(this).is(':checked') + ":" + $(this).data('id'));
+    })
+});
+</script>
 @endsection

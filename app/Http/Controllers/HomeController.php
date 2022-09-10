@@ -19,7 +19,11 @@ class HomeController extends Controller
         $recentproducts = Product::orderBy('id','desc')->take('8')->get();
         $carousel = Carousel::where('status',1)->get();
         // dd($carousel);
-        return view('ecommerce.index')->with('categories',$categories)->with('brands',$brands)->with('recentproducts',$recentproducts)->with('carousel',$carousel);
+        return view('ecommerce.index')
+        ->with('categories',$categories)
+        ->with('brands',$brands)
+        ->with('recentproducts',$recentproducts)
+        ->with('carousel',$carousel);
         
     }
 

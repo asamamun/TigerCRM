@@ -41,7 +41,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::pluck('name','id');
-        $subcategories = Subcategory::pluck('name','id');
+        // $subcategories = Subcategory::pluck('name','id');
+        $subcategories = [];
         $brands = Brand::pluck('name','id');
         $suppliers = Supplier::pluck('name','id');
         return view("product.create")
@@ -144,7 +145,7 @@ class ProductController extends Controller
     {
         $productimages = new Productimage();
         $categories = Category::pluck('name','id');
-        $subcategories = Subcategory::pluck('name','id');
+        $subcategories = Subcategory::where('category_id',$product->category_id)->pluck('name','id');
         $brands = Brand::pluck('name','id');
         $suppliers = Supplier::pluck('name','id');
         return view('product.edit',compact('product'))
@@ -223,8 +224,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if(Product::destroy($product->slug)){
+        //dd($product);
+        //$flight = Product::find($product->id);
+ 
+        //$flight->delete();
+        //echo "hi";
+        if(Product::destroy($product->id)){
             return back()->with('message',$product->slug. ' Deleted!!!!');
+        }
+        else{
+            return back()->with('message','Cannot delete product.');
         }
     }
     public function export_product_pdf()
@@ -245,7 +254,9 @@ class ProductController extends Controller
     {
         // echo $request->id;
         // Log::info($request);
+        $image = Productimage::find($request->id)->name;
         if(Productimage::destroy($request->id)){
+            Storage::delete($image);
             // if($request->name){
             //     Storage::delete($request->name);
             // }
