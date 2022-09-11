@@ -237,6 +237,7 @@
                     @endforeach
                     <div class="col-12">
                         {{-- {{$category->products->links()}} --}}
+                        {{-- {{$category->products->onEachSide(1)->links()}} --}}
                     </div>
                     <div class="col-12">
                         <nav>
