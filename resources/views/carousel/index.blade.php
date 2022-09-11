@@ -105,17 +105,19 @@
 <script>
 $(document).ready(function () {
     $(document).on("change",'.flexSwitchCheck',function(){
+        $status = $(this).is(':checked')?"1":"0";
+        console.log($status);
         $.ajax({
             type: "post",
             url: "{{url('updatecarouselstatus')}}",
             data: {
-                status : $(this).is(':checked'),
+                status : $status,
                 id: $(this).data('id')
             },
             success: function (response) {
                 if(response.done = 1){
-                    alert(response.message);
-                    location.reload();
+                    // alert(response.message);
+                    //location.reload();
                 }else{
                     alert(response.message);
                 }

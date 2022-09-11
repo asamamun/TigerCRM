@@ -44,6 +44,10 @@ class CustomerauthController extends Controller
         
     }
     public function check(Request $request){
+        $validated = $request->validate([
+            'mobile' => 'required|unique:customers|max:15|min:6|numeric',
+            'password' => 'required|min:8',
+        ]);
     $phone = $request->mobile;
     $password = $request->password;
     //  $phone = '01911039525';
