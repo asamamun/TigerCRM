@@ -168,8 +168,10 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('export_sale_lead_pdf', [LeadController::class, 'export_sale_lead_pdf']);
 
     // staff
-    Route::resource("staff", StaffController::class);
     Route::get('staff/trashed', [StaffController::class, 'trashed']);
+    Route::post('staff/trashed/{id}/restore', [StaffController::class, 'trashedRestore'])->name('staff.trashed.restore');
+    Route::post('staff/trashed/{id}/force_delete', [StaffController::class, 'trashedDelete'])->name('staff.trashed.destroy');
+    Route::resource("staff", StaffController::class);
 
 });
 

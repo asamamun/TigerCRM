@@ -10,23 +10,12 @@
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Trashed List</h6>
         <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-primary"></i>
+            <a href="{{url('staff')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
+                <i class="fas fa-arrow-left"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                {{-- <div class="dropdown-header">Dropdown Header:</div> --}}
-                <a class="dropdown-item" href="{{url('staff/create')}}">
-                    <i class="fas fa-plus fa-sm fa-fw mr-2 text-primary"></i>
-                    Add
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{url('export_staff_pdf')}}">
-                    <i class="fas fa-file-pdf fa-sm fa-fw mr-2 text-primary"></i>
-                    PDF
-                </a>
-            </div>
+            <a href="{{url('export_staff_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
+                <i class="fas fa-file-pdf"></i>
+            </a>
         </div>
     </div>
     <!-- Card Body -->
@@ -71,17 +60,23 @@
                         <td>{{ $staff->designation }}</td>
                         <td>{{ $staff->salary }}</td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['staff.destroy', $staff->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
+                            {{-- {!! Form::open(['method' => 'delete','route' => ['staff.trashed.destroy', $staff->id],'id'=>'deleteform']) !!}
+                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Permanent Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fas fa-trash"></i>
                             </a>
+                            {!! Form::close() !!} --}}
+
+                            {!! Form::open(['method' => 'post','route' => ['staff.trashed.destroy', $staff->id]]) !!}
+                                <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm btn-circle"><i class="fas fa-trash"></i></button>
                             {!! Form::close() !!}
-                            <a href="{{url('staff/'.$staff->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="{{url('staff/'.$staff->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
-                                <i class="fas fa-eye"></i>
-                            </a>
+
+                            {!! Form::open(['method' => 'post','route' => ['staff.trashed.restore', $staff->id]]) !!}
+                                <button onclick="return confirm('Are you sure?')" class="btn btn-primary btn-sm btn-circle"><i class="fas fa-undo-alt"></i></button>
+                            {!! Form::close() !!}
+
+                            {{-- <a href="{{url('staff/'.$staff->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Restore">
+                                <i class="fas fa-undo-alt"></i>
+                            </a> --}}
                         </td>
                     </tr>
                     @endforeach

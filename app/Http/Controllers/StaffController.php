@@ -61,7 +61,7 @@ class StaffController extends Controller
      */
     public function show(Staff $staff)
     {
-        return view('staff.show',compact('staff'));
+        return view('staff.show',compact('staff'))->with('user',Auth::user());
     }
 
     /**
@@ -72,7 +72,7 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        return view('staff.edit',compact('staff'));
+    return view('staff.edit',compact('staff'))->with('user',Auth::user());
     }
 
     /**
@@ -117,4 +117,17 @@ class StaffController extends Controller
         $allstaff = Staff::onlyTrashed()->get();
         return view('staff.trashed',compact('allstaff'))->with('user',Auth::user());
     }
+
+    public function trashedRestore($id){
+        $staff = Staff::onlyTrashed()->findOrFail($id);
+        $staff->restore();
+        return back();
+    }
+
+    public function trashedDelete($id){
+        $staff = Staff::onlyTrashed()->findOrFail($id);
+        $staff->forceDelete();
+        return back();
+    }
+
 }
