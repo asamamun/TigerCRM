@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->text('description');
             $table->set('status',['1','0'])->default('1');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

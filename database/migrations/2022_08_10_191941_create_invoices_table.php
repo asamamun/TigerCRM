@@ -24,6 +24,7 @@ return new class extends Migration
             $table->bigInteger('payment_type')->unsigned();
             $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('restrict');
             $table->text('trxId')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

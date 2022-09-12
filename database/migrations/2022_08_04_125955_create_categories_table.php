@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug','60');
             $table->string('icon');
             $table->text('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

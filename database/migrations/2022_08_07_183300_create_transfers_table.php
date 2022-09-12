@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('receiver_account')->references('id')->on('accounts')->onDelete('restrict');
             $table->decimal('amount','15','2');
             $table->string('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

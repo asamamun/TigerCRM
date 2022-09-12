@@ -90,10 +90,16 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::post("imgdel", [ProductController::class, 'imgDel']);
 
     // brand
-    Route::resource("/brand", BrandController::class);
+    Route::get('brnd/trashed', [BrandController::class, 'trashed']);
+    Route::post('brnd/trashed/{id}/restore', [BrandController::class, 'trashedRestore'])->name('brnd.trashed.restore');
+    Route::post('brnd/trashed/{id}/force_delete', [BrandController::class, 'trashedDelete'])->name('brnd.trashed.destroy');
+    Route::resource("/brnd", BrandController::class);
     Route::get('export_brand_pdf', [BrandController::class, 'export_brand_pdf']);
 
     // account
+    Route::get('account/trashed', [AccountController::class, 'trashed']);
+    Route::post('account/trashed/{id}/restore', [AccountController::class, 'trashedRestore'])->name('account.trashed.restore');
+    Route::post('account/trashed/{id}/force_delete', [AccountController::class, 'trashedDelete'])->name('account.trashed.destroy');
     Route::resource("/account", AccountController::class);
     Route::get('export_account_pdf', [AccountController::class, 'export_account_pdf']);
 

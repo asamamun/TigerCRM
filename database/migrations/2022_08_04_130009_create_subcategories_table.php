@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
             $table->string('icon');
             $table->string('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

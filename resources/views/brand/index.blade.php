@@ -17,7 +17,7 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                 aria-labelledby="dropdownMenuLink">
                 {{-- <div class="dropdown-header">Dropdown Header:</div> --}}
-                <a class="dropdown-item" href="{{url('brand/create')}}">
+                <a class="dropdown-item" href="{{url('brnd/create')}}">
                     <i class="fas fa-plus fa-sm fa-fw mr-2 text-primary"></i>
                     Add
                 </a>
@@ -33,6 +33,11 @@
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-file-csv fa-sm fa-fw mr-2 text-primary"></i>
                     CSV
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url('brnd/trashed')}}">
+                    <i class="fas fa-trash-alt fa-sm fa-fw mr-2 text-primary"></i>
+                    Trashed
                 </a>
             </div>
         </div>
@@ -60,27 +65,25 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($allbrand as $brand)
+                    @foreach ($allbrand as $brnd)
                     <tr>
-                        <td>{{ $brand->id }}</td>
-                        <td>{{ $brand->name }}</td>
+                        <td>{{ $brnd->id }}</td>
+                        <td>{{ $brnd->name }}</td>
                         <td>
-                            @if ($brand->icon)
-                                <img src="{{url(Storage::url($brand->icon))}}" class="iconimage" alt="Icon">       
+                            @if ($brnd->icon)
+                                <img src="{{url(Storage::url($brnd->icon))}}" class="iconimage" alt="Icon">       
                             @else            
                             @endif
                         </td>
-                        <td>{{ $brand->description }}</td>
+                        <td>{{ $brnd->description }}</td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['brand.destroy', $brand->slug],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            {!! Form::open(['method' => 'delete','route' => ['brnd.destroy', $brnd->slug]]) !!}
+                                <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm btn-circle"><i class="fas fa-trash"></i></button>
                             {!! Form::close() !!}
-                            <a href="{{url('brand/'.$brand->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
+                            <a href="{{url('brnd/'.$brnd->slug.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="{{url('brand/'.$brand->slug)}}" class="btn btn-primary btn-circle btn-sm" title="View">
+                            <a href="{{url('brnd/'.$brnd->slug)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

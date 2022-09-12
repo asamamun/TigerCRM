@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('accountnumber')->nullable();
             $table->decimal('balance','15','2');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

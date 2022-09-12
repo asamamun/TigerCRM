@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('payment_type')->unsigned()->nullable();
             $table->foreign('payment_type')->references('id')->on('accounts')->onDelete('restrict');
             $table->text('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -35,6 +35,7 @@ return new class extends Migration
             $table->decimal('purchase_price');
             $table->decimal('discount');
             $table->decimal('quantity');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

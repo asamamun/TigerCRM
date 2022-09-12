@@ -34,6 +34,11 @@
                     <i class="fas fa-file-csv fa-sm fa-fw mr-2 text-primary"></i>
                     CSV
                 </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url('account/trashed')}}">
+                    <i class="fas fa-trash-alt fa-sm fa-fw mr-2 text-primary"></i>
+                    Trashed
+                </a>
             </div>
         </div>
     </div>
@@ -60,17 +65,18 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @php
+                    $sl = 1;
+                    @endphp
                     @foreach ($allaccount as $account)
                     <tr>
-                        <td>{{ $account->id }}</td>
+                        <td>{{ $sl++ }}</td>
                         <td>{{ $account->name }}</td>
                         <td>{{ $account->accountnumber }}</td>
                         <td>{{ $account->balance }}</td>
                         <td class="d-flex justify-content-center">
-                            {!! Form::open(['method' => 'delete','route' => ['account.destroy', $account->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-primary btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            {!! Form::open(['method' => 'delete','route' => ['account.destroy', $account->id]]) !!}
+                                <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm btn-circle"><i class="fas fa-trash"></i></button>
                             {!! Form::close() !!}
                             <a href="{{url('account/'.$account->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>

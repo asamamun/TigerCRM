@@ -114,4 +114,22 @@ class AccountController extends Controller
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Accountlist.pdf');
     }
+
+    public function trashed()
+    {
+        $allaccount = Account::onlyTrashed()->get();
+        return view('account.trashed',compact('allaccount'))->with('user',Auth::user());
+    }
+
+    public function trashedRestore($id){
+        $account = Account::onlyTrashed()->findOrFail($id);
+        $account->restore();
+        return back();
+    }
+
+    public function trashedDelete($id){
+        $account = Account::onlyTrashed()->findOrFail($id);
+        $account->forceDelete();
+        return back();
+    }
 }

@@ -34,6 +34,11 @@
                     <i class="fas fa-file-csv fa-sm fa-fw mr-2 text-primary"></i>
                     CSV
                 </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url('supplier/trashed')}}">
+                    <i class="fas fa-trash-alt fa-sm fa-fw mr-2 text-primary"></i>
+                    Trashed
+                </a>
             </div>
         </div>
     </div>

@@ -74,7 +74,7 @@
                         <a class="collapse-item" href="{{url('product')}}">Product List</a>
                         <a class="collapse-item" href="{{url('cat')}}">Product Category</a>
                         <a class="collapse-item" href="{{url('subcat')}}">Product Subcategory</a>
-                        <a class="collapse-item" href="{{url('brand')}}">Product Brand</a>
+                        <a class="collapse-item" href="{{url('brnd')}}">Product Brand</a>
                         <a class="collapse-item" href="#">Stock</a>
                     </div>
                 </div>
