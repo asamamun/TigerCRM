@@ -75,7 +75,7 @@
                         <td>{{ $carousel->description }}</td>
                         <td>
                             <div class="form-check form-switch text-center">
-                                <span> {{ $carousel->status }}</span>
+                                {{-- <span> {{ $carousel->status }}</span> --}}
                                 <input class="form-check-input flexSwitchCheck" type="checkbox" id="flexSwitchCheckDefault" data-id="{{$carousel->id}}" {{($carousel->status == "1")?"checked":""}} />
                             </div>
                         </td>

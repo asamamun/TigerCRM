@@ -23,6 +23,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransferController;
@@ -166,6 +167,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('salelead', [LeadController::class, 'salelead']);
     Route::get('export_sale_lead_pdf', [LeadController::class, 'export_sale_lead_pdf']);
 
+    // staff
+    Route::resource("staff", StaffController::class);
+    Route::get('staff/trashed', [StaffController::class, 'trashed']);
 
 });
 
