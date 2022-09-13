@@ -27,7 +27,7 @@ class StoreTransferRequest extends FormRequest
         return [
             'sender_account' => 'required',
             'receiver_account' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'description' => 'required',
         ];
     }

@@ -26,7 +26,7 @@ class StoreSupplierRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5',
-            'mobile' => 'required|min:10',
+            'mobile' => 'required|numeric|min:10',
             'email' => 'required|email',
             'address' => 'required',
         ];

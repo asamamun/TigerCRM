@@ -26,7 +26,7 @@ class UpdateCapitalRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'description' => 'required|min:5',
         ];
     }

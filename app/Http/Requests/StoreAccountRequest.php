@@ -26,7 +26,7 @@ class StoreAccountRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'balance' => 'required',
+            'balance' => 'required|numeric',
         ];
     }
 }

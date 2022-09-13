@@ -30,11 +30,12 @@ class StoreProductRequest extends FormRequest
             'feature' => 'required|min:20',
             'description' => 'required|min:20',
             'information' => 'required|min:20',
-            'regular_price' => 'required',
-            'price' => 'required',
-            'wholesale_price' => 'required',
-            'purchase_price' => 'required',
-            'discount' => 'required',
+            'regular_price' => 'required|numeric',
+            'price' => 'required|numeric',
+            'wholesale_price' => 'required|numeric',
+            'purchase_price' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'quantity' => 'required|numeric',
         ];
     }
 }

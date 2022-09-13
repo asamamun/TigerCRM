@@ -26,7 +26,7 @@ class StoreProfileRequest extends FormRequest
     {
         return [
             'fullname' => 'required|min:5',
-            'phone' => 'required|min:10',
+            'phone' => 'required|numeric|min:10',
             'address' => 'required',
             'image' => 'required',
             'bloodgroup' => 'required',
