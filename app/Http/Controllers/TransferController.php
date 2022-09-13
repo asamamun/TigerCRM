@@ -149,4 +149,21 @@ class TransferController extends Controller
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Transferlist.pdf');
     }
+    public function trashed()
+    {
+        $alltransfer = Transfer::onlyTrashed()->get();
+        return view('transfer.trashed',compact('alltransfer'))->with('user',Auth::user());
+    }
+
+    public function trashedRestore($id){
+        $transfer = Transfer::onlyTrashed()->findOrFail($id);
+        $transfer->restore();
+        return back();
+    }
+
+    public function trashedDelete($id){
+        $transfer = Transfer::onlyTrashed()->findOrFail($id);
+        $transfer->forceDelete();
+        return back();
+    }
 }

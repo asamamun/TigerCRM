@@ -104,6 +104,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('export_account_pdf', [AccountController::class, 'export_account_pdf']);
 
     // transfer
+    Route::get('transfer/trashed', [TransferController::class, 'trashed']);
+    Route::post('transfer/trashed/{id}/restore', [TransferController::class, 'trashedRestore'])->name('transfer.trashed.restore');
+    Route::post('transfer/trashed/{id}/force_delete', [TransferController::class, 'trashedDelete'])->name('transfer.trashed.destroy');
     Route::resource("/transfer", TransferController::class);
     Route::get('export_transfer_pdf', [TransferController::class, 'export_transfer_pdf']);
 
