@@ -140,4 +140,21 @@ class ExpenseController extends Controller
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Expenselist.pdf');
     }
+    public function trashed()
+    {
+        $allexpense = Expense::onlyTrashed()->get();
+        return view('expense.trashed',compact('allexpense'))->with('user',Auth::user());
+    }
+
+    public function trashedRestore($id){
+        $expense = Expense::onlyTrashed()->findOrFail($id);
+        $expense->restore();
+        return back();
+    }
+
+    public function trashedDelete($id){
+        $expense = Expense::onlyTrashed()->findOrFail($id);
+        $expense->forceDelete();
+        return back();
+    }
 }

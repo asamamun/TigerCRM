@@ -111,10 +111,16 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('export_transfer_pdf', [TransferController::class, 'export_transfer_pdf']);
 
     // expense
+    Route::get('expense/trashed', [ExpenseController::class, 'trashed']);
+    Route::post('expense/trashed/{id}/restore', [ExpenseController::class, 'trashedRestore'])->name('expense.trashed.restore');
+    Route::post('expense/trashed/{id}/force_delete', [ExpenseController::class, 'trashedDelete'])->name('expense.trashed.destroy');
     Route::resource("/expense", ExpenseController::class);
     Route::get('export_expense_pdf', [ExpenseController::class, 'export_expense_pdf']);
 
     // capital
+    Route::get('capital/trashed', [CapitalController::class, 'trashed']);
+    Route::post('capital/trashed/{id}/restore', [CapitalController::class, 'trashedRestore'])->name('capital.trashed.restore');
+    Route::post('capital/trashed/{id}/force_delete', [CapitalController::class, 'trashedDelete'])->name('capital.trashed.destroy');
     Route::resource("/capital", CapitalController::class);
     Route::get('export_capital_pdf', [CapitalController::class, 'export_capital_pdf']);
 

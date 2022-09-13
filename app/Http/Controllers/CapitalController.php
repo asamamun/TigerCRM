@@ -136,4 +136,21 @@ class CapitalController extends Controller
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('capitallist.pdf');
     }
+    public function trashed()
+    {
+        $allcapital = Capital::onlyTrashed()->get();
+        return view('capital.trashed',compact('allcapital'))->with('user',Auth::user());
+    }
+
+    public function trashedRestore($id){
+        $capital = Capital::onlyTrashed()->findOrFail($id);
+        $capital->restore();
+        return back();
+    }
+
+    public function trashedDelete($id){
+        $capital = Capital::onlyTrashed()->findOrFail($id);
+        $capital->forceDelete();
+        return back();
+    }
 }
