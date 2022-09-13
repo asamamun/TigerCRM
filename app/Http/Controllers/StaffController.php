@@ -6,6 +6,7 @@ use App\Models\Staff;
 use App\Http\Requests\StoreStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class StaffController extends Controller
 {
@@ -128,6 +129,13 @@ class StaffController extends Controller
         $staff = Staff::onlyTrashed()->findOrFail($id);
         $staff->forceDelete();
         return back();
+    }
+    public function export_stafflist_pdf()
+    {
+        $allstaff = Staff::onlyTrashed()->get();
+        $pdf = PDF::loadView('staff.pdflist',compact('allstaff'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('stafflist.pdf');
     }
 
 }

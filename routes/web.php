@@ -109,6 +109,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::post('transfer/trashed/{id}/force_delete', [TransferController::class, 'trashedDelete'])->name('transfer.trashed.destroy');
     Route::resource("/transfer", TransferController::class);
     Route::get('export_transfer_pdf', [TransferController::class, 'export_transfer_pdf']);
+    Route::get('export_transferlist_pdf', [TransferController::class, 'export_transferlist_pdf']);
 
     // expense
     Route::get('expense/trashed', [ExpenseController::class, 'trashed']);
@@ -116,6 +117,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::post('expense/trashed/{id}/force_delete', [ExpenseController::class, 'trashedDelete'])->name('expense.trashed.destroy');
     Route::resource("/expense", ExpenseController::class);
     Route::get('export_expense_pdf', [ExpenseController::class, 'export_expense_pdf']);
+    Route::get('export_expenselist_pdf', [ExpenseController::class, 'export_expenselist_pdf']);
 
     // capital
     Route::get('capital/trashed', [CapitalController::class, 'trashed']);
@@ -123,6 +125,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::post('capital/trashed/{id}/force_delete', [CapitalController::class, 'trashedDelete'])->name('capital.trashed.destroy');
     Route::resource("/capital", CapitalController::class);
     Route::get('export_capital_pdf', [CapitalController::class, 'export_capital_pdf']);
+    Route::get('export_capitallist_pdf', [CapitalController::class, 'export_capitallist_pdf']);
 
     // customer
     Route::resource("/customer", CustomerController::class);
@@ -187,6 +190,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::post('staff/trashed/{id}/restore', [StaffController::class, 'trashedRestore'])->name('staff.trashed.restore');
     Route::post('staff/trashed/{id}/force_delete', [StaffController::class, 'trashedDelete'])->name('staff.trashed.destroy');
     Route::resource("staff", StaffController::class);
+    Route::get('export_stafflist_pdf', [StaffController::class, 'export_stafflist_pdf']);
 
 });
 

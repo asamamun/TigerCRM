@@ -13,7 +13,7 @@
             <a href="{{url('staff')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <a href="{{url('export_staff_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
+            <a href="{{url('export_stafflist_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
                 <i class="fas fa-file-pdf"></i>
             </a>
         </div>

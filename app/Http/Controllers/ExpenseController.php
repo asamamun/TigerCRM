@@ -157,4 +157,11 @@ class ExpenseController extends Controller
         $expense->forceDelete();
         return back();
     }
+    public function export_expenselist_pdf()
+    {
+        $allexpense = Expense::onlyTrashed()->get();
+        $pdf = PDF::loadView('expense.pdflist',compact('allexpense'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('expenselist.pdf');
+    }
 }

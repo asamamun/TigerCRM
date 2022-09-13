@@ -13,7 +13,7 @@
             <a href="{{url('transfer')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <a href="{{url('export_transfer_trash_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
+            <a href="{{url('export_transferlist_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
                 <i class="fas fa-file-pdf"></i>
             </a>
         </div>
@@ -49,8 +49,8 @@
                     @foreach ($alltransfer as $transfer)
                     <tr>
                         <td>{{ $sl++ }}</td>
-                        <td>{{ $transfer->sender_account }}</td>
-                        <td>{{ $transfer->receiver_account }}</td>
+                        <td>{{ $transfer->sender->name }}</td>
+                        <td>{{ $transfer->receiver->name }}</td>
                         <td>{{ $transfer->amount }}</td>
                         <td>{{ $transfer->description }}</td>
                         <td class="d-flex justify-content-center">

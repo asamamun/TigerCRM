@@ -13,7 +13,7 @@
             <a href="{{url('capital')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <a href="{{url('export_capital_trash_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
+            <a href="{{url('export_capitallist_pdf')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Staff List">
                 <i class="fas fa-file-pdf"></i>
             </a>
         </div>
@@ -25,19 +25,19 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Id</th>
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Id</th>
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -47,7 +47,6 @@
                     @foreach ($allcapital as $capital)
                     <tr>
                         <td>{{ $sl++ }}</td>
-                        <td>{{ $capital->id }}</td>
                         <td>{{ $capital->name }}</td>
                         <td>{{ $capital->amount }}</td>
                         <td>{{ $capital->description }}</td>

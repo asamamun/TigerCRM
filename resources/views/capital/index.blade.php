@@ -68,13 +68,16 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                      @php
+                       $sl = 1;
+                      @endphp
                     @foreach ($allcapital as $capital)
                     <tr>
-                        <td>{{ $capital->id }}</td>
+                        <td>{{ $sl++  }}</td>
                         <td>{{ $capital->name }}</td>                        
                         <td>{{ $capital->amount }}</td>          
                         <td>{{ $capital->account->name }}</td>          
-                        <td>{{ $capital->description }}</td>          
+                        <td>{{ $capital->description }}</td>                 
                         <td class="d-flex justify-content-center">
                             {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
                             {!! Form::open(['method' => 'delete','route' => ['capital.destroy', $capital->id]]) !!}

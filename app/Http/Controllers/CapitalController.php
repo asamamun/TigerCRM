@@ -153,4 +153,11 @@ class CapitalController extends Controller
         $capital->forceDelete();
         return back();
     }
+    public function export_capitallist_pdf()
+    {
+        $allcapital = Capital::onlyTrashed()->get();
+        $pdf = PDF::loadView('capital.pdflist',compact('allcapital'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('capitallist.pdf');
+    }
 }

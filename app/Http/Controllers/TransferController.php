@@ -166,4 +166,11 @@ class TransferController extends Controller
         $transfer->forceDelete();
         return back();
     }
+    public function export_transferlist_pdf()
+    {
+        $alltransfer = Transfer::onlyTrashed()->get();
+        $pdf = PDF::loadView('transfer.pdflist',compact('alltransfer'));
+        // $pdf = PDF::loadView('supplier.pdf');
+        return $pdf->download('transferlist.pdf');
+    }
 }
