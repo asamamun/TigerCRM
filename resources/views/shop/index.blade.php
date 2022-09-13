@@ -196,7 +196,7 @@
                                     <img class="img-fluid w-100" src="{{url('assets/img/product-1.jpg')}}" alt="">           
                                     @endif
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square addToCartBtn" href="{{ url('add-to-cart/'.$product->id) }}"><i class="fa fa-shopping-cart mr-1"></i> </a>
+                                        <a class="btn btn-outline-dark btn-square" href="{{ url('add-to-cart/'.$product->id) }}"><i class="fa fa-shopping-cart mr-1"></i> </a>
                                         <button class="btn btn-outline-dark btn-square favbtn" data-productid="{{$product->id}}"><i class="far fa-heart mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-sync-alt mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-search mr-1"></i> </button>

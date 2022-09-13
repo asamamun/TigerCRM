@@ -19,7 +19,7 @@ class CustomerauthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
-            'mobile' => ['required', 'string', 'max:255', 'unique:customers'],
+            'mobile' => ['required', 'string', 'max:15', 'unique:customers'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $customer = Customer::create([
@@ -45,7 +45,7 @@ class CustomerauthController extends Controller
     }
     public function check(Request $request){
         $validated = $request->validate([
-            'mobile' => 'required|unique:customers|max:15|min:6|numeric',
+            'mobile' => 'required|numeric',
             'password' => 'required|min:8',
         ]);
     $phone = $request->mobile;

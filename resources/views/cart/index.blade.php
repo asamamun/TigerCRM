@@ -34,25 +34,28 @@
                         $total += $row->quantity *$row->price
                         @endphp
                         <tr>
+                            {{-- {{url(Storage::url($row->productimages->first()->name))}} --}}
                             <td class="align-middle"><img src="" alt="{{$row->id}}" style="width: 50px;">img</td>
                             <td class="align-middle">{{ $row->name }}</td>
-                            <td class="align-middle">Tk {{ $row->price }}</td>
+                            <td class="align-middle pprice">{{ $row->price }}</td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <input type="number" class="form-control form-control-sm border-0 text-center qu" min='1' name='quantity' value="{{ $row->quantity }}">
+                                {{-- <div class="input-group quantity mx-auto" style="width: 100px;">
+
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center" value="{{ $row->quantity }}">
+
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div> --}}
                             </td>
-                            <td class="align-middle">Tk {{ $row->quantity * $row->price}}</td>
+                            <td class="align-middle itemtotal">{{ $row->quantity * $row->price}}</td>
                             <td class="align-middle"><a href="{{url('removecart/'.$row->id)}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a></td>
                         </tr>
                         @endforeach                 
@@ -73,17 +76,17 @@
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>Tk {{ $total }}</h6>
+                        <h6 id="total">{{ $total }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">Tk <span>50</span></h6>
+                        <h6 class="font-weight-medium" id="shipping">50</h6>
                     </div>
                 </div>
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>Tk 160</h5>
+                        <h5 id="grandtotal">{{ $total + 50 }}</h5>
                     </div>
                     <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
                 </div>
@@ -96,54 +99,35 @@
 
 @section('script')
     <script>
-        // var BASE_URL = "{{ url('/') }}";
-        // this function is for update card
-/*         $(".update-cart").click(function (e) {
-           e.preventDefault();
-           var ele = $(this);
-            $.ajax({
-               url: '{{ url('update-cart') }}',
-               method: "patch",
-               data:
-               id: ele.attr("data-id"), 
-               quantity: ele.parents("tr").find(".quantity").val()
-            }),
-               success: function (response) {
-                   window.location.reload();
-               }
-        }); */
-        //delete product
-        /* $(document).on('click', '.deleteproduct', function(e) {
-        e.preventDefault();
-        $(this).closest('tr').remove();
-        var ele = $(this);
-            if(confirm("Are you sure")) {
-                $.ajax({
-                    url: BASE_URL +  '/remove-from-cart',
-                    method: "DELETE",
-                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
-                    success: function (response) {
-                        window.location.reload();
-                        
-                    }
+        function financial(x) {
+            return Number.parseFloat(x).toFixed(2);
+		}
+        $(document).ready(function() {
+            //update total
+            $(document).on('blur change keyup', '.qu', function() {
+                var $row = $(this).closest('tr');
+                var qty = $row.find('.qu').val();
+                var price = $row.find('.pprice').text();
+                var itemtotal = qty * price;
+                // console.log(itemtotal);
+                $row.find('.itemtotal').text(financial(itemtotal));
+                updateTotal();
+            });
+
+            function updateTotal() {
+                //console.log($('.itemtotal'));
+                var grandtotal = 0;
+                $('.itemtotal').each(function() {
+                    grandtotal += parseFloat($(this).text());
                 });
+                $('#total').text(grandtotal);
+                // alert($("#discount").val());
+                $('#grandtotal').text(grandtotal + parseInt($("#shipping").text()));
             }
-        }); */
-        //remove from cart
-        /* $(".remove-from-cart").click(function (e) {
-            e.preventDefault();
-            var ele = $(this);
-            if(confirm("Are you sure")) {
-                $.ajax({
-                    url: '{{ url('remove-from-cart') }}',
-                    method: "DELETE",
-                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
-                    success: function (response) {
-                        window.location.reload();
-                        
-                    }
-                });
-            }
-        }); */
+            //
+            $("#shipping").keyup(function() {
+                updateTotal();
+            });
+        });
     </script>
 @endsection

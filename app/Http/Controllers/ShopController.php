@@ -105,14 +105,15 @@ class ShopController extends Controller
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
-            'quantity' => 1,            
-        ));        
+            'quantity' => 1,
+            'attributes' => array(),
+        ));
         // dd(\Cart::getContent());
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back()->with('message', 'Product added to cart successfully!');
     }
     public function removeFromCart($id){
         \Cart::session(session('cid'))->remove($id);
-        return redirect()->back()->with('success', 'Product remove from cart successfully!');
+        return redirect()->back()->with('message', 'Product remove from cart successfully!');
         // return response()->json(['id'=>$id,'message'=>"Item Removed"]);
     }
 
