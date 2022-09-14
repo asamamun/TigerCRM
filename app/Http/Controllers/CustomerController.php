@@ -114,4 +114,8 @@ class CustomerController extends Controller
         // $pdf = PDF::loadView('supplier.pdf');
         return $pdf->download('Customerlist.pdf');
     }
+    public function newcustomer(Request $request){
+        return response()->json($request->all());
+        // return response()->json(['a'=>"b"]);
+    }
 }

@@ -130,6 +130,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
     // customer
     Route::resource("/customer", CustomerController::class);
     Route::get('export_customer_pdf', [CustomerController::class, 'export_customer_pdf']);
+    Route::post('customer/newcustomer', [CustomerController::class, 'newcustomer']);
     
     // profile
     Route::resource("profile", ProfileController::class);

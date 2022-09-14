@@ -41,6 +41,9 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     {!! Form::text('customersearch', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'customersearch', 'placeholder'=>'Enter Customer Mobile Number']) !!}
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCustomerModal">
+  +
+</button>
                 </div>
                 <div id="dyn_customer"></div>
                 <hr>
@@ -78,6 +81,44 @@
     </div>
 </div>
 
+<!-- new customer modal -->
+<!-- Modal -->
+<div class="modal fade" id="newCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="form-group row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        {!! Form::text('ncname', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'ncname', 'placeholder'=>'Name']) !!}
+    </div>
+    <div class="col-sm-6">
+        {!! Form::text('ncemail', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'ncemail', 'placeholder'=>'Email']) !!}
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        {!! Form::text('ncmobile', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'ncmobile', 'placeholder'=>'Mobile']) !!}
+    </div>
+    <div class="col-sm-6">
+        {!! Form::password('ncpassword', ['required', 'class'=>'form-control form-control-profile', 'id'=>'ncpassword', 'placeholder'=>'password']) !!}
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="newCustomer" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- new customer modal end -->
 @endsection
 
 @section('script')
@@ -231,7 +272,30 @@
 
         });
         // save button end
-        // 
+        // new customer start
+        $("#newCustomer").click(function(){
+            alert(5);
+            $.ajax({
+                type: "post",
+                url: "{{url('customer/newcustomer')}}",
+                data: {
+                    name: $("#ncname").val(),
+                    email: $("#ncemail").val(),
+                    mobile: $("#ncmobile").val(),
+                    password: $("#ncpassword").val(),
+                },
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    if(response.success){
+                        $("#customersearch").val(response.id);
+
+                    }
+                }
+            });
+
+        })
+        // new customer end
     });
     
 </script>
