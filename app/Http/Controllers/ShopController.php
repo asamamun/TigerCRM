@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\codorder;
+use App\Models\CodorderDetails;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Facades\CartFacade;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
 {
@@ -19,9 +23,10 @@ class ShopController extends Controller
     public function index()
     {
         $categories = Category::with('subcategories','products')->has('products')->get();
+        $brands = Brand::with('products')->has('products')->get();
         $products = Product::with('productimages')->orderBy('id','desc')->paginate(9);
         // dd($products->productimages);
-        return view('shop.index', compact('products'))->with(compact('categories'));
+        return view('shop.index', compact('products'))->with(compact('categories'))->with(compact('brands'));
     }
 
     /**
@@ -119,18 +124,24 @@ class ShopController extends Controller
 
     public function placeorder(Request $request)
     {
+
         DB::beginTransaction();
         try {
-            $ord = new Order();
+            $ord = new codorder();
             // $details = new OrderDetail();
             $data = [
-                'customer_id' => $request->cid,
-                'nettotal' => $request->total,
-                'discount' => $request->discount,
-                'grandtotal' => $request->gtotal,
+                'customer_id' => session('cid'),
+                'address' => $request->address,
+                'subtotal' => $request->subtotal,
+                'shipping' => $request->shipping,
+                'total' => $request->total,
+                'payment_type' => 'Cash on Delivery',
+                'delivery_status' => 'Pending',
             ];
+            // Log::info($data);
+            // return;
             // return response()->json($data);
-            $ord = Order::create($data);
+            $ord = codorder::create($data);
             $orderID = $ord->id;
             // Log::info($orderID);
             $ids = $request->ids;
@@ -147,23 +158,24 @@ class ShopController extends Controller
                     'total' => $ptotal[$key],
                 ];
                 // Log::info($pdata);
-                $details = OrderDetail::create($pdata);
+                $details = CodorderDetails::create($pdata);
                 //update quantity in product table
                 $pd = Product::find($ids[$key]);
                 $pd->quantity = $pd->quantity - $quans[$key];
                 if ($pd->quantity >= 0) {
                     $pd->save();
-                    //return response()->json(['error'=>0,'message'=>"Order Received"]);
+                    return response()->json(['error'=>0,'message'=>"product minus done"]);
                 } else {
 
-                    //return response()->json(['error'=>1,'message'=>"Error"]);
+                    return response()->json(['error'=>1,'message'=>"Error"]);
                 }
             }
             //balance addition
-            $gtotal = $request->gtotal;
-            $pa = Account::find($request->pmethod);
-            $pa->balance = $pa->balance + $gtotal;
-            $pa->save();
+            // $gtotal = $request->gtotal;
+            // $pa = Account::find($request->pmethod);
+            // $pa->balance = $pa->balance + $gtotal;
+            // $pa->save();
+            \Cart::session(session('cid'))->clear();
             DB::commit();
             return response()->json(['error'=>0,'message'=>"Order received",'orderid'=>$orderID]);
         } catch (\Throwable $th) {

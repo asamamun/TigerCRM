@@ -70,4 +70,8 @@ class Customer extends Model
     {
         return $this->hasMany('App\Models\Wishlist');
     }
+    public function CodOrders()
+    {
+    return $this->hasMany('App\Models\Codorder');
+    }
 }

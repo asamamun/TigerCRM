@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use PDF;
 
 class CustomerController extends Controller
@@ -115,7 +117,26 @@ class CustomerController extends Controller
         return $pdf->download('Customerlist.pdf');
     }
     public function newcustomer(Request $request){
-        return response()->json($request->all());
+        // return response()->json($request->all());
         // return response()->json(['a'=>"b"]);
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'mobile' => ['required', 'string', 'max:15', 'unique:customers'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $customer = Customer::create([
+            'name' => $request->name,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),        
+        ]);
+        if($customer){
+            return response()->json([
+                'id' => $customer->id,
+                // 'success' => true,
+            ]);
+        }
     }
 }

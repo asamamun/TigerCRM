@@ -214,6 +214,8 @@ Route::middleware(['customer'])->group(function () {
     Route::get("cart", [ShopController::class, 'cart']);
     Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
     Route::get('removecart/{id}', [ShopController::class, 'removeFromCart']);
+    Route::post('codplaceorder', [ShopController::class, 'placeorder']);
+
     // Route::patch("update-cart", [ShopController::class, 'update']);
     // Route::delete("remove-from-cart", [ShopController::class, 'remove']);
 

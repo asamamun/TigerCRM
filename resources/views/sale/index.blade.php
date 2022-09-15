@@ -39,11 +39,13 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group">
-                    {!! Form::text('customersearch', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'customersearch', 'placeholder'=>'Enter Customer Mobile Number']) !!}
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCustomerModal">
-  +
-</button>
+                <div class="form-group row">
+                    <div class="col-10">
+                        {!! Form::text('customersearch', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'customersearch', 'placeholder'=>'Enter Customer Mobile Number']) !!}
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-primary btn-profile" data-toggle="modal" data-target="#newCustomerModal"> + </button>
+                    </div>
                 </div>
                 <div id="dyn_customer"></div>
                 <hr>
@@ -267,14 +269,13 @@
 
                 }
             });            
-//post data            
-
-
+            //post data
         });
         // save button end
+
         // new customer start
         $("#newCustomer").click(function(){
-            alert(5);
+            // alert(5);
             $.ajax({
                 type: "post",
                 url: "{{url('customer/newcustomer')}}",
@@ -286,10 +287,9 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     if(response.success){
                         $("#customersearch").val(response.id);
-
                     }
                 }
             });

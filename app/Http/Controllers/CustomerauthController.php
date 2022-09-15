@@ -58,6 +58,8 @@ class CustomerauthController extends Controller
         if(password_verify($password,$c->password)){ 
             session([
                 'name' => $c->name,
+                'mobile' => $c->mobile,
+                'email' => $c->email,
                 'cid' => $c->id,
                 'clogged_in' => true
             ]);

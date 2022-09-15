@@ -78,4 +78,8 @@ class Product extends Model
     {
     return $this->hasMany('App\Models\Wishlist');
     }
+    public function CodorderDtails()
+    {
+    return $this->hasMany('App\Models\CodorderDetail');
+    }
 }
