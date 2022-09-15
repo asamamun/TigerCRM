@@ -112,6 +112,9 @@
         {!! Form::password('ncpassword', ['required', 'class'=>'form-control form-control-profile', 'id'=>'ncpassword', 'placeholder'=>'password']) !!}
     </div>
 </div>
+<!-- error -->
+<ul class="modalerror"></ul>
+<!-- error -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -275,10 +278,11 @@
 
         // new customer start
         $("#newCustomer").click(function(){
+            $(".modalerror").html('');
             // alert(5);
             $.ajax({
                 type: "post",
-                url: "{{url('customer/newcustomer')}}",
+                url: "{{url('newcustomer')}}",
                 data: {
                     name: $("#ncname").val(),
                     email: $("#ncemail").val(),
@@ -287,9 +291,24 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    // console.log(response);
+                    console.log(response);
                     if(response.success){
                         $("#customersearch").val(response.id);
+                        $("#dyn_customer").html(response.name +" , "+ response.mobile);
+                        //clear all the form data
+                        $("#newCustomerModal").modal("hide");
+                        
+                    }
+                    else{
+                        let err = '';
+                        console.log(response.errors);
+                        for (const key in response.errors) {
+                            if (response.errors.hasOwnProperty.call(response.errors, key)) {
+                                err +=  "<li>" + response.errors[key] + "</li>";                        
+                                
+                            }
+                        }
+                        $(".modalerror").html(err);
                     }
                 }
             });

@@ -9,6 +9,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use PDF;
 
 class CustomerController extends Controller
@@ -117,15 +118,28 @@ class CustomerController extends Controller
         return $pdf->download('Customerlist.pdf');
     }
     public function newcustomer(Request $request){
-        // return response()->json($request->all());
-        // return response()->json(['a'=>"b"]);
-
-        $request->validate([
+/*         // echo "hi";
+        return response()->json(['a'=>"b"]);
+        */
+/*         return response()->json([
+            'name' => $request->name,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),        
+        ]);  */  
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'email' => ['required', 'email', 'max:255', 'unique:customers'],
             'mobile' => ['required', 'string', 'max:15', 'unique:customers'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required'],
         ]);
+        
+        if ($validator->fails())
+        {
+            return response()->json(['success' => false,'errors'=>$validator->errors()->all()]);
+        }    
+
+        //return response()->json($m);
         $customer = Customer::create([
             'name' => $request->name,
             'mobile' => $request->mobile,
@@ -135,8 +149,14 @@ class CustomerController extends Controller
         if($customer){
             return response()->json([
                 'id' => $customer->id,
-                // 'success' => true,
+                'name'=>$customer->name,
+                'mobile'=>$customer->mobile,
+                'success' => true,
+                'errors'=>null
             ]);
+        }
+        else{
+
         }
     }
 }
