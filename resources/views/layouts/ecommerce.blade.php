@@ -204,6 +204,7 @@
                             <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">My Account</button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="{{ route('customerlogin') }}" class="dropdown-item" type="button">Login</a>
+                                <a href="{{ route('login') }}" class="dropdown-item" type="button">Admin Login</a>
                                 <a href="{{route('customerregister')}}" class="dropdown-item" type="button">Register</a>
                             </div>
                         </div> 

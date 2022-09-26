@@ -52,11 +52,11 @@
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." value="zayed@gmail.com">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="Password" value="12345678">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

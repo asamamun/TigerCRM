@@ -145,6 +145,24 @@ class ShopController extends Controller
             $quans = $request->quantity;
             $pprice = $request->pricearr;
             $ptotal = $request->totalarr;
+            $i = 0;
+            foreach($ids as $id){
+                $pdata = [
+                    'order_id' => $orderID,
+                    'product_id' => $id,
+                    'quantity' => $quans[$i],
+                    'price' => $pprice[$i],
+                    'total' => $ptotal[$i],
+                ];
+                $i++;
+                CodorderDetails::create($pdata);
+                Log::info($pdata);
+
+            }
+            \Cart::session(session('cid'))->clear();
+            return redirect()->route('shop.index')->with('message', 'Order Placed Successfully!');
+    }
+    /* 
             foreach ($ids as $key => $value) {
                 //$details = new OrderDetail();
                 $pdata = [
@@ -166,15 +184,15 @@ class ShopController extends Controller
 
                     return response()->json(['error'=>1,'message'=>"Error"]);
                 }
-            }
+            } */
+
             //balance addition
             // $gtotal = $request->gtotal;
             // $pa = Account::find($request->pmethod);
             // $pa->balance = $pa->balance + $gtotal;
             // $pa->save();
-            \Cart::session(session('cid'))->clear();
-            DB::commit();
-            return response()->json(['error'=>0,'message'=>"Order received",'orderid'=>$orderID]);
+            // \Cart::session(session('cid'))->clear();
+            // return response()->json(['error'=>0,'message'=>"Order received",'orderid'=>$orderID]);
 
         /* DB::beginTransaction();
         try {
@@ -234,7 +252,4 @@ class ShopController extends Controller
             return response()->json(['error'=>1,'message'=>"ERROR"]); 
             // abort(404);
         } */
-               
-    }
-
 }
