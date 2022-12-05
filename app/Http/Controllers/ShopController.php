@@ -137,10 +137,8 @@ class ShopController extends Controller
             ];
             // Log::info($data);
             // return;
-            // return response()->json($data);
             $ord = codorder::create($data);
             $orderID = $ord->id;
-            // Log::info($orderID);
             $ids = $request->ids;
             $quans = $request->quantity;
             $pprice = $request->pricearr;
@@ -156,8 +154,6 @@ class ShopController extends Controller
                 ];
                 $i++;
                 CodorderDetails::create($pdata);
-                Log::info($pdata);
-
             }
             \Cart::session(session('cid'))->clear();
             return redirect()->route('shop.index')->with('message', 'Order Placed Successfully!');

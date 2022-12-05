@@ -28,8 +28,8 @@
     <script>
         $(document).ready(function () {
             function createselect(ob){
-            $("#subcategory_id").html("");
-            let html = "";
+                $("#subcategory_id").html("");
+                let html = "";
                 for (const key in ob) {
                     if (Object.hasOwnProperty.call(ob, key)) {
                         //const element = ob[key];

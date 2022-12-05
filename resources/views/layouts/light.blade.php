@@ -410,7 +410,7 @@
                                 @if ($user->profile)
                                 <img src="{{url(Storage::url($user->profile->image))}}" class="img-profile rounded-circle" alt="Profile Image">
                                 @else
-                                    
+                                <img src="{{url('assets/img/undraw_profile.svg')}}" class="img-profile rounded-circle" alt="Profile Image">
                                 @endif
                                 
                             </a>
