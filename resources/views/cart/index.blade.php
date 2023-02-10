@@ -36,7 +36,7 @@
                         <tr>
                             {{-- {{url(Storage::url($row->productimages->first()->name))}} --}}
                             <input type="hidden" class="productid" data-id="{{$row->id}}">
-                            <td class="align-middle"><img src="" alt="{{$row->id}}" style="width: 50px;">img</td>
+                            <td class="align-middle"><img src="{{$row->image}}" alt="{{$row->id}}" style="width: 50px;">img</td>
                             <td class="align-middle">{{ $row->name }}</td>
                             <td class="align-middle pprice">{{ $row->price }}</td>
                             <td class="align-middle">
@@ -147,8 +147,7 @@
                 $(".qu").each(function(){$quanArr.push($(this).val());})
                 $(".pprice").each(function(){$priceArr.push($(this).text());})
                 $(".itemtotal").each(function(){$totalArr.push($(this).text());})
-                // alert($("#address").val());
-                // return;
+                // alert($idArr); return;
                 //post data
                 $.ajax({
                         url: BASE_URL + '/codplaceorder',
@@ -164,8 +163,9 @@
                             total: $("#grandtotal").html()
                             },
                         success: function(response) {
-                            if(!response.error){
+                            if(response.error == false){
                             alert(response.message);
+                            window.location.href = BASE_URL + '/purchasehistory';
                             // location.reload();
                             }
                         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\codorder;
+use App\Models\CodorderDetail;
 use App\Models\CodorderDetails;
 use App\Models\Order;
 use App\Models\Product;
@@ -101,8 +102,10 @@ class ShopController extends Controller
     public function addToCart($id) // by this function we add product of choose in card
     {       
         // dd(session('cid'));
-        $product = Product::find($id);
-        // dd($product);
+        // $product = Product::find($id);
+        // with productsimages
+        $product = Product::with('productimages')->find($id);
+        // dd($product->productimages->first()->name);
         if(!$product) {
             abort(404);
         }
@@ -111,7 +114,8 @@ class ShopController extends Controller
             'name' => $product->name,
             'price' => $product->price,
             'quantity' => 1,
-            'attributes' => array(),
+            'image' => $product->productimages->first()->name,
+            // 'attributes' => array(),
         ));
         // dd(\Cart::getContent());
         return redirect()->back()->with('message', 'Product added to cart successfully!');
@@ -124,6 +128,7 @@ class ShopController extends Controller
 
     public function placeorder(Request $request)
     {
+        // dd($request->ids);
         $ord = new codorder();
             // $details = new OrderDetail();
             $data = [
@@ -144,19 +149,22 @@ class ShopController extends Controller
             $pprice = $request->pricearr;
             $ptotal = $request->totalarr;
             $i = 0;
+            $data = [];
             foreach($ids as $id){
                 $pdata = [
                     'order_id' => $orderID,
-                    'product_id' => $id,
+                    'product_id' => $ids[$i],
                     'quantity' => $quans[$i],
                     'price' => $pprice[$i],
                     'total' => $ptotal[$i],
                 ];
+                // Log::info($pdata);
+                CodorderDetail::create($pdata);
                 $i++;
-                CodorderDetails::create($pdata);
             }
+            // return;
             \Cart::session(session('cid'))->clear();
-            return redirect()->route('shop.index')->with('message', 'Order Placed Successfully!');
+            return response()->json(['error'=>0,'message'=>"Order Placed Successfully"]);
     }
     /* 
             foreach ($ids as $key => $value) {

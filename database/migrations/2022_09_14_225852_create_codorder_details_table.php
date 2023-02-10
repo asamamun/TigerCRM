@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('codorder_details', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('restrict');
+            $table->foreign('order_id')->references('id')->on('codorders')->onDelete('restrict');
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->decimal('quantity','15','2');
