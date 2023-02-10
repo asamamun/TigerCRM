@@ -69,34 +69,55 @@ Purchase History
                 </div>
             </div>
             <div class="row">
+                @forelse ($codorders as $order)
                 <div class="card border-left-primary col-12 mb-4 shadow">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-5 invoice-number">
                                 <a href="{{url('ordertrack')}}">
-                                    #424515262541233
+                                    {{$order->order_number}}
                                 </a>
-                                <p>01-08-2022 02:10PM</p>
+                                <p>{{$order->created_at->format('d-m-Y h:i A')}}</p>
                             </div>
                             <div class="col-3">
-                                <a href="{{url('ordertrack')}}">33,572.00</a>
+                                <a href="{{url('ordertrack')}}">{{number_format($order->total,2)}}</a>
                             </div>
-                            <div class="col-2 text-left">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button class="button1">Delivered</button>
-                                    <button class="button2">Paid</button>
-                                    {{-- <button type="button" class="btn btn-success">Delivered</button>
-                                    <button type="button" class="btn btn-primary">Paid</button> --}}
+                            <div class="col-2 text-left d-flex">
+                                @if ($order->created_at->diffInDays(now()) < 3 && $order->delivery_status == 'Pending')
+                                <button role="button" data-id="{{$order->id}}" class="btn btn-sm btn-danger mr-1 cancelBtn" title="Calcel this order?">Cancel</button>
+                                @endif
+                                <div class="btn-group btn-group-sm" role="group">
+                                    @if ($order->delivery_status == 'Pending')
+                                    <button type="button" class="btn btn-secondary" disabled>{{$order->delivery_status}}</button>
+                                    @elseif($order->delivery_status == 'Cancelled')
+                                    <button type="button" class="btn btn-danger" disabled>{{$order->delivery_status}}</button>
+                                    @elseif($order->delivery_status == 'Delivered')
+                                    <button type="button" class="btn btn-success" disabled>{{$order->delivery_status}}</button>
+                                    @elseif($order->delivery_status == 'Confirmed')
+                                    <button type="button" class="btn btn-info" disabled>{{$order->delivery_status}}</button>
+                                    @endif
+                                    <button class="button2" disabled>Unpaid</button>
                                 </div>
                             </div>
                             <div class="col-2 text-right">
-                                <a href="#" role="button" class="download-btn">
+                                <a href="#" role="button" class="download-btn" title="Download Invoice">
                                     <i class="fas fa-arrow-down"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
+                @empty
+                <div class="card border-left-primary col-12 mb-4 shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-12 text-center">
+                                <h3>No Order Found</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforelse
             </div>
 
         </div>
@@ -104,4 +125,26 @@ Purchase History
 </div>
 </div>
 {{-- dashboard end --}}
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $('.cancelBtn').click(function(){
+            var order_id = $(this).data('id');
+            // alert(order_id); return;
+            $.ajax({
+                url: "{{url('ordercancel')}}",
+                type: "POST",
+                data: {
+                    order_id: order_id
+                },
+                success: function (response) {
+                    alert(response.success);
+                    location.reload();
+                }
+            });
+        });
+    });
+</script>
 @endsection

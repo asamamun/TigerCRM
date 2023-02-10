@@ -6,7 +6,9 @@ use App\Models\PurchaseHistory;
 use App\Http\Requests\StorePurchaseHistoryRequest;
 use App\Http\Requests\UpdatePurchaseHistoryRequest;
 use App\Models\Category;
+use App\Models\Codorder;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PurchaseHistoryController extends Controller
@@ -20,7 +22,8 @@ class PurchaseHistoryController extends Controller
     {
         $categories = Category::with('subcategories','products')->has('products')->get();
         $cinfo = Customer::find(session('cid'));
-        return view('purchasehistory.index')->with('customer',$cinfo)->with(compact('categories'));
+        $codorders = Codorder::where('customer_id',session('cid'))->orderBy('id','desc')->get();
+        return view('purchasehistory.index')->with('customer',$cinfo)->with(compact('categories'))->with(compact('codorders'));
     }
 
     /**
@@ -87,5 +90,15 @@ class PurchaseHistoryController extends Controller
     public function destroy(PurchaseHistory $purchaseHistory)
     {
         //
+    }
+
+    public function ordercancel(Request $request)
+    {
+        $codorder = Codorder::find($request->order_id);
+        $codorder->delivery_status = 'Cancelled';
+        $codorder->save();
+        return response()->json([
+            'success' => 'Order Cancelled Successfully'
+        ]);
     }
 }

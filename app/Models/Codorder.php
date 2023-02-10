@@ -19,7 +19,7 @@ class Codorder extends Model
         'delivery_status',
     ];
 
-    public function codorderdtails()
+    public function codorderdetails()
     {
     return $this->hasMany('App\Models\CodorderDetail');
     }

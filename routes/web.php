@@ -209,6 +209,7 @@ Route::middleware(['customer'])->group(function () {
 
     //purchase history
     Route::get('purchasehistory', [PurchaseHistoryController::class, 'index']);
+    Route::post('ordercancel', [PurchaseHistoryController::class, 'ordercancel']);
 
     //add to cart
     Route::get("cart", [ShopController::class, 'cart']);

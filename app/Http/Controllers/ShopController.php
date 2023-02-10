@@ -6,7 +6,6 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\codorder;
 use App\Models\CodorderDetail;
-use App\Models\CodorderDetails;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -152,7 +151,7 @@ class ShopController extends Controller
             $data = [];
             foreach($ids as $id){
                 $pdata = [
-                    'order_id' => $orderID,
+                    'codorder_id' => $orderID,
                     'product_id' => $ids[$i],
                     'quantity' => $quans[$i],
                     'price' => $pprice[$i],
@@ -168,7 +167,6 @@ class ShopController extends Controller
                 }
                 $i++;
             }
-
             \Cart::session(session('cid'))->clear();
             DB::commit();
             return response()->json(['error'=>0,'message'=>"Order Placed Successfully"]);

@@ -167,6 +167,8 @@
                             alert(response.message);
                             window.location.href = BASE_URL + '/purchasehistory';
                             // location.reload();
+                            }else{
+                                alert(response.message);
                             }
                         }
                 });            

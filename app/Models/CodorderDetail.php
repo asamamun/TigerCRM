@@ -9,7 +9,7 @@ class CodorderDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order_id',
+        'codorder_id',
         'product_id',
         'quantity',
         'price',
