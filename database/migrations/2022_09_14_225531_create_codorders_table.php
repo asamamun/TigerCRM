@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('codorders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_number', 20)->unique();
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict');
             $table->string('address');

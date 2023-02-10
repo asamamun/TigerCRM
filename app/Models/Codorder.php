@@ -9,6 +9,7 @@ class Codorder extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'order_number',
         'customer_id',       
         'address',       
         'subtotal',

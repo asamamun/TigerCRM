@@ -89,8 +89,6 @@ class ShopController extends Controller
         //
     }
 
-
-
     public function cart(){
         //https://github.com/darryldecode/laravelshoppingcart
         $categories = Category::with('subcategories','products')->has('products')->get();
@@ -128,10 +126,12 @@ class ShopController extends Controller
 
     public function placeorder(Request $request)
     {
-        // dd($request->ids);
-        $ord = new codorder();
+        DB::beginTransaction();
+        try{
+            $ord = new codorder();
             // $details = new OrderDetail();
             $data = [
+                'order_number' => 'TE-'. session('cid') .rand(100000,999999),
                 'customer_id' => session('cid'),
                 'address' => $request->address,
                 'subtotal' => $request->subtotal,
@@ -160,100 +160,21 @@ class ShopController extends Controller
                 ];
                 // Log::info($pdata);
                 CodorderDetail::create($pdata);
+                // update quantity in product table
+                $pd = Product::find($ids[$i]);
+                $pd->quantity = $pd->quantity - $quans[$i];
+                if ($pd->quantity >= 0) {
+                    $pd->save();
+                }
                 $i++;
             }
-            // return;
-            \Cart::session(session('cid'))->clear();
-            return response()->json(['error'=>0,'message'=>"Order Placed Successfully"]);
-    }
-    /* 
-            foreach ($ids as $key => $value) {
-                //$details = new OrderDetail();
-                $pdata = [
-                    'order_id' => $orderID,
-                    'product_id' => $ids[$key],
-                    'quantity' => $quans[$key],
-                    'price' => $pprice[$key],
-                    'total' => $ptotal[$key],
-                ];
-                // Log::info($pdata);
-                $details = CodorderDetails::create($pdata);
-                //update quantity in product table
-                $pd = Product::find($ids[$key]);
-                $pd->quantity = $pd->quantity - $quans[$key];
-                if ($pd->quantity >= 0) {
-                    $pd->save();
-                    return response()->json(['error'=>0,'message'=>"product minus done"]);
-                } else {
 
-                    return response()->json(['error'=>1,'message'=>"Error"]);
-                }
-            } */
-
-            //balance addition
-            // $gtotal = $request->gtotal;
-            // $pa = Account::find($request->pmethod);
-            // $pa->balance = $pa->balance + $gtotal;
-            // $pa->save();
-            // \Cart::session(session('cid'))->clear();
-            // return response()->json(['error'=>0,'message'=>"Order received",'orderid'=>$orderID]);
-
-        /* DB::beginTransaction();
-        try {
-            $ord = new codorder();
-            // $details = new OrderDetail();
-            $data = [
-                'customer_id' => session('cid'),
-                'address' => $request->address,
-                'subtotal' => $request->subtotal,
-                'shipping' => $request->shipping,
-                'total' => $request->total,
-                'payment_type' => 'Cash on Delivery',
-                'delivery_status' => 'Pending',
-            ];
-            // Log::info($data);
-            // return;
-            // return response()->json($data);
-            $ord = codorder::create($data);
-            $orderID = $ord->id;
-            // Log::info($orderID);
-            $ids = $request->ids;
-            $quans = $request->quantity;
-            $pprice = $request->pricearr;
-            $ptotal = $request->totalarr;
-            foreach ($ids as $key => $value) {
-                //$details = new OrderDetail();
-                $pdata = [
-                    'order_id' => $orderID,
-                    'product_id' => $ids[$key],
-                    'quantity' => $quans[$key],
-                    'price' => $pprice[$key],
-                    'total' => $ptotal[$key],
-                ];
-                // Log::info($pdata);
-                $details = CodorderDetails::create($pdata);
-                //update quantity in product table
-                $pd = Product::find($ids[$key]);
-                $pd->quantity = $pd->quantity - $quans[$key];
-                if ($pd->quantity >= 0) {
-                    $pd->save();
-                    return response()->json(['error'=>0,'message'=>"product minus done"]);
-                } else {
-
-                    return response()->json(['error'=>1,'message'=>"Error"]);
-                }
-            }
-            //balance addition
-            // $gtotal = $request->gtotal;
-            // $pa = Account::find($request->pmethod);
-            // $pa->balance = $pa->balance + $gtotal;
-            // $pa->save();
             \Cart::session(session('cid'))->clear();
             DB::commit();
-            return response()->json(['error'=>0,'message'=>"Order received",'orderid'=>$orderID]);
+            return response()->json(['error'=>0,'message'=>"Order Placed Successfully"]);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['error'=>1,'message'=>"ERROR"]); 
-            // abort(404);
-        } */
+        }
+    }
 }
