@@ -221,7 +221,7 @@ Route::middleware(['customer'])->group(function () {
     // Route::delete("remove-from-cart", [ShopController::class, 'remove']);
 
     // order track
-    Route::resource("ordertrack", OrderTrackController::class);
+    Route::get("ordertrack/{id}", [OrderTrackController::class, 'ordertrack']);
 
     // profile
     Route::resource("customerprofile", CustomerProfileController::class);

@@ -59,80 +59,43 @@ Order Track
         </div>
         <div class="col-lg-9">
             <div class="row">
+                @foreach ($codorder as $item)
                 <div class="card border-left-primary col-12 shadow mb-4">
                     <div class="card-body">
                         <div class="container">
                             <article class="card">
-                                <header class="card-header"><h6>Order ID: OD45345345435</h6></header>
+                                <header class="card-header"><h6>{{$item->order_number}}</h6></header>
                                 <div class="card-body">
-                                    <h6>Customer Name: shariful islam</h6>
-                                    <h6>Phone: 01746959342</h6>
-                                    <h6>Address: Mirpur, dhaka</h6>
-                              
+                                    <h6><strong>Name:</strong>  {{$item->customer->name}}</h6>
+                                    <h6><strong>Phone:</strong> {{$item->customer->mobile}}</h6>
+                                    <h6><strong>Email:</strong> {{$item->customer->email}}</h6>
+                                    <h6><strong>Address:</strong> {{$item->address}}</h6>
                                     <hr>
+                                    @foreach ($codorder_details as $orderdetail)
                                     <div class="row  my-3 justify-content-between">
                                         <div class="col-md-2">
-                                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                                            class="img-fluid" alt="Phone">
+                                          <img src="{{url(Storage::url($orderdetail->product->productimages->first()->name))}}" class="img-fluid" alt="image">
                                         </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0">Samsung Galaxy</p>
+                                        <div class="col-md-5 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0">{{$orderdetail->product->name}}</p>
                                         </div>
                                       {{--   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                           <p class="text-muted mb-0 small">White</p>
                                         </div> --}}
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        {{-- <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                           <p class="text-muted mb-0 small">Capacity: 64GB</p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small">Qty: 1</p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0 small">$499</p>
-                                         </div>
-                                    </div>
-                                    <div class="row  my-3 justify-content-between">
-                                        <div class="col-md-2">
-                                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                                            class="img-fluid" alt="Phone">
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0">Samsung Galaxy</p>
-                                        </div>
-                                      {{--   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small">White</p>
                                         </div> --}}
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small">Capacity: 64GB</p>
+                                        <div class="col-md-1 text-center d-flex justify-content-center align-items-center">
+                                          <p class="text-muted mb-0 small">{{$orderdetail->quantity}}</p>
                                         </div>
                                         <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small">Qty: 1</p>
+                                            <p class="text-muted mb-0 small">{{$orderdetail->price}}</p>
                                         </div>
                                         <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0 small">$499</p>
-                                         </div>
+                                            <p class="text-muted mb-0 small">{{$orderdetail->total}}</p>
+                                        </div>
                                     </div>
-                                    <hr>
-                                    <div class="row  my-3 justify-content-between">
-                                        <div class="col-md-2">
-                                          
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0"></p>
-                                        </div>
-                                      {{--   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small">White</p>
-                                        </div> --}}
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small"></p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                          <p class="text-muted mb-0 small">Total:  </p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0 small">$499</p>
-                                         </div>
-                                    </div>
+                                    @endforeach
                                     <article class="card">
                                         <div class="card-body row">
                                             <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2021 </div>
@@ -148,12 +111,13 @@ Order Track
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Ready for pickup</span> </div>
                                     </div>
                                     
-                                    <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to Dashboard</a>
+                                    <a href="{{url('purchasehistory')}}" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to Dashboard</a>
                                 </div>
                             </article>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
 
 

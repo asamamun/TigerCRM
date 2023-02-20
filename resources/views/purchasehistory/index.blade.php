@@ -74,13 +74,13 @@ Purchase History
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-5 invoice-number">
-                                <a href="{{url('ordertrack')}}">
+                                <a href="{{url('ordertrack/'. $order->id)}}">
                                     {{$order->order_number}}
                                 </a>
                                 <p>{{$order->created_at->format('d-m-Y h:i A')}}</p>
                             </div>
                             <div class="col-3">
-                                <a href="{{url('ordertrack')}}">{{number_format($order->total,2)}}</a>
+                                <a href="{{url('ordertrack/'. $order->id)}}">{{number_format($order->total,2)}}</a>
                             </div>
                             <div class="col-2 text-left d-flex">
                                 @if ($order->created_at->diffInDays(now()) < 3 && $order->delivery_status == 'Pending')
