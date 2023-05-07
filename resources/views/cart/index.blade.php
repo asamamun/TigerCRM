@@ -15,6 +15,7 @@
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
+                        <th>#</th>
                         <th>Image</th>
                         <th>Products</th>
                         <th>Price</th>
@@ -25,27 +26,31 @@
                 </thead>
                 <tbody class="align-middle">
                     @php
+                        $sl = 1;
                         $total = 0;
-                        
                     @endphp
-
-                        @foreach ($items as $row)
-                        @php
-                        $total += $row->quantity *$row->price
-                        @endphp
+                    @forelse ($cartlists as $row)
+                    @php
+                        $total += $row->product->price * $row->quantity;
+                    @endphp
                         <tr>
-                            {{-- {{url(Storage::url($row->productimages->first()->name))}} --}}
-                            <input type="hidden" class="productid" data-id="{{$row->id}}">
-                            <td class="align-middle"><img src="{{$row->image}}" alt="{{$row->id}}" style="width: 50px;">img</td>
-                            <td class="align-middle">{{ $row->name }}</td>
-                            <td class="align-middle pprice">{{ $row->price }}</td>
+                            <td class="align-middle">{{$sl++}}</td>
+                            <td class="align-middle"><a href="{{url('item/'.$row->product->slug)}}"><img src="{{url(Storage::url($row->product->productimages->first()->name))}}" alt="Image" style="width: 60px;"></a></td>
+                            <td class="align-middle"><a href="{{url('item/'.$row->product->slug)}}">{{$row->product->name}}</a></td>
+                            <td class="align-middle">Tk {{$row->product->price}}</td>
                             <td class="align-middle">
-                                <input type="number" class="form-control form-control-sm border-0 text-center qu" min='1' name='quantity' value="{{ $row->quantity }}">
+                                <input type="number" class="form-control form-control-sm border-0 text-center qty" min="1" value="1">
                             </td>
-                            <td class="align-middle itemtotal">{{ $row->quantity * $row->price}}</td>
-                            <td class="align-middle"><a href="{{url('removecart/'.$row->id)}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a></td>
+                            <td class="align-middle">Tk {{$row->product->price * 1}}</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger delete" type="button" value="{{$row->id}}"><i class="fa fa-times"></i></button>
+                            </td>
                         </tr>
-                        @endforeach                 
+                        @empty
+                        <tr>
+                            <td colspan="7"><h2><i class="fas fa-heart"></i> Empty</h2></td>
+                        </tr>
+                        @endforelse                 
                 </tbody>
             </table>
         </div>
@@ -112,13 +117,15 @@
 		}
         $(document).ready(function() {
             //update total
-            $(document).on('blur change keyup', '.qu', function() {
-                var $row = $(this).closest('tr');
-                var qty = $row.find('.qu').val();
-                var price = $row.find('.pprice').text();
+            $(document).on('blur change keyup', '.qty', function() {
+                var row = $(this).closest('tr');
+                // alert(row); return;
+                // console.log(row);
+                var qty = row.find('.qty').val();
+                var price = row.find('.pprice').text();
                 var itemtotal = qty * price;
                 // console.log(itemtotal);
-                $row.find('.itemtotal').text(financial(itemtotal));
+                row.find('.itemtotal').text(financial(itemtotal));
                 updateTotal();
             });
 
@@ -174,7 +181,44 @@
                 });            
                     //post data
             });
-        // save button end
+            // save button end
+
+            //remove item from cart start
+            $('.delete').click(function(e){
+                e.preventDefault();
+                var id = $(this).val();
+                // alert(id);
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        method: 'POST',
+                        url: BASE_URL + '/cart_delete',
+                        data: {
+                            'cart_id' : id,
+                            'delete' : true
+                        },
+                        success: function(response){
+                            location.reload();
+                            Swal.fire(
+                            'Deleted!',
+                            'Your item has been removed.',
+                            'success'
+                        );
+                        }
+                    })
+                    
+                }
+                })
+            });
+            //remove item from cart end
         });
     </script>
 @endsection

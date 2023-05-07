@@ -82,4 +82,8 @@ class Product extends Model
     {
     return $this->hasMany('App\Models\CodorderDetail');
     }
+    public function Cartlists()
+    {
+    return $this->hasMany('App\Models\Cartlist');
+    }
 }

@@ -60,18 +60,26 @@ class Customer extends Model
 
     public function Customerprofile()
     {
-    return $this->hasOne('App\Models\CustomerProfile');
+        return $this->hasOne('App\Models\CustomerProfile');
     }
+
     public function Orders()
     {
-    return $this->hasMany('App\Models\Order');
+        return $this->hasMany('App\Models\Order');
     }
+
     public function Wishlists()
     {
         return $this->hasMany('App\Models\Wishlist');
     }
+
     public function CodOrders()
     {
-    return $this->hasMany('App\Models\Codorder');
+        return $this->hasMany('App\Models\Codorder');
+    }
+    
+    public function Cartlists()
+    {
+        return $this->hasMany('App\Models\Cartlist');
     }
 }

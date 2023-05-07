@@ -134,7 +134,8 @@
                                     <img class="img-fluid w-100" src="{{url('assets/img/product-1.jpg')}}" alt="">           
                                     @endif
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href="{{ url('add-to-cart/'.$product->id) }}"><i class="fa fa-shopping-cart mr-1"></i> </a>
+                                        {{-- <a class="btn btn-outline-dark btn-square" href="{{ url('add-to-cart/'.$product->id) }}"><i class="fa fa-shopping-cart mr-1"></i> </a> --}}
+                                        <button class="btn btn-outline-dark btn-square addToCartBtn" data-productid="{{$product->id}}"><i class="fa fa-shopping-cart mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square favbtn" data-productid="{{$product->id}}"><i class="far fa-heart mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-sync-alt mr-1"></i> </button>
                                         <button class="btn btn-outline-dark btn-square" id=""><i class="fa fa-search mr-1"></i> </button>
@@ -209,12 +210,12 @@
             //wishlist end
 
             //add to cart start
-            /* $(".addToCartBtn").click(function(){
-                var productId = $(this).data("productid");
-                // alert(productId);
-                $.post( BASE_URL + "/addcart",
+            $(".addToCartBtn").click(function(){
+                var product_id = $(this).data("productid");
+                // alert(product_id);
+                $.post( BASE_URL + "/add_to_cart",
                 {
-                    pid: productId
+                    pid: product_id
                 }, function(d) {
                     // Swal.fire(d.message);
                     if(d.error){
@@ -227,7 +228,7 @@
                         })
                     }else
                     {
-                        $("span.wishlistcount").html(d.ti);
+                        $("span.cartlistcount").html(d.ti);
                         Swal.fire({
                         position: 'top',
                         icon: 'success',
@@ -237,7 +238,7 @@
                         });
                     }
                 })
-            }); */
+            });
             //add to cart end
         });
     </script>

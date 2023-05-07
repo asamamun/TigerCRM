@@ -59,7 +59,7 @@
 
 @section('script')
     <script>
-    var BASE_URL = "{{url('/')}}";
+        var BASE_URL = "{{url('/')}}";
         $(document).ready(function(){
             $('.delete').click(function(e){
                 e.preventDefault();

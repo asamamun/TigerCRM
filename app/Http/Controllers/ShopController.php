@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Cartlist;
 use App\Models\Category;
 use App\Models\codorder;
 use App\Models\CodorderDetail;
@@ -88,40 +89,71 @@ class ShopController extends Controller
         //
     }
 
-    public function cart(){
-        //https://github.com/darryldecode/laravelshoppingcart
-        $categories = Category::with('subcategories','products')->has('products')->get();
-        $items = \Cart::session(session('cid'))->getContent();
-        // dd($items);
-        return view('cart.index')->with('items',$items)->with(compact('categories'));
+    public function add_to_cart(Request $request){
+        $customerid = session('cid');
+        
+        if(Cartlist::where([
+            'customer_id' => $customerid,
+            'product_id' => $request->pid
+        ])->count()){
+            return response()->json(['error'=>1,'message'=>"Product Already Added"]);
+        }
+
+        $data = [
+            'customer_id' => $customerid,
+            'product_id' => $request->pid
+        ];
+        if(session('clogged_in')){
+            Cartlist::create($data);
+
+            $totalitem = Cartlist::where([
+                'customer_id' => $customerid                
+            ])->count();
+            return response()->json(['error'=>0,'message'=>"Product added",'ti'=>$totalitem]);
+        } 
+        else{
+            return response()->json(['error'=>1,'message'=>"Please login first!"]);
+        }
+
     }
 
-    public function addToCart($id) // by this function we add product of choose in card
-    {       
-        // dd(session('cid'));
-        // $product = Product::find($id);
-        // with productsimages
-        $product = Product::with('productimages')->find($id);
-        // dd($product->productimages->first()->name);
-        if(!$product) {
-            abort(404);
-        }
-        \Cart::session(session('cid'))->add(array(
-            'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => 1,
-            'image' => $product->productimages->first()->name,
-            // 'attributes' => array(),
-        ));
-        // dd(\Cart::getContent());
-        return redirect()->back()->with('message', 'Product added to cart successfully!');
+    public function remove_from_cart(Request $request){
+        Cartlist::destroy($request->cart_id);
     }
-    public function removeFromCart($id){
-        \Cart::session(session('cid'))->remove($id);
-        return redirect()->back()->with('message', 'Product remove from cart successfully!');
-        // return response()->json(['id'=>$id,'message'=>"Item Removed"]);
+
+    public function cart(){
+        $categories = Category::with('subcategories','products')->has('products')->get();
+        $cartlists = Cartlist::with('customer','product.productimages')->where('customer_id', session('cid'))->get();
+        // dd($cartlists);
+        return view('cart.index')->with(compact('cartlists'))->with(compact('categories'));
     }
+
+    // public function addToCart($id) // by this function we add product of choose in card
+    // {       
+    //     // dd(session('cid'));
+    //     // $product = Product::find($id);
+    //     // with productsimages
+    //     $product = Product::with('productimages')->find($id);
+    //     // dd($product->productimages->first()->name);
+    //     if(!$product) {
+    //         abort(404);
+    //     }
+    //     \Cart::session(session('cid'))->add(array(
+    //         'id' => $product->id,
+    //         'name' => $product->name,
+    //         'price' => $product->price,
+    //         'quantity' => 1,
+    //         'image' => $product->productimages->first()->name,
+    //         // 'attributes' => array(),
+    //     ));
+    //     // dd(\Cart::getContent());
+    //     return redirect()->back()->with('message', 'Product added to cart successfully!');
+    // }
+    // public function removeFromCart($id){
+    //     \Cart::session(session('cid'))->remove($id);
+    //     return redirect()->back()->with('message', 'Product remove from cart successfully!');
+    //     // return response()->json(['id'=>$id,'message'=>"Item Removed"]);
+    // }
 
     public function placeorder(Request $request)
     {

@@ -56,6 +56,7 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::post('/favourite', [WishlistController::class, 'favourite']);
+Route::post('/add_to_cart', [ShopController::class, 'add_to_cart']);
 
 
 Route::get('customerregister', [CustomerauthController::class, 'register'])->name('customerregister');
@@ -213,7 +214,9 @@ Route::middleware(['customer'])->group(function () {
 
     //add to cart
     Route::get("cart", [ShopController::class, 'cart']);
-    Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
+    Route::post("cart_delete", [ShopController::class, 'remove_from_cart']);
+    // Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart']);
+    
     Route::get('removecart/{id}', [ShopController::class, 'removeFromCart']);
     Route::post('codplaceorder', [ShopController::class, 'placeorder']);
 
